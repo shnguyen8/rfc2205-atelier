@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import React from 'react';
 
 class App extends React.Component {
@@ -15,4 +15,8 @@ class App extends React.Component {
   }
  }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ const root = document.createElement("div");
+ root.setAttribute("id", "root");
+ document.body.appendChild(root);
+
+render(<App />, root);

@@ -9101,7 +9101,10 @@ var App = /*#__PURE__*/function (_React$Component) {
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
-react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(App, {}), document.getElementById('app'));
+var root = document.createElement("div");
+root.setAttribute("id", "root");
+document.body.appendChild(root);
+(0,react_dom__WEBPACK_IMPORTED_MODULE_0__.render)( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(App, {}), root);
 })();
 
 /******/ })()
