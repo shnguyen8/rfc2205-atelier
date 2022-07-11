@@ -9,7 +9,7 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: 66642, //need this to get passed in from somewhere, potentiall more if there's more to return?
+      product_id: '',
       allReviews: {},
       displayedReviews: [],
       metaData: {}, //only once
@@ -18,9 +18,12 @@ class Ratings extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    this.getReviewData({'product_id': this.state.productID, 'page': this.state.nextPage})
-    this.getMetaData({'product_id': this.state.productID})
+  componentWillMount = () => {
+    this.setState({
+      product_id: this.props.product_id
+    })
+    this.getReviewData({'product_id': this.state.product_id, 'page': this.state.nextPage})
+    this.getMetaData({'product_id': this.state.product_id})
   }
 
   getReviewData = (params) => {

@@ -209,14 +209,18 @@ var Ratings = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
+    _defineProperty(_assertThisInitialized(_this), "componentWillMount", function () {
+      _this.setState({
+        product_id: _this.props.product_id
+      });
+
       _this.getReviewData({
-        'product_id': _this.state.productID,
+        'product_id': _this.state.product_id,
         'page': _this.state.nextPage
       });
 
       _this.getMetaData({
-        'product_id': _this.state.productID
+        'product_id': _this.state.product_id
       });
     });
 
@@ -250,8 +254,7 @@ var Ratings = /*#__PURE__*/function (_React$Component) {
     });
 
     _this.state = {
-      productID: 66642,
-      //need this to get passed in from somewhere, potentiall more if there's more to return?
+      product_id: '',
       allReviews: {},
       displayedReviews: [],
       metaData: {},
@@ -11451,6 +11454,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -11471,7 +11476,86 @@ var App = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, App);
 
     _this = _super.call(this, props);
-    _this.state = {};
+
+    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
+      _this.getProducts();
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getProducts", function () {
+      // console.log('getProducts ran')
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get('/products').then(function (res) {
+        console.log(res.data);
+
+        _this.setState({
+          products: res.data,
+          currentProduct: res.data[0]['id']
+        });
+      }).then(function () {
+        _this.getReviewData(), _this.getMetaData();
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onClick", function (event) {
+      _this.setState({
+        currentProduct: _this.state.search
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onChange", function (event) {
+      _this.setState({
+        search: event.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getReviewData", function () {
+      var params = {
+        'product_id': _this.state.product_id,
+        'page': _this.state.nextPage
+      };
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get('/reviews/', {
+        params: params
+      }).then(function (res) {
+        var reviews = _this.state.allReviews;
+        reviews[res.data.page] = res.data.results;
+        var next = _this.state.nextPage + 1;
+
+        _this.setState({
+          allReviews: reviews,
+          nextPage: next
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getMetaData", function () {
+      var params = {
+        'product_id': _this.state.product_id
+      };
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get('/reviews/meta', {
+        params: params
+      }).then(function (data) {
+        _this.setState({
+          metaData: data.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    });
+
+    _this.state = {
+      products: [],
+      currentProduct: '',
+      search: '',
+      allReviews: {},
+      displayedReviews: [],
+      metaData: {},
+      //only once
+      showReviewForm: false,
+      nextPage: 1
+    };
     return _this;
   }
 
@@ -11479,7 +11563,22 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_productOverview_overview_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ratingsAndReviews_ratings_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_relatedItems_related_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+          type: "text",
+          placeholder: "Search by Product_id",
+          maxLength: "5",
+          value: this.state.search,
+          onChange: this.onChange
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          onClick: this.onClick,
+          children: "Submit"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_productOverview_overview_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          product_id: this.state.currentProduct
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ratingsAndReviews_ratings_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          product_id: this.state.currentProduct
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_relatedItems_related_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          product_id: this.state.currentProduct
+        })]
       });
     }
   }]);
