@@ -66,10 +66,10 @@ var ProdOverview = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./client/src/ratingsAndReviews/ratings.jsx":
-/*!**************************************************!*\
-  !*** ./client/src/ratingsAndReviews/ratings.jsx ***!
-  \**************************************************/
+/***/ "./client/src/ratingsAndReviews/ratingBreakdown.jsx":
+/*!**********************************************************!*\
+  !*** ./client/src/ratingsAndReviews/ratingBreakdown.jsx ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -102,6 +102,97 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var RatingBreakdown = /*#__PURE__*/function (_React$Component) {
+  _inherits(RatingBreakdown, _React$Component);
+
+  var _super = _createSuper(RatingBreakdown);
+
+  function RatingBreakdown(props) {
+    var _this;
+
+    _classCallCheck(this, RatingBreakdown);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "avgRating", function (ratingsObj) {});
+
+    _this.state = {
+      product_id: props.metaData.product_id,
+      characteristics: props.metaData.characteristics,
+      ratings: props.metaData.ratings,
+      reccomended: props.metaData.reccomended
+    };
+    return _this;
+  }
+
+  _createClass(RatingBreakdown, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: " Ratings & Reviews "
+        }), this.avgRating(this.state.ratings)]
+      });
+    }
+  }]);
+
+  return RatingBreakdown;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingBreakdown);
+
+/***/ }),
+
+/***/ "./client/src/ratingsAndReviews/ratings.jsx":
+/*!**************************************************!*\
+  !*** ./client/src/ratingsAndReviews/ratings.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ratingBreakdown_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ratingBreakdown.jsx */ "./client/src/ratingsAndReviews/ratingBreakdown.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 
 
@@ -117,15 +208,67 @@ var Ratings = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Ratings);
 
     _this = _super.call(this, props);
-    _this.state = {};
+
+    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
+      _this.getReviewData({
+        'product_id': _this.state.productID,
+        'page': _this.state.nextPage
+      });
+
+      _this.getMetaData({
+        'product_id': _this.state.productID
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getReviewData", function (params) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get('/reviews/', {
+        params: params
+      }).then(function (res) {
+        var reviews = _this.state.allReviews;
+        reviews[res.data.page] = res.data.results;
+        var next = _this.state.nextPage + 1;
+
+        _this.setState({
+          allReviews: reviews,
+          nextPage: next
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getMetaData", function (params) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get('/reviews/meta', {
+        params: params
+      }).then(function (data) {
+        _this.setState({
+          metaData: data.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    });
+
+    _this.state = {
+      productID: 66642,
+      //need this to get passed in from somewhere, potentiall more if there's more to return?
+      allReviews: {},
+      displayedReviews: [],
+      metaData: {},
+      //only once
+      showReviewForm: false,
+      nextPage: 1
+    };
     return _this;
   }
 
   _createClass(Ratings, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-        children: "Ratings and Reviews "
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ratingBreakdown_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          metaData: this.state.metaData
+        })
       });
     }
   }]);
