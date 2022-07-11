@@ -2,18 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const handlers = require('./handlers.js')
+// const path = require('path');
 app.use(express.json());
 
 
 app.use(express.static('client/dist'))
 
 
-const PORT = process.env.PORT
+const PORT = 3000;
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
 
 
-app.get('/:word', function(req, res) {
+app.get('/*', function(req, res) {
   handlers.getInfo(req.url)
   .then((data) => {
     console.log(data);
