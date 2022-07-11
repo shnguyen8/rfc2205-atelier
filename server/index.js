@@ -13,7 +13,8 @@ app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
 
 
-app.get('/:word', function(req, res) {
+app.get('/*', function(req, res) {
+  console.log('req', req.url)
   handlers.getInfo(req.url)
   .then((data) => {
     console.log(data);
