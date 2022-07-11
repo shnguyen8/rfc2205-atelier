@@ -3,7 +3,7 @@ require('dotenv').config();
 
 let getInfo = (endpoint) => {
 
-  console.log('axios endpoint', endpoint)
+  console.log('handler endpoint', endpoint)
   let options = {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc${endpoint}`,
     headers: {
