@@ -11,6 +11,7 @@ class List extends React.Component {
       relatedProducts: [],
       styles: [],
       products: [],
+      product_id: this.props.product_id
     }
     this.fetchRelatedProducts = this.fetchRelatedProducts.bind(this);
     this.fetchStyles = this.fetchStyles.bind(this);
@@ -21,7 +22,7 @@ class List extends React.Component {
   }
 
   fetchRelatedProducts() {
-    axios.get('/products').then(res => {
+    axios.get('/products/66643/related').then(res => {
       this.setState({
         products: [res.data][0]
       })
@@ -39,10 +40,12 @@ class List extends React.Component {
   render() {
     return (
       this.state.products.map(product => (<Card
-        name={product.name}
-        category={product.category}
+        id={product.id}
+        // name={product.name}
+        // category={product.category}
       />))
-  )
+
+    )
   }
 }
 

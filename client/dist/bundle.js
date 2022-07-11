@@ -233,13 +233,8 @@ __webpack_require__.r(__webpack_exports__);
 function Card(props, _ref) {
   var product = _ref.product,
       onClick = _ref.onClick;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-      src: "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
-      width: "384",
-      height: "192",
-      alt: "header image"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
         children: props.id
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
@@ -251,7 +246,7 @@ function Card(props, _ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
         children: "RATING"
       })]
-    })]
+    })
   });
 }
 
@@ -316,7 +311,8 @@ var List = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       relatedProducts: [],
       styles: [],
-      products: []
+      products: [],
+      product_id: _this.props.product_id
     };
     _this.fetchRelatedProducts = _this.fetchRelatedProducts.bind(_assertThisInitialized(_this));
     _this.fetchStyles = _this.fetchStyles.bind(_assertThisInitialized(_this));
@@ -334,7 +330,7 @@ var List = /*#__PURE__*/function (_React$Component) {
     value: function fetchRelatedProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/products/66643/related').then(function (res) {
         _this2.setState({
           products: [res.data][0]
         });
@@ -356,8 +352,9 @@ var List = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return this.state.products.map(function (product) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_relatedCard_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          name: product.name,
-          category: product.category
+          id: product.id // name={product.name}
+          // category={product.category}
+
         });
       });
     }

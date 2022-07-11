@@ -4,7 +4,7 @@ function Card(props, {product, onClick}) {
 
   return (
     <section>
-      <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"width="384" height="192" alt="header image"></img>
+      {/* <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"width="384" height="192" alt="header image"></img> */}
 
       <div>
       <h4>{props.id}</h4>
