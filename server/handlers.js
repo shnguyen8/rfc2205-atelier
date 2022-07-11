@@ -3,11 +3,9 @@ require('dotenv').config();
 
 let getInfo = (endpoint) => {
 
-  console.log('handler endpoint', endpoint)
   let options = {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc${endpoint}`,
     headers: {
-      // "User-Agent": "request",
       'Authorization': `${process.env.AUTHORIZATION_TOKEN}`
     }
   };
