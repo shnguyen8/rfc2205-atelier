@@ -17,11 +17,10 @@ app.get('/*', function(req, res) {
   if (req.url !== '/favicon.ico') {
     handlers.getInfo(req.url)
     .then((data) => {
-      // console.log(data);
       res.status(200).json(data.data);
     })
     .catch((err) => {
-      // console.log(err)
+      console.log(err)
       res.status(500).json({ message: 'Internal Server Error'})
     })
   }

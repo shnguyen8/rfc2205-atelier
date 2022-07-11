@@ -10,6 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       products: [],
+<<<<<<< HEAD
       currentProduct: '',
       search: '',
       allReviews: {},
@@ -51,31 +52,6 @@ class App extends React.Component {
   }
 
 
-  getReviewData = () => {
-    let params = {'product_id': this.state.product_id, 'page': this.state.nextPage}
-    axios.get('/reviews/', {params})
-    .then((res) => {
-      let reviews = this.state.allReviews
-      reviews[res.data.page] = res.data.results
-      let next = this.state.nextPage + 1;
-      this.setState({
-        allReviews: reviews,
-        nextPage: next
-      })
-    })
-    .catch((err) => {console.log(err)})
-  }
-
-  getMetaData = () => {
-    let params = {'product_id': this.state.product_id}
-    axios.get('/reviews/meta', {params})
-    .then((data) => {
-      this.setState({
-        metaData: data.data
-      })
-    })
-    .catch((err) => {console.log(err)})
-  }
 
   render() {
     return (
