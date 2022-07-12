@@ -6,7 +6,11 @@ class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false
     }
   }
 
@@ -31,15 +35,6 @@ class RatingBreakdown extends React.Component {
     return total;
   }
 
-  numberOfRatings = (ratingsObj) => {
-    let total = 0;
-    for(var key in ratingsObj){
-      let number = Number(ratingsObj[key])
-      total += number
-    }
-    return total;
-  }
-
   percentRecommend = (recObj) => {
     if(recObj){
       let totalTrue = Number(recObj['true']) || 0;
@@ -51,16 +46,23 @@ class RatingBreakdown extends React.Component {
     }
   }
 
+
   render(){
     return(
       <div>
+
       <p> Ratings & Reviews </p>
+
       {this.avgRating(this.props.metaData.ratings)}
       STARS HERE
       <br></br>
+
       {this.numberOfRatings(this.props.metaData.ratings)} total reviews
       <br></br>
+
       {this.percentRecommend(this.props.metaData.recommended)}% of reviews recommend this product
+      <br></br>
+
       </div>
     )
   }

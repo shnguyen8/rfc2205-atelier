@@ -231,17 +231,6 @@ var RatingBreakdown = /*#__PURE__*/function (_React$Component) {
       return total;
     });
 
-    _defineProperty(_assertThisInitialized(_this), "numberOfRatings", function (ratingsObj) {
-      var total = 0;
-
-      for (var key in ratingsObj) {
-        var number = Number(ratingsObj[key]);
-        total += number;
-      }
-
-      return total;
-    });
-
     _defineProperty(_assertThisInitialized(_this), "percentRecommend", function (recObj) {
       if (recObj) {
         var totalTrue = Number(recObj['true']) || 0;
@@ -253,7 +242,13 @@ var RatingBreakdown = /*#__PURE__*/function (_React$Component) {
       }
     });
 
-    _this.state = {};
+    _this.state = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false
+    };
     return _this;
   }
 
@@ -263,7 +258,7 @@ var RatingBreakdown = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
           children: " Ratings & Reviews "
-        }), this.avgRating(this.props.metaData.ratings), "STARS HERE", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), this.numberOfRatings(this.props.metaData.ratings), " total reviews", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), this.percentRecommend(this.props.metaData.recommended), "% of reviews recommend this product"]
+        }), this.avgRating(this.props.metaData.ratings), "STARS HERE", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), this.numberOfRatings(this.props.metaData.ratings), " total reviews", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), this.percentRecommend(this.props.metaData.recommended), "% of reviews recommend this product", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
       });
     }
   }]);
