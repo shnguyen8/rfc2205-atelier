@@ -141,12 +141,12 @@ class App extends React.Component {
 
 // render(<App />, root);
 
-function AppWithCB() {
-  useEffect(() => {
-    console.log('rendered')
-  });
-  return <App/>
-}
+// function AppWithCB() {
+//   useEffect(() => {
+//     console.log('rendered')
+//   });
+//   return <App/>
+// }
 
  const container = document.getElementById("app");
  const root = createRoot(container)
