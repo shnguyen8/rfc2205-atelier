@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.static('client/dist'))
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
 
@@ -24,5 +24,4 @@ app.get('/*', function(req, res) {
       res.status(500).json({ message: 'Internal Server Error'})
     })
   }
-
 })
