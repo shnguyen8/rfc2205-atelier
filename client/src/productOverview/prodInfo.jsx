@@ -11,6 +11,7 @@ const ProdInfo = (props) => {
         <p>{props.productSpecs.category}</p>
         <h2>{props.productSpecs.name}</h2>
         <p>${props.productSpecs.default_price}</p>
+        <p> Style > </p>
       </React.Fragment>
 
     )
