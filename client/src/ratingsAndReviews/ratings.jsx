@@ -9,52 +9,22 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: '',
-      allReviews: {},
+      currentProduct: this.props.currentProduct,
+      allReviews: this.props.initialReviews.results,
       displayedReviews: [],
-      metaData: {}, //only once
+      metaData: this.props.metaData,
       showReviewForm: false,
-      nextPage: 1,
+      nextPage: 2,
     }
   }
 
-  componentWillMount = () => {
-    this.setState({
-      product_id: this.props.product_id
-    })
-    this.getReviewData({'product_id': this.state.product_id, 'page': this.state.nextPage})
-    this.getMetaData({'product_id': this.state.product_id})
-  }
-
-  getReviewData = (params) => {
-    axios.get('/reviews/', {params})
-    .then((res) => {
-      let reviews = this.state.allReviews
-      reviews[res.data.page] = res.data.results
-      let next = this.state.nextPage + 1;
-      this.setState({
-        allReviews: reviews,
-        nextPage: next
-      })
-    })
-    .catch((err) => {console.log(err)})
-  }
-
-  getMetaData = (params) => {
-    axios.get('/reviews/meta', {params})
-    .then((data) => {
-      this.setState({
-        metaData: data.data
-      })
-    })
-    .catch((err) => {console.log(err)})
-  }
 
   render () {
     return (
       <div>
 
-      <RatingBreakdown metaData = {this.state.metaData}/>
+      <RatingBreakdown metaData = {this.props.metaData}/>
+
 
       </div>
 
