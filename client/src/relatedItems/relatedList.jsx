@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Card from './relatedCard.jsx';
+import App from '../index.jsx';
 
 
 
@@ -8,45 +9,18 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProducts: [],
-      styles: [],
-      products: [],
-      product_id: this.props.product_id
+      relatedProducts: this.props.relatedProducts,
+      products: this.props.products,
     }
-    this.fetchRelatedProducts = this.fetchRelatedProducts.bind(this);
-    this.fetchStyles = this.fetchStyles.bind(this);
-  }
-  componentDidMount() {
-    this.fetchRelatedProducts();
-    this.fetchStyles();
   }
 
-  fetchRelatedProducts() {
-    axios.get('/products/66643/related').then(res => {
-      this.setState({
-        products: [res.data][0]
-      })
-    })
-  }
 
-  fetchStyles() {
-    axios.get('/products/66643/styles').then(res => {
-      this.setState({
-        styles: [res.data][1]
-      })
-    })
-  }
 
   render() {
-    return (
-      this.state.products.map(product => (<Card
-        id={product.id}
-        // name={product.name}
-        // category={product.category}
-      />))
+    return (<Card relatedProducts={this.props.relatedProducts}/>)
 
-    )
+
   }
 }
 
-export default List;
+export default List

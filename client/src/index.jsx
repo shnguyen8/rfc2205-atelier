@@ -113,17 +113,6 @@ class App extends React.Component {
           value={this.state.search}
           onChange={this.onChange}
         />
-        <button onClick={this.onClick}>Submit</button>
-
-        <ProdOverview product_id={this.state.currentProduct} />
-        <Ratings product_id={this.state.currentProduct} />
-        <Related product_id={this.state.currentProduct} />
-        type="text"
-        placeholder='Search by Product_id'
-        maxLength='5'
-        value= {this.state.currentProduct}
-        onChange = {this.onChange}
-        />
         <button onClick={this.getAllData} >Submit</button>
         <ProdOverview
           currentProduct= {this.state.currentProduct}
@@ -137,6 +126,7 @@ class App extends React.Component {
           metaData = {this.state.metaData}
         />
         <Related
+          products={this.state.products}
           currentProduct= {this.state.currentProduct}
           productStyles={this.state.productStyles}
           relatedProducts = {this.state.relatedProducts}

@@ -14,10 +14,10 @@ class Related extends React.Component {
     return(
       <div>
 
-      <h2>Related Products</h2>
+      <h2> Related Products</h2>
 
       <div>
-        <List/>
+        <List relatedProducts={this.props.relatedProducts}/>
       </div>
 
       </div>
