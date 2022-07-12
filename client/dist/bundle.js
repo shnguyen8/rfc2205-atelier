@@ -245,13 +245,7 @@ var RatingBreakdown = /*#__PURE__*/function (_React$Component) {
       }
     });
 
-    _this.state = {
-      1: false,
-      2: false,
-      3: false,
-      4: false,
-      5: false
-    };
+    _this.state = {};
     return _this;
   }
 
