@@ -41,9 +41,8 @@ class App extends React.Component {
           products: res.data,
           currentProduct: res.data[0]['id']
         })
+        return res.data;
       })
-      return res.data;
-    }
     .catch(err => {console.log(err)})
   }
 
