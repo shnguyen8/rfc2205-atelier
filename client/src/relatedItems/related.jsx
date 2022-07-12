@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import List from './relatedList.jsx';
 
 class Related extends React.Component {
   constructor(props) {
@@ -11,7 +12,15 @@ class Related extends React.Component {
 
   render() {
     return(
-      <div> Related Products</div>
+      <div>
+
+      <h2> Related Products</h2>
+
+      <div>
+        <List relatedProducts={this.props.relatedProducts} products={this.props.products} productStyles={this.props.productStyles}/>
+      </div>
+
+      </div>
     )
   }
 }
