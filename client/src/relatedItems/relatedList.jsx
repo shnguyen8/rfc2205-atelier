@@ -9,15 +9,18 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProducts: this.props.relatedProducts,
-      products: this.props.products,
+
     }
   }
 
 
 
   render() {
-    return (<Card relatedProducts={this.props.relatedProducts}/>)
+    return (
+
+    <Card relatedProducts={this.props.relatedProducts} products={this.props.products}productStyles={this.props.productStyles}/>
+
+    )
 
 
   }

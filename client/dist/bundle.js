@@ -498,7 +498,9 @@ var Related = /*#__PURE__*/function (_React$Component) {
           children: " Related Products"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_relatedList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            relatedProducts: this.props.relatedProducts
+            relatedProducts: this.props.relatedProducts,
+            products: this.props.products,
+            productStyles: this.props.productStyles
           })
         })]
       });
@@ -537,14 +539,16 @@ function Card(props, _ref) {
       onClick = _ref.onClick;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
-        children: relatedProducts
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        src: "https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
-        children: products
+        children: props.relatedProducts
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+        children: props.products.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-        children: props.name
+        children: props.products.category
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
-        children: "PRICE"
+        children: props.productStyles
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
         children: "RATING"
       })]
@@ -612,10 +616,7 @@ var List = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, List);
 
     _this = _super.call(this, props);
-    _this.state = {
-      relatedProducts: _this.props.relatedProducts,
-      products: _this.props.products
-    };
+    _this.state = {};
     return _this;
   }
 
@@ -623,7 +624,9 @@ var List = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_relatedCard_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        relatedProducts: this.props.relatedProducts
+        relatedProducts: this.props.relatedProducts,
+        products: this.props.products,
+        productStyles: this.props.productStyles
       });
     }
   }]);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "npx webpack --watch",
     "build": "npx webpack",
@@ -21,7 +21,6 @@
     "url": "https://github.com/RFC2205-FEC-Ganymede/rfc2205-atelier/issues"
   },
   "homepage": "https://github.com/RFC2205-FEC-Ganymede/rfc2205-atelier#readme",
-
   "dependencies": {
     "axios": "^0.21.1",
     "date-fns": "^2.22.1",
@@ -40,6 +39,7 @@
     "babel-plugin-styled-components": "^1.12.0",
     "css-loader": "^5.2.6",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^28.1.2",
     "live-server": "^1.2.1",
     "nodemon": "^2.0.7",
     "react-refresh": "^0.14.0",

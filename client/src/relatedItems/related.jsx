@@ -17,7 +17,7 @@ class Related extends React.Component {
       <h2> Related Products</h2>
 
       <div>
-        <List relatedProducts={this.props.relatedProducts}/>
+        <List relatedProducts={this.props.relatedProducts} products={this.props.products} productStyles={this.props.productStyles}/>
       </div>
 
       </div>
