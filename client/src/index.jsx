@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import React from 'react';
 import Ratings from './ratingsAndReviews/ratings.jsx';
 import ProdOverview from './productOverview/overview.jsx';
@@ -40,6 +40,7 @@ class App extends React.Component {
         products: res.data,
         currentProduct: res.data[0]['id']
       })
+      return res.data;
     })
     .catch(err => {console.log(err)})
   }
@@ -134,8 +135,21 @@ class App extends React.Component {
   }
  }
 
- const root = document.createElement("div");
- root.setAttribute("id", "root");
- document.body.appendChild(root);
+ const root1 = document.createElement("div");
+ root1.setAttribute("id", "app");
+ document.body.appendChild(root1);
 
-render(<App />, root);
+// render(<App />, root);
+
+// function AppWithCB() {
+//   useEffect(() => {
+//     console.log('rendered')
+//   });
+//   return <App/>
+// }
+
+ const container = document.getElementById("app");
+ const root = createRoot(container)
+ root.render(<App/>)
+
+ export default App;

@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProdInfo = function ProdInfo(props) {
-  // console.log(props)
+  console.log(props);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
       children: "Star Rating"
@@ -11339,7 +11339,10 @@ var __webpack_exports__ = {};
   !*** ./client/src/index.jsx ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-dom/client'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _ratingsAndReviews_ratings_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ratingsAndReviews/ratings.jsx */ "./client/src/ratingsAndReviews/ratings.jsx");
 /* harmony import */ var _productOverview_overview_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./productOverview/overview.jsx */ "./client/src/productOverview/overview.jsx");
@@ -11416,6 +11419,8 @@ var App = /*#__PURE__*/function (_React$Component) {
           products: res.data,
           currentProduct: res.data[0]['id']
         });
+
+        return res.data;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -11534,10 +11539,20 @@ var App = /*#__PURE__*/function (_React$Component) {
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
-var root = document.createElement("div");
-root.setAttribute("id", "root");
-document.body.appendChild(root);
-(0,react_dom__WEBPACK_IMPORTED_MODULE_0__.render)( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(App, {}), root);
+var root1 = document.createElement("div");
+root1.setAttribute("id", "app");
+document.body.appendChild(root1); // render(<App />, root);
+// function AppWithCB() {
+//   useEffect(() => {
+//     console.log('rendered')
+//   });
+//   return <App/>
+// }
+
+var container = document.getElementById("app");
+var root = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'react-dom/client'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(container);
+root.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(App, {}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 })();
 
 /******/ })()
