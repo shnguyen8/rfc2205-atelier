@@ -22,7 +22,7 @@ class Ratings extends React.Component {
       <div>
 
       <RatingBreakdown metaData = {this.props.metaData}/>
-      <ReviewsList initialReviews = {this.props.initialReviews}/>
+      <ReviewsList currentProduct = {this.props.currentProduct} />
 
       </div>
 

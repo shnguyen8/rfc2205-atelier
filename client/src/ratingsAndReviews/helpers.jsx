@@ -53,10 +53,12 @@ const ratingSummary = (ratingsObj) => {
   }
 
   let total = numberOfRatings(ratingsObj);
+
   let findValue = (property) => {
     let percent = Number(ratingsObj[property]) || 0
     return Math.floor(percent / total * 100)
   }
+
   let five = findValue(5)
   let four = findValue(4)
   let three = findValue(3)
