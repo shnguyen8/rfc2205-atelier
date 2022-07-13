@@ -5,9 +5,8 @@
 
 #SECRETS
 .env
-bundle.js
-bundle.js.map
-
+client/dist/bundle.js
+client/dist/bundle.js.map
 
 # User-specific files
 *.rsuser
