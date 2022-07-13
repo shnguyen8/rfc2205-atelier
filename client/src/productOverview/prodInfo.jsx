@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 const ProdInfo = (props) => {
-  console.log(props);
+  // console.log(props);
 
 
     return (

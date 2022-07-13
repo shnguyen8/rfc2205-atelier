@@ -15,7 +15,8 @@ class App extends React.Component {
       initialReviews: [],
       metaData: {},
       productStyles: {},
-      relatedProducts: []
+      relatedProducts: [],
+      relatedProductsInfo: [],
     }
   }
 
@@ -33,46 +34,53 @@ class App extends React.Component {
     this.getRelatedProducts();
   }
 
+
+
   getProducts = () => {
     axios.get('/products')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           products: res.data,
           currentProduct: res.data[0]['id']
         })
         return res.data;
       })
-    .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
   }
 
+
   getProductInfo = () => {
-    axios.get(`products/${this.state.currentProduct}`)
+    axios.get(`/products/${this.state.currentProduct}`)
       .then(res => {
         this.setState({
           productSpecs: res.data,
         })
       })
-      .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
 
   }
 
   getInitialReviews = () => {
-    let params = {product_id: this.state.currentProduct, page: 1}
-    axios.get('/reviews', {params})
-    .then(res => {this.setState({
-      initialReviews: res.data
-    })})
-    .catch(err => {console.log(err)})
+    let params = { product_id: this.state.currentProduct, page: 1 }
+    axios.get('/reviews', { params })
+      .then(res => {
+        this.setState({
+          initialReviews: res.data
+        })
+      })
+      .catch(err => { console.log(err) })
   }
 
   getMetaData = () => {
-    let params = {product_id: this.state.currentProduct}
-    axios.get('/reviews/meta', {params})
-    .then(res => {this.setState({
-      metaData: res.data
-    })})
-    .catch(err => {console.log(err)})
+    let params = { product_id: this.state.currentProduct }
+    axios.get('/reviews/meta', { params })
+      .then(res => {
+        this.setState({
+          metaData: res.data
+        })
+      })
+      .catch(err => { console.log(err) })
   }
 
   getProductStyles = () => {
@@ -82,7 +90,7 @@ class App extends React.Component {
           productStyles: res.data,
         })
       })
-      .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
 
   }
 
@@ -91,9 +99,20 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           relatedProducts: res.data,
-        })
+        }, () => {this.getProductById(res.data)})
       })
-      .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
+
+  }
+
+  getProductById = (arr) => {
+    // console.log(this.state.relatedProducts)
+    console.log(arr)
+    arr.forEach(id => {
+      axios.get(`/products/${id}`).then(res => {
+        this.setState({ relatedProductsInfo: [...this.state.relatedProductsInfo, res.data] })
+      })
+    })
 
   }
 
@@ -116,30 +135,32 @@ class App extends React.Component {
         />
         <button onClick={this.getAllData} >Submit</button>
         <ProdOverview
-          currentProduct= {this.state.currentProduct}
+          currentProduct={this.state.currentProduct}
           products={this.state.products}
           productSpecs={this.state.productSpecs}
           productStyles={this.state.productStyles}
         />
         <Ratings
-          currentProduct= {this.state.currentProduct}
-          initialReviews = {this.state.initialReviews}
-          metaData = {this.state.metaData}
+          currentProduct={this.state.currentProduct}
+          initialReviews={this.state.initialReviews}
+          metaData={this.state.metaData}
         />
         <Related
+          relatedProductsInfo={this.state.relatedProductsInfo}
           products={this.state.products}
-          currentProduct= {this.state.currentProduct}
+          productSpecs={this.state.productSpecs}
+          currentProduct={this.state.currentProduct}
           productStyles={this.state.productStyles}
-          relatedProducts = {this.state.relatedProducts}
+          relatedProducts={this.state.relatedProducts}
         />
       </div>
     )
   }
 }
 
- const root1 = document.createElement("div");
- root1.setAttribute("id", "app");
- document.body.appendChild(root1);
+const root1 = document.createElement("div");
+root1.setAttribute("id", "app");
+document.body.appendChild(root1);
 
 // render(<App />, root);
 
@@ -150,8 +171,8 @@ class App extends React.Component {
 //   return <App/>
 // }
 
- const container = document.getElementById("app");
- const root = createRoot(container)
- root.render(<App/>)
+const container = document.getElementById("app");
+const root = createRoot(container)
+root.render(<App />)
 
- export default App;
+export default App;

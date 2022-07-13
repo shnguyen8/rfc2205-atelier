@@ -5,20 +5,23 @@ import App from '../index.jsx';
 
 
 
-class List extends React.Component {
+class RelatedList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      relatedItemsInfo: this.props.relatedProductsInfo,
     }
+
   }
-
-
 
   render() {
     return (
+      <section>
 
-    <Card relatedProducts={this.props.relatedProducts} products={this.props.products}productStyles={this.props.productStyles}/>
+        {(this.props.relatedProductsInfo.length > 0) ? this.props.relatedProductsInfo.map(item => <p>{item.name} <br/>
+        {item.category}</p>) : null}
+
+      </section>
 
     )
 
@@ -26,4 +29,4 @@ class List extends React.Component {
   }
 }
 
-export default List
+export default RelatedList
