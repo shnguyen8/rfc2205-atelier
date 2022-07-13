@@ -101,16 +101,6 @@ class App extends React.Component {
  const root1 = document.createElement("div");
  root1.setAttribute("id", "app");
  document.body.appendChild(root1);
-
-// render(<App />, root);
-
-// function AppWithCB() {
-//   useEffect(() => {
-//     console.log('rendered')
-//   });
-//   return <App/>
-// }
-
  const container = document.getElementById("app");
  const root = createRoot(container)
  root.render(<App/>)
