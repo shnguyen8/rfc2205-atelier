@@ -11,7 +11,6 @@ function Card(props, {relatedProducts, products, onClick}) {
       <h4>{props.relatedProducts}</h4>
       <h4>{props.products.name}</h4>
       <h3>{props.products.category}</h3>
-      <small>{props.productStyles}</small>
       <h5>RATING</h5>
       </div>
 
