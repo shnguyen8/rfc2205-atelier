@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Card from './relatedCard.jsx';
+import RelatedCard from './relatedCard.jsx';
 import App from '../index.jsx';
 
 
@@ -9,17 +9,36 @@ class RelatedList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedItemsInfo: this.props.relatedProductsInfo,
+      relatedProducts: this.props.relatedProducts,
+      allProducts: this.props.allProducts,
+      relatedProductsInfo: [],
+      relatedStylesInfo:[],
     }
 
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.relatedProducts != prevProps.relatedProducts) {
+      this.setState({relatedProducts: this.props.relatedProducts})
+    }
+    if (this.props.allProducts != prevProps.allProducts) {
+      this.setState({allProducts: this.props.allProducts})
+      this.setState({relatedProductsInfo: this.props.allProducts.filter(product => this.state.relatedProducts.includes(product.id))})
+    }
+
+  }
+
+  
 
   render() {
     return (
       <section>
 
-        {(this.props.relatedProductsInfo.length > 0) ? this.props.relatedProductsInfo.map(item => <p>{item.name} <br/>
-        {item.category}</p>) : null}
+        {(this.state.relatedProductsInfo.length > 0) ? this.state.relatedProductsInfo.map(product => (<RelatedCard
+        name={product.name}
+        category={product.category}
+        />))
+        : <p>Related products are loading...</p>}
 
       </section>
 

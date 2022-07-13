@@ -16,7 +16,8 @@ class App extends React.Component {
       metaData: {},
       productStyles: {},
       relatedProducts: [],
-      relatedProductsInfo: [],
+      relatedStylesInfo: [],
+      allProducts : {}
     }
   }
 
@@ -32,6 +33,7 @@ class App extends React.Component {
     this.getMetaData();
     this.getProductStyles();
     this.getRelatedProducts();
+    this.getEveryProduct();
   }
 
 
@@ -99,23 +101,29 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           relatedProducts: res.data,
-        }, () => {this.getProductById(res.data)})
+        })
       })
       .catch(err => { console.log(err) })
 
   }
 
-  getProductById = (arr) => {
-    // console.log(this.state.relatedProducts)
-    console.log(arr)
-    arr.forEach(id => {
-      axios.get(`/products/${id}`).then(res => {
-        this.setState({ relatedProductsInfo: [...this.state.relatedProductsInfo, res.data] })
-      })
+  getEveryProduct = () => {
+    axios.get("/products/?count=5000").then(res=>{
+      this.setState({allProducts: res.data})
     })
 
   }
 
+  getProductStylesById = (arr) => {
+    // console.log(this.state.relatedProducts)
+    console.log(arr)
+    arr.forEach(id => {
+      axios.get(`/products/${id}/styles`).then(res => {
+        this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
+      })
+    })
+
+  }
 
   onChange = (event) => {
     this.setState({
@@ -146,12 +154,9 @@ class App extends React.Component {
           metaData={this.state.metaData}
         />
         <Related
-          relatedProductsInfo={this.state.relatedProductsInfo}
-          products={this.state.products}
-          productSpecs={this.state.productSpecs}
           currentProduct={this.state.currentProduct}
-          productStyles={this.state.productStyles}
           relatedProducts={this.state.relatedProducts}
+          allProducts={this.state.allProducts}
         />
       </div>
     )

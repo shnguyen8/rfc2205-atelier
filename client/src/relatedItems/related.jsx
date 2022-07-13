@@ -20,7 +20,7 @@ class Related extends React.Component {
         <RelatedList
         relatedProducts={this.props.relatedProducts}
         relatedProductsInfo={this.props.relatedProductsInfo}
-        products={this.props.products} productSpecs={this.props.productSpecs}
+        allProducts={this.props.allProducts}
         productStyles={this.props.productStyles}/>
       </div>
 
