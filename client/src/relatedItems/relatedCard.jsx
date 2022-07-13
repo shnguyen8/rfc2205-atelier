@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import App from '../index.jsx';
+import axios from 'axios';
 
-function Card(props, {relatedProducts, products, onClick}) {
+function RelatedCard(props, {relatedProductsInfo}) {
+
+  const {name, category} = props;
 
   return (
     <section>
 
       <div>
-      <img src="https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" ></img>
-      <h4>{props.relatedProducts}</h4>
-      <h4>{props.products.name}</h4>
-      <h3>{props.products.category}</h3>
-      {/* <small>{props.productStyles}</small> */}
+
+      <h4>{props.name}</h4>
+      <h5>{props.category}</h5>
+      <small>PRICE</small>
       <h5>RATING</h5>
       </div>
 
@@ -19,4 +20,4 @@ function Card(props, {relatedProducts, products, onClick}) {
   );
 }
 
-export default Card;
+export default RelatedCard;

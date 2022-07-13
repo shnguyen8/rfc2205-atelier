@@ -52,12 +52,14 @@ class App extends React.Component {
   }
 
   getMetaData = () => {
-    let params = {product_id: this.state.currentProduct}
-    axios.get('/reviews/meta', {params})
-    .then(res => {this.setState({
-      metaData: res.data
-    })})
-    .catch(err => {console.log(err)})
+    let params = { product_id: this.state.currentProduct }
+    axios.get('/reviews/meta', { params })
+      .then(res => {
+        this.setState({
+          metaData: res.data
+        })
+      })
+      .catch(err => { console.log(err) })
   }
 
   onChange = (event) => {
@@ -105,4 +107,4 @@ class App extends React.Component {
  const root = createRoot(container)
  root.render(<App/>)
 
- export default App;
+export default App;
