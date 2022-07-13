@@ -27,6 +27,7 @@ class App extends React.Component {
 
   getAllData = () => {
     this.getAllDataPromise();
+    this.getMetaData();
   }
 
   getAllDataPromise = async () => {
@@ -68,6 +69,7 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div>
@@ -84,6 +86,7 @@ class App extends React.Component {
           products = {this.state.products}
           productSpecs = {this.state.productSpecs}
           productStyles = {this.state.productStyles}
+          allProducts = {this.state.allProducts}
         />
         <Ratings
           currentProduct = {this.state.currentProduct}
