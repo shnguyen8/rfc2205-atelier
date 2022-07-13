@@ -12,7 +12,7 @@ const avgRating = (ratingsObj) => {
   }
   let avg = totalScore / ratings;
   avg = Math.round(avg * 10) / 10;
-  return avg;
+  return avg || 0.0
 }
 
 const numberOfRatings = (ratingsObj) => {
@@ -49,14 +49,14 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 const ratingSummary = (ratingsObj) => {
 
   if(ratingsObj === undefined){
-    return null;
+    return null
   }
 
   let total = numberOfRatings(ratingsObj);
 
   let findValue = (property) => {
     let percent = Number(ratingsObj[property]) || 0
-    return Math.floor(percent / total * 100)
+    return Math.floor(percent / total * 100) || 0
   }
 
   let five = findValue(5)

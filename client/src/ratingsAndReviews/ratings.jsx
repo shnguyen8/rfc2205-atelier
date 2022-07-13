@@ -4,6 +4,7 @@ import axios from 'axios';
 import RatingBreakdown from './ratingBreakdown.jsx'
 import starRating from './starRating.jsx'
 import ReviewsList from './reviewsList.jsx'
+import {ratingSummary, avgRating, numberOfRatings, percentRecommend} from './helpers.jsx'
 
 
 class Ratings extends React.Component {
@@ -11,18 +12,15 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayedReviews: [],
-      nextPage: 2,
     }
   }
-
 
   render () {
     return (
       <div>
 
       <RatingBreakdown metaData = {this.props.metaData}/>
-      <ReviewsList currentProduct = {this.props.currentProduct} />
+      <ReviewsList currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
 
       </div>
 

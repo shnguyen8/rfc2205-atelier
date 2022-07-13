@@ -27,6 +27,7 @@ class App extends React.Component {
 
   getAllData = () => {
     this.getAllDataPromise();
+    this.getMetaData();
   }
 
   getAllDataPromise = async () => {
