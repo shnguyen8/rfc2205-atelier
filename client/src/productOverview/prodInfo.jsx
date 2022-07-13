@@ -1,21 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
-class ProdInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
+const ProdInfo = (props) => {
+  console.log(props);
 
 
-
-  render() {
     return (
-      <h3>Product Information</h3>
+      <React.Fragment>
+        <p>Star Rating</p>
+        <p>{props.productSpecs.category}</p>
+        <h2>{props.productSpecs.name}</h2>
+        <p>${props.productSpecs.default_price}</p>
+        <p> Style > </p>
+      </React.Fragment>
+
     )
-  }
 }
 
 export default ProdInfo;

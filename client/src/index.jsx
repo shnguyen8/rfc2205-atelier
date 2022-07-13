@@ -35,13 +35,14 @@ class App extends React.Component {
 
   getProducts = () => {
     axios.get('/products')
-    .then(res => {
-      this.setState({
-        products: res.data,
-        currentProduct: res.data[0]['id']
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          products: res.data,
+          currentProduct: res.data[0]['id']
+        })
+        return res.data;
       })
-      return res.data;
-    })
     .catch(err => {console.log(err)})
   }
 
@@ -107,11 +108,11 @@ class App extends React.Component {
     return (
       <div>
         <input
-        type="text"
-        placeholder='Search by Product_id'
-        maxLength='5'
-        value= {this.state.currentProduct}
-        onChange = {this.onChange}
+          type="text"
+          placeholder='Search by Product_id'
+          maxLength='5'
+          value={this.state.search}
+          onChange={this.onChange}
         />
         <button onClick={this.getAllData} >Submit</button>
         <ProdOverview
@@ -126,6 +127,7 @@ class App extends React.Component {
           metaData = {this.state.metaData}
         />
         <Related
+          products={this.state.products}
           currentProduct= {this.state.currentProduct}
           productStyles={this.state.productStyles}
           relatedProducts = {this.state.relatedProducts}
@@ -133,7 +135,7 @@ class App extends React.Component {
       </div>
     )
   }
- }
+}
 
  const root1 = document.createElement("div");
  root1.setAttribute("id", "app");
@@ -141,12 +143,12 @@ class App extends React.Component {
 
 // render(<App />, root);
 
-function AppWithCB() {
-  useEffect(() => {
-    console.log('rendered')
-  });
-  return <App/>
-}
+// function AppWithCB() {
+//   useEffect(() => {
+//     console.log('rendered')
+//   });
+//   return <App/>
+// }
 
  const container = document.getElementById("app");
  const root = createRoot(container)
