@@ -1,5 +1,7 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import StyleSelectionHelper from './styleSelectionHelper.jsx';
+
 
 class StyleSelections extends React.Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class StyleSelections extends React.Component {
 
 
 
+
   render() {
     return (
       <React.Fragment>
@@ -20,6 +23,7 @@ class StyleSelections extends React.Component {
           products={this.props.products}
           productSpecs={this.props.productSpecs}
           productStyles={this.props.productStyles}
+          onThumbnailClick={this.props.onThumbnailClick}
         />
       </React.Fragment>
 

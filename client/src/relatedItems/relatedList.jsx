@@ -28,15 +28,16 @@ class RelatedList extends React.Component {
 
   }
 
-  
+
 
   render() {
     return (
       <section>
 
-        {(this.state.relatedProductsInfo.length > 0) ? this.state.relatedProductsInfo.map(product => (<RelatedCard
+        {(this.state.relatedProductsInfo.length > 0) ? this.state.relatedProductsInfo.map((product, i) => (<RelatedCard
         name={product.name}
         category={product.category}
+        key={i}
         />))
         : <p>Related products are loading...</p>}
 
