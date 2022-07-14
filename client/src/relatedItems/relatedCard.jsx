@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Card from 'react-bootstrap/Card';
 
 function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
 
   const { name, category } = props;
 
   return (
-    <section>
+    <section className="card">
 
       <div>
         <p>------------------------------</p>
