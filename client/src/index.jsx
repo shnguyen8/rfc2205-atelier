@@ -14,7 +14,6 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
-      productStyles: {},
       relatedProducts: [],
       allProducts: [],
     }
@@ -36,7 +35,6 @@ class App extends React.Component {
       axios.get('/products'),
       axios.get(`products/${this.state.currentProduct}`),
       axios.get('/reviews', {params}),
-      axios.get(`products/${this.state.currentProduct}/styles`),
       axios.get(`products/${this.state.currentProduct}/related`),
       axios.get("/products/?count=5000")
     ])
@@ -45,9 +43,8 @@ class App extends React.Component {
         products: res[0].data,
         productSpecs: res[1].data,
         initialReviews: res[2].data,
-        productStyles: res[3].data,
-        relatedProducts: res[4].data,
-        allProducts: res[5].data
+        relatedProducts: res[3].data,
+        allProducts: res[4].data
       })
     })
   }
@@ -85,8 +82,6 @@ class App extends React.Component {
           currentProduct = {this.state.currentProduct}
           products = {this.state.products}
           productSpecs = {this.state.productSpecs}
-          productStyles = {this.state.productStyles}
-          allProducts = {this.state.allProducts}
         />
         <Ratings
           currentProduct = {this.state.currentProduct}

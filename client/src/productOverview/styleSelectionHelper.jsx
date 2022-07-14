@@ -5,8 +5,12 @@ import StyleSelections from './styleSelections.jsx';
 const StyleSelectionHelper = (props) => {
   // console.log(props.productStyles)
 
-  const [style_id, setStyle_id] = useState('');
 
+  let onSale = (sale_price) => {
+    if (sale_price !== null) {
+        return sale_price;
+      }
+  }
 
 
   if (props.productStyles.results !== undefined) {
@@ -21,6 +25,13 @@ const StyleSelectionHelper = (props) => {
                       src={styleVals.photos[0].thumbnail_url}
                       name={styleVals.name}
                       style_id={styleVals.style_id}
+                      price={styleVals.original_price}
+                      sale={onSale(styleVals.sale_price)}
+                      style={{
+                        resizeMode: "center",
+                        height: 150,
+                        width: 150
+                      }}
                      />
             }
           })}

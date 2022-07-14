@@ -1,10 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
+
 const ImageGallery = (props) => {
   // console.log(props);
 
-  if (props.thumbnailClicked !== '' && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
+  if (props.thumbnailClicked !== '' && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
       <React.Fragment>
         <img
