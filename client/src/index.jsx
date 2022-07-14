@@ -14,8 +14,13 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
+<<<<<<< HEAD
       productStyles: {},
       allProducts: {},
+=======
+      relatedProducts: [],
+      allProducts: [],
+>>>>>>> development
     }
   }
 
@@ -27,6 +32,7 @@ class App extends React.Component {
 
   getAllData = () => {
     this.getAllDataPromise();
+    this.getMetaData();
   }
 
   getAllDataPromise = async () => {
@@ -68,6 +74,7 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div>
@@ -80,10 +87,9 @@ class App extends React.Component {
         />
         <button onClick={this.getAllData} >Submit</button>
         <ProdOverview
-          currentProduct={this.state.currentProduct}
-          products={this.state.products}
-          productSpecs={this.state.productSpecs}
-          productStyles={this.state.productStyles}
+          currentProduct = {this.state.currentProduct}
+          products = {this.state.products}
+          productSpecs = {this.state.productSpecs}
         />
         <Ratings
           currentProduct={this.state.currentProduct}
