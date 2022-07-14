@@ -25,3 +25,17 @@ app.get('/*', function(req, res) {
     })
   }
 })
+
+app.put('/*', function(req, res) {
+  console.log('put', req.path)
+  if (req.path !== '/favicon.ico') {
+    handlers.putInfo(req.path)
+    .then((data) => {
+      res.sendStatus(204)
+    })
+    .catch((err) => {
+      // console.log(err)
+      res.status(500).json({ message: 'Internal Server Error'})
+    })
+  }
+})

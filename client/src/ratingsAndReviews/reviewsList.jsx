@@ -33,7 +33,7 @@ class ReviewsList extends React.Component {
       .then(res => {
         var resData = res.data.results
         var updateReviews = [];
-        resData.forEach((data) => {updateReviews.push(data)})
+        resData.forEach((review) => {updateReviews.push(review)})
         this.setState({
         reviews: updateReviews,
         nextPage: 2,
@@ -59,7 +59,7 @@ class ReviewsList extends React.Component {
       var resData = res.data.results
       var updateReviews = this.state.reviews;
       var updatePage = this.state.nextPage + 1;
-      resData.forEach((data) => {updateReviews.push(data)})
+      resData.forEach((review) => {updateReviews.push(review)})
       this.setState({
       reviews: updateReviews,
       nextPage: updatePage,
@@ -84,15 +84,14 @@ class ReviewsList extends React.Component {
       count: this.state.reviews.length,
       sort: sortOption
     }
-    console.log('sort params', params)
     axios.get('/reviews', {params})
     .then(res => {
       var resData = res.data.results
-      console.log('resdata', resData)
       var updateReviews = [];
-      resData.forEach((data) => {updateReviews.push(data)})
+      resData.forEach((review) => {updateReviews.push(review)})
       this.setState({
       reviews: updateReviews,
+      sort: sortOption
       })
     })
     .catch(err => {console.log('error in get reviews',err)})

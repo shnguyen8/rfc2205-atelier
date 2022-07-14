@@ -14,6 +14,21 @@ let getInfo = (endpoint) => {
 
 }
 
+let putInfo = (endpoint) => {
+
+  let options = {
+    method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc${endpoint}`,
+    headers: {
+      'Authorization': `${process.env.AUTHORIZATION_TOKEN}`
+    }
+  };
+
+  return axios(options);
+
+}
+
 module.exports = {
   getInfo,
+  putInfo
 };

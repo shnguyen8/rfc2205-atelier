@@ -76,6 +76,21 @@ const ratingSummary = (ratingsObj) => {
   )
 }
 
+const formatDate = (date) => {
+  //input date 2022-04-14T00:00:00.000Z
+  //output Month DD, YYYY
+  let months = ['January', 'Februrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  let formatted  = ''
+  let dateArr = date.split('-');
+  let month = Number(dateArr[1]) - 1
+  month = months[month]
+  let day = dateArr[2].slice(0,2)
+  let year = dateArr[0]
+  formatted = month + ' ' + day + ', ' + year
+  return formatted
 
-export {ratingSummary, avgRating, numberOfRatings, percentRecommend}
+}
+
+
+export {ratingSummary, avgRating, numberOfRatings, percentRecommend, formatDate}
 
