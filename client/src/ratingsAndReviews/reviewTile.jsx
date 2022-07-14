@@ -67,7 +67,6 @@ class ReviewTile extends React.Component {
       <b>{this.props.review.summary}</b>
       <br></br>
       {this.checkLength(this.props.review.body)}
-      <br></br>
       {this.props.review.recommend ? <p><CheckIcon/> I recommend this product </p> : <p></p> }
       {this.props.review.response ? <p> <b>Response from seller: </b> {this.props.review.response} </p> : <p></p> }
       Helpful? {!this.state.helpful? <span onClick = {this.onHelpfulClick}> <u> Yes </u> {this.props.review.helpfulness} </span> : <span><b> <u> Yes </u> {this.props.review.helpfulness + 1} </b> </span>}

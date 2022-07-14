@@ -47,7 +47,6 @@ class ReviewsList extends React.Component {
   }
 
   getReviews = () => {
-
     var params = {
       product_id: this.props.currentProduct,
       page: this.state.nextPage,
@@ -84,11 +83,14 @@ class ReviewsList extends React.Component {
       count: this.state.reviews.length,
       sort: sortOption
     }
+    console.log('sort params', params)
     axios.get('/reviews', {params})
     .then(res => {
       var resData = res.data.results
       var updateReviews = [];
       resData.forEach((review) => {updateReviews.push(review)})
+      console.log('rd', resData)
+      console.log('ur', updateReviews)
       this.setState({
       reviews: updateReviews,
       sort: sortOption
@@ -106,10 +108,10 @@ class ReviewsList extends React.Component {
           <option>helpful</option>
           <option>newest</option>
         </select>
-        {this.state.reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
-        {this.moreReviewsButton()}
 
-        <button>Add A Review +</button>
+        {this.state.reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
+
+        {this.moreReviewsButton()}
 
       </div>
     )
