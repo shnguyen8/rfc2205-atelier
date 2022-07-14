@@ -15,26 +15,29 @@ class App extends React.Component {
       initialReviews: [],
       metaData: {},
       productStyles: {},
-      relatedProducts: [],
       allProducts: {},
-      relatedStylesInfo: [],
     }
   }
 
   componentDidMount = () => {
     this.getMetaData();
-    this.getAllDataPromise()
-    console.log("STATE", )
+    this.getAllDataPromise();
+    // this.getRelatedData()
+    // this.getStylesByID(this.state.relatedProducts);
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
-    const curState = this.state
-    if (curState.relatedProducts.length > 0 && curState.relatedProducts != prevState.relatedProducts){
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   const curState = this.state
+  //   if (curState.relatedProducts.length > 0 && curState.relatedProducts != prevState.relatedProducts){
       // call get styles api endpoint
-      this.getStylesByID(this.state.relatedProducts);
+      // this.getStylesByID(this.state.relatedProducts);
       // set state to response
-    }
-  }
+  //     this.setState({
+  //       relatedStylesInfo: [],
+  //       relatedProducts: this.state.relatedProducts,
+  //     })
+  //   }
+  // }
 
   getAllData = () => {
     this.getAllDataPromise();
@@ -48,7 +51,7 @@ class App extends React.Component {
       axios.get('/reviews', { params }),
       axios.get(`/products/${this.state.currentProduct}/styles`),
       axios.get("/products/?count=5000"),
-      axios.get(`/products/${this.state.currentProduct}/related`)
+      // axios.get(`/products/${this.state.currentProduct}/related`)
     ])
       .then((res) => {
         // console.log(res)
@@ -58,7 +61,7 @@ class App extends React.Component {
           initialReviews: res[2].data,
           productStyles: res[3].data,
           allProducts: res[4].data,
-          relatedProducts: res[5].data
+          // relatedProducts: res[5].data
         })
       })
   }
@@ -99,18 +102,37 @@ class App extends React.Component {
 
   // }
 
-// getRelatedData () {
-//   const related = axios.get(`/products/${this.state.currentProduct}/related`).then(res => {console.log(res.data); return res.data})
-// }
+  // getRelatedData = async () => {
+  //   await axios.get(`products/${this.state.currentProduct}/related`)
+  //     .then((res) => {
+  //       console.log(res)
+  //       this.setState({
+  //         relatedProducts: res.data
+  //       })
+  //     })
+  //     .then(() => {
+  //       console.log(this.state.relatedProducts)
+  //       this.getStylesByID()
+  //       // this.state.relatedProducts.forEach(id => { axios.get(`products/${id}/styles`) })
+  //     })
+  //     .then((res) => {
+  //       console.log(res)
+  //       this.setState({
+  //         relatedStylesInfo: res
+  //       })
+  //     })
+  // }
 
-  getStylesByID = (arr) => {
-    arr.forEach(id => {
-      axios.get(`/products/${id}/styles`)
-        .then(res => {
-          this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
-        })
-      })
-  }
+
+  // getStylesByID = () => {
+  //   // console.log("TEST", this.state.relatedProducts)
+  // this.state.relatedProducts.forEach(id => {
+  //     axios.get(`/products/${id}/styles`)
+  //       .then(res => {
+  //         this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
+  //       })
+  //     })
+  // }
 
 
   onChange = (event) => {
@@ -143,9 +165,9 @@ class App extends React.Component {
         />
         <Related
           currentProduct={this.state.currentProduct}
-          relatedProducts={this.state.relatedProducts}
+          // relatedProducts={this.state.relatedProducts}
           allProducts={this.state.allProducts}
-          relatedStylesInfo={this.state.relatedStylesInfo}
+          // relatedStylesInfo={this.state.relatedStylesInfo}
         />
       </div>
     )

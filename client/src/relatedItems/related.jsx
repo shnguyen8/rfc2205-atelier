@@ -1,19 +1,61 @@
 import React, { Component } from 'react';
 import RelatedList from './relatedList.jsx';
 import RelatedOutfits from './relatedOutfits.jsx';
-import RelatedCarousel from './relatedCarousel.jsx';
-import RelatedCard from './relatedCard.jsx'
-import ControlledCarousel from './relatedCarouselBoot.jsx'
-
+import RelatedCard from './relatedCard.jsx';
+import axios from 'axios';
 
 class Related extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      relatedProducts: [],
+      currentProduct: this.props.currentProduct,
+      relatedStylesInfo: [],
+      relatedReviews: [],
     };
   }
 
+  componentDidMount() {
+    this.fetchRelatedProducts()
+
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProduct !== prevProps.currentProduct) {
+      this.fetchRelatedProducts(this.props.currentProduct);
+      this.setState({
+        currentProduct: this.props.currentProduct
+      })
+    }
+  }
+
+
+  fetchRelatedProducts = () => {
+    // console.log(this.props.currentProduct)
+    axios.get(`/products/${this.props.currentProduct}/related`).then((res) => {
+      this.setState({
+        relatedProducts: res.data
+      })
+    })
+  }
+
+  fetchStylesByID = (arr) => {
+    this.state.relatedProducts.forEach(id => {
+      axios.get(`/products/${id}/styles`)
+        .then(res => {
+          this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
+        })
+    })
+  }
+
+  fetchReviewsByID = (arr) => {
+    this.state.relatedProducts.forEach(id => {
+      axios.get(`products/${id}/meta`)
+      .then(res => {
+        this.setState({ relatedReviews: [...this.state.relatedReviews, res.data] })
+      })
+    })
+  }
 
   render() {
     return (
@@ -23,21 +65,12 @@ class Related extends React.Component {
 
         <div>
           <RelatedList
-            relatedProducts={this.props.relatedProducts}
+            relatedProducts={this.state.relatedProducts}
             relatedProductsInfo={this.props.relatedProductsInfo}
             allProducts={this.props.allProducts}
-            relatedStylesInfo={this.props.relatedStylesInfo}
+            relatedStylesInfo={this.state.relatedStylesInfo}
           />
         </div>
-
-        {/* <div>
-          <RelatedCarousel>
-            <img src="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png" alt="placeholder" />
-            <img src="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png" alt="placeholder" />
-            <img src="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png" alt="placeholder" />
-
-          </RelatedCarousel>
-        </div> */}
 
         <div>
           <RelatedOutfits
@@ -46,10 +79,6 @@ class Related extends React.Component {
             allProducts={this.props.allProducts}
             relatedStylesInfo={this.props.relatedStylesInfo}
           />
-        </div>
-
-        <div>
-          {/* <ControlledCarousel/> */}
         </div>
 
       </div>

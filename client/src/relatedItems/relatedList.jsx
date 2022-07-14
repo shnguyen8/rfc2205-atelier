@@ -15,28 +15,21 @@ class RelatedList extends React.Component {
       allProducts: this.props.allProducts,
       relatedProductsInfo: [],
       relatedStylesInfo: this.props.relatedStylesInfo,
-      relatedOutfits: [],
-      relatedImages: [],
-      relatedStylesID: []
     }
 
   }
 
+
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.relatedProducts != prevProps.relatedProducts) {
-      this.setState({ relatedProducts: this.props.relatedProducts })
+      this.setState({ relatedProducts: this.props.relatedProducts})
     }
     if (this.props.allProducts != prevProps.allProducts) {
       this.setState({ allProducts: this.props.allProducts })
       this.setState({ relatedProductsInfo: this.props.allProducts.filter(product => this.state.relatedProducts.includes(product.id)) })
     }
   }
-
-
-
-
-
-
 
 
   render() {
