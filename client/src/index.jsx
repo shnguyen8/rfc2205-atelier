@@ -23,11 +23,8 @@ class App extends React.Component {
 
   componentDidMount = () => {
     this.getMetaData();
-    this.getAllDataPromise().then((res) => {
-      this.setState({
-        relatedProducts: res.d,
-      })
-    })
+    this.getAllDataPromise()
+    console.log("STATE", )
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -105,9 +102,6 @@ class App extends React.Component {
 // getRelatedData () {
 //   const related = axios.get(`/products/${this.state.currentProduct}/related`).then(res => {console.log(res.data); return res.data})
 // }
-
-
-
 
   getStylesByID = (arr) => {
     arr.forEach(id => {

@@ -3,6 +3,7 @@ import RelatedList from './relatedList.jsx';
 import RelatedOutfits from './relatedOutfits.jsx';
 import RelatedCarousel from './relatedCarousel.jsx';
 import RelatedCard from './relatedCard.jsx'
+import ControlledCarousel from './relatedCarouselBoot.jsx'
 
 
 class Related extends React.Component {
@@ -45,6 +46,10 @@ class Related extends React.Component {
             allProducts={this.props.allProducts}
             relatedStylesInfo={this.props.relatedStylesInfo}
           />
+        </div>
+
+        <div>
+          {/* <ControlledCarousel/> */}
         </div>
 
       </div>

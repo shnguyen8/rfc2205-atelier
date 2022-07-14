@@ -6,7 +6,7 @@ function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick })
   const { name, category } = props;
 
   return (
-    <section>
+    <section className="card">
 
       <div>
         <p>------------------------------</p>
