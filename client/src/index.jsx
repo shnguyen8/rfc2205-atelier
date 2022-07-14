@@ -93,7 +93,7 @@ class App extends React.Component {
         />
         <Related
           currentProduct = {this.state.currentProduct}
-          relatedProducts = {this.state.relatedProducts}
+          relatedProducts = {this.state.currentProduct}
           allProducts = {this.state.allProducts}
         />
       </div>

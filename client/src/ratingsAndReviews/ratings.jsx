@@ -9,24 +9,18 @@ import {ratingSummary, avgRating, numberOfRatings, percentRecommend} from './hel
 
 class Ratings extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
 
-  render () {
-    return (
+
+    render() {
+      return (
       <div>
 
       <RatingBreakdown metaData = {this.props.metaData}/>
-      <ReviewsList currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
+      <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(metaData.ratings)}/>
 
       </div>
-
-    )
-  }
-
+      )
+    }
  }
 
 
