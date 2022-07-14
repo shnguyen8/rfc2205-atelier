@@ -14,8 +14,13 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
+<<<<<<< HEAD
+      productStyles: {},
+      allProducts: {},
+=======
       relatedProducts: [],
       allProducts: [],
+>>>>>>> development
     }
   }
 
@@ -24,29 +29,31 @@ class App extends React.Component {
     this.getAllDataPromise();
   }
 
+
   getAllData = () => {
     this.getAllDataPromise();
     this.getMetaData();
   }
 
   getAllDataPromise = async () => {
-    let params = {product_id: this.state.currentProduct, page: 1}
+    let params = { product_id: this.state.currentProduct, page: 1 }
     await Promise.all([
       axios.get('/products'),
-      axios.get(`products/${this.state.currentProduct}`),
-      axios.get('/reviews', {params}),
-      axios.get(`products/${this.state.currentProduct}/related`),
-      axios.get("/products/?count=5000")
+      axios.get(`/products/${this.state.currentProduct}`),
+      axios.get('/reviews', { params }),
+      axios.get(`/products/${this.state.currentProduct}/styles`),
+      axios.get("/products/?count=5000"),
     ])
-    .then((res) => {
-      this.setState({
-        products: res[0].data,
-        productSpecs: res[1].data,
-        initialReviews: res[2].data,
-        relatedProducts: res[3].data,
-        allProducts: res[4].data
+      .then((res) => {
+        // console.log(res)
+        this.setState({
+          products: res[0].data,
+          productSpecs: res[1].data,
+          initialReviews: res[2].data,
+          productStyles: res[3].data,
+          allProducts: res[4].data,
+        })
       })
-    })
   }
 
   getMetaData = () => {
@@ -59,6 +66,7 @@ class App extends React.Component {
       })
       .catch(err => { console.log(err) })
   }
+
 
   onChange = (event) => {
     this.setState({
@@ -84,25 +92,24 @@ class App extends React.Component {
           productSpecs = {this.state.productSpecs}
         />
         <Ratings
-          currentProduct = {this.state.currentProduct}
-          initialReviews = {this.state.initialReviews}
-          metaData = {this.state.metaData}
+          currentProduct={this.state.currentProduct}
+          initialReviews={this.state.initialReviews}
+          metaData={this.state.metaData}
         />
         <Related
-          currentProduct = {this.state.currentProduct}
-          relatedProducts = {this.state.currentProduct}
-          allProducts = {this.state.allProducts}
+          currentProduct={this.state.currentProduct}
+          allProducts={this.state.allProducts}
         />
       </div>
     )
   }
 }
 
- const root1 = document.createElement("div");
- root1.setAttribute("id", "app");
- document.body.appendChild(root1);
- const container = document.getElementById("app");
- const root = createRoot(container)
- root.render(<App/>)
+const root1 = document.createElement("div");
+root1.setAttribute("id", "app");
+document.body.appendChild(root1);
+const container = document.getElementById("app");
+const root = createRoot(container)
+root.render(<App />)
 
 export default App;
