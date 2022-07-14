@@ -77,12 +77,36 @@ class ReviewsList extends React.Component {
     }
   }
 
+  changeSort = (sortOption) => {
+    var params = {
+      product_id: this.props.currentProduct,
+      page: 1,
+      count: this.state.reviews.length,
+      sort: sortOption
+    }
+    console.log('sort params', params)
+    axios.get('/reviews', {params})
+    .then(res => {
+      var resData = res.data.results
+      console.log('resdata', resData)
+      var updateReviews = [];
+      resData.forEach((data) => {updateReviews.push(data)})
+      this.setState({
+      reviews: updateReviews,
+      })
+    })
+    .catch(err => {console.log('error in get reviews',err)})
+  }
+
   render () {
 
     return (
       <div>
-        Sorted by {this.state.sort}
-
+        Sorted by <select onChange = {() => {this.changeSort(event.target.value)}}>
+          <option>relevant</option>
+          <option>helpful</option>
+          <option>newest</option>
+        </select>
         {this.state.reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
         {this.moreReviewsButton()}
 

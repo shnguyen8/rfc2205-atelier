@@ -9,14 +9,27 @@ import {ratingSummary, avgRating, numberOfRatings, percentRecommend} from './hel
 
 class Ratings extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      addReviewModal: false,
+    }
+  }
 
+  toggleModal(){
+    let toggle = !this.addReviewModal
+    this.setState({
+      addReviewModal: toggle
+    })
+  }
 
     render() {
       return (
       <div>
 
       <RatingBreakdown metaData = {this.props.metaData}/>
-      <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(metaData.ratings)}/>
+
+      <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)} toggleModal = {this.toggleModal}/>
 
       </div>
       )
