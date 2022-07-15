@@ -10,7 +10,7 @@ class Related extends React.Component {
     this.state = {
       relatedProducts: [],
       currentProduct: this.props.currentProduct,
-      relatedStylesInfo: [],
+      relatedStylesInfo: {},
       relatedReviews: [],
     };
   }
@@ -32,30 +32,43 @@ class Related extends React.Component {
 
   fetchRelatedProducts = () => {
     // console.log(this.props.currentProduct)
-    axios.get(`/products/${this.props.currentProduct}/related`).then((res) => {
+    axios.get(`/products/${this.props.currentProduct}/related`)
+    .then((res) => {
       this.setState({
         relatedProducts: res.data
       })
     })
-  }
-
-  fetchStylesByID = (arr) => {
-    this.state.relatedProducts.forEach(id => {
-      axios.get(`/products/${id}/styles`)
-        .then(res => {
-          this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
-        })
+    .then((data) => {
+      return axios.get(`/products/${data}/styles`)
+      this.setState({
+        relatedStylesInfo: res.data,
+      })
     })
-  }
-
-  fetchReviewsByID = (arr) => {
-    this.state.relatedProducts.forEach(id => {
-      axios.get(`products/${id}/meta`)
-      .then(res => {
-        this.setState({ relatedReviews: [...this.state.relatedReviews, res.data] })
+    .then((res) => {
+      return axios.get(`products/${res}/meta`)
+      this.setState({
+        relatedReviews: res.data
       })
     })
   }
+
+  // fetchStylesByID = (arr) => {
+  //   this.state.relatedProducts.forEach(id => {
+  //     axios.get(`/products/${id}/styles`)
+  //       .then(res => {
+  //         this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
+  //       })
+  //   })
+  // }
+
+  // fetchReviewsByID = (arr) => {
+  //   this.state.relatedProducts.forEach(id => {
+  //     axios.get(`products/${id}/meta`)
+  //     .then(res => {
+  //       this.setState({ relatedReviews: [...this.state.relatedReviews, res.data] })
+  //     })
+  //   })
+  // }
 
   render() {
     return (

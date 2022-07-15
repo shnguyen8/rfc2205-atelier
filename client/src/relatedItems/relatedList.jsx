@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RelatedCard from './relatedCard.jsx';
-// import RelatedCarousel from './relatedCarousel.jsx';
 import { Carousel } from 'react-bootstrap';
 import App from '../index.jsx';
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -34,10 +34,11 @@ class RelatedList extends React.Component {
 
   render() {
     return (
-      <div>
+
         <Carousel>
           {(this.state.relatedProductsInfo.length > 0) ? this.state.relatedProductsInfo.map((product, i) => (
-            <Carousel.Item key={product.id}>
+            <Carousel.Item key={product.id}
+            show={4} >
               <RelatedCard
                 name={product.name}
                 category={product.category}
@@ -46,7 +47,6 @@ class RelatedList extends React.Component {
             </Carousel.Item>))
             : <p>Related products are loading...</p>}
         </Carousel>
-      </div>
 
     )
 
