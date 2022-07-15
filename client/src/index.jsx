@@ -10,17 +10,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       products: [],
-      currentProduct: '66642',
+      currentProduct: '66644',
       productSpecs: [],
       initialReviews: [],
       metaData: {},
-<<<<<<< HEAD
-      productStyles: {},
-      allProducts: {},
-=======
-      relatedProducts: [],
       allProducts: [],
->>>>>>> development
+      productStyles: {},
     }
   }
 
