@@ -17,13 +17,22 @@ class Ratings extends React.Component {
     }
   }
 
-  handleModal = (event) => {
+  handleAddModal = (event) => {
     this.setState({
       addReviewModal: !this.state.addReviewModal
     })
   }
 
   render() {
+
+    if(this.state.addReviewModal){
+      var addModal = <dialog open onClick = {this.handlePhotoModal}>
+      <AddReviewForm handleAddModal = {this.handleAddModal} productName = {this.props.productName} characteristics = {this.props.metaData.characteristics}/>
+      </dialog>
+    } else {
+      var addModal = ''
+    }
+
       return (
       <div>
 
@@ -31,13 +40,8 @@ class Ratings extends React.Component {
 
       <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
 
-      <button onClick={this.handleModal}>Add A Review +</button>
-
-      <Modal disableEnforceFocus open={this.state.addReviewModal} onClose={this.handleModal}>
-      <div className = 'addReview' style = {modal}>
-      <AddReviewForm handleModal = {this.handleModal}/>
-      </div>
-      </Modal>
+      <button onClick={this.handleAddModal}>Add A Review +</button>
+      {addModal}
 
       </div>
 

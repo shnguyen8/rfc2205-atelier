@@ -87,7 +87,7 @@ class ReviewTile extends React.Component {
       Helpful? {!this.state.helpful? <span onClick = {this.onHelpfulClick}> <u> Yes </u> {this.props.review.helpfulness} </span> : <span><b> <u> Yes </u> {this.props.review.helpfulness + 1} </b> </span>}
       | {!this.state.report? <span onClick = {this.onReportClick}> <u> Report </u> </span> : <span><b> <u> Reported </u></b> </span>}
       <br></br>
-        END REVIEW
+      _______________________________________________
       </div>
     )
   }

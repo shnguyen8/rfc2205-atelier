@@ -10,7 +10,7 @@ class ReviewPhoto extends React.Component{
     }
   }
 
-  handleModal = (event) => {
+  handlePhotoModal = (event) => {
     this.setState({
       modal: !this.state.modal
     })
@@ -19,7 +19,7 @@ class ReviewPhoto extends React.Component{
   render(){
 
     if(this.state.modal){
-      var modal = <dialog open onClick = {this.handleModal}>
+      var modal = <dialog open onClick = {this.handlePhotoModal}>
       <img src = {this.props.url}/>
       </dialog>
     } else {
@@ -28,7 +28,7 @@ class ReviewPhoto extends React.Component{
 
     return(
       <div>
-        <img src = {this.props.url} onClick = {this.handleModal}
+        <img src = {this.props.url} onClick = {this.handlePhotoModal}
         style={{resizeMode: "center", height: 75, width: 75}}/>
         {modal}
       </div>
