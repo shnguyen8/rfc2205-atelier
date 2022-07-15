@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import StyleSelections from './styleSelections.jsx';
 
 const StyleSelectionHelper = (props) => {
-  // console.log(props.productStyles)
+  // console.log(props)
 
 
   let onSale = (sale_price) => {
@@ -13,12 +13,11 @@ const StyleSelectionHelper = (props) => {
   }
 
 
-  if (props.productStyles.results !== undefined) {
+  if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
       <React.Fragment>
         <section>
           {props.productStyles.results.map((styleVals, i) => {
-            if (styleVals.photos[0].thumbnail_url !== null) {
               return <img
                       onClick={props.onThumbnailClick}
                       key={i}
@@ -33,9 +32,29 @@ const StyleSelectionHelper = (props) => {
                         width: 150
                       }}
                      />
-            }
           })}
         </section>
+      </React.Fragment>
+    )
+  } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {
+    return (
+      <React.Fragment>
+          {props.productStyles.results.map((styleVals, j) => {
+              return <img
+                      onClick={props.onThumbnailClick}
+                      key={j}
+                      src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"}
+                      name={styleVals.name}
+                      style_id={styleVals.style_id}
+                      price={styleVals.original_price}
+                      sale={onSale(styleVals.sale_price)}
+                      style={{
+                        resizeMode: "center",
+                        height: 150,
+                        width: 150
+                      }}
+                     />
+          })}
       </React.Fragment>
     )
   }
