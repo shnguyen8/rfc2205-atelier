@@ -3,6 +3,7 @@ import StarRating from './starRating.jsx'
 import CheckIcon from '@mui/icons-material/Check';
 import {formatDate} from './helpers.jsx'
 import axios from 'axios';
+import ReviewPhoto from './ReviewPhoto.jsx';
 
 
 class ReviewTile extends React.Component {
@@ -11,7 +12,8 @@ class ReviewTile extends React.Component {
     super(props);
     this.state = {
       helpful: false,
-      report: false
+      report: false,
+      modal: false,
     }
   }
 
@@ -58,6 +60,17 @@ class ReviewTile extends React.Component {
     document.getElementById(this.props.review.review_id).appendChild(fullText);
   }
 
+  displayThumbnails = () => {
+    var photosArray = this.props.review.photos
+    if(photosArray.length > 0){
+      return photosArray.map(photo => {
+        return <ReviewPhoto url = {photo.url} key = {photo.id}/>
+      })
+    } else {
+      return <br></br>
+    }
+  }
+
   render() {
     return(
       <div>
@@ -69,6 +82,8 @@ class ReviewTile extends React.Component {
       {this.checkLength(this.props.review.body)}
       {this.props.review.recommend ? <p><CheckIcon/> I recommend this product </p> : <p></p> }
       {this.props.review.response ? <p> <b>Response from seller: </b> {this.props.review.response} </p> : <p></p> }
+      {this.displayThumbnails()}
+      <br/>
       Helpful? {!this.state.helpful? <span onClick = {this.onHelpfulClick}> <u> Yes </u> {this.props.review.helpfulness} </span> : <span><b> <u> Yes </u> {this.props.review.helpfulness + 1} </b> </span>}
       | {!this.state.report? <span onClick = {this.onReportClick}> <u> Report </u> </span> : <span><b> <u> Reported </u></b> </span>}
       <br></br>

@@ -89,8 +89,6 @@ class ReviewsList extends React.Component {
       var resData = res.data.results
       var updateReviews = [];
       resData.forEach((review) => {updateReviews.push(review)})
-      console.log('rd', resData)
-      console.log('ur', updateReviews)
       this.setState({
       reviews: updateReviews,
       sort: sortOption

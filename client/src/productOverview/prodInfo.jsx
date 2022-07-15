@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 const ProdInfo = (props) => {
-  console.log(props);
 
   let styleNameOption = (props) => {
     if (props.thumbnailStyleClicked === '' && props.productStyles.results.length !== 0) {

@@ -13,7 +13,6 @@ class AddReviewForm extends React.Component {
   render(){
     return(
       <div styles = {formStyle}>
-      I AM A REVIEW FORM
       <button onClick = {this.props.handleModal}> Close </button>
       </div>
     )
