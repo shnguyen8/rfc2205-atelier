@@ -26,9 +26,9 @@ class Ratings extends React.Component {
   render() {
       return (
       <div>
-
+      <a id='Ratings and Reviews'>
       <RatingBreakdown metaData = {this.props.metaData}/>
-
+      </a>
       <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
 
       <button onClick={this.handleModal}>Add A Review +</button>

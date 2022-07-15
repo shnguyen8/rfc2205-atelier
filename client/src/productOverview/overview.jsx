@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProdInfo from './prodInfo.jsx';
 import ImageGallery from './imageGallery.jsx';
-import StyleSelections from './styleSelections.jsx';
+import StyleSelectionHelper from './styleSelectionHelper.jsx';
 import AddToCart from './addToCart.jsx';
 
 
@@ -17,6 +17,7 @@ class ProdOverview extends React.Component {
       thumbnailSalePrice: '',
       thumbStyle: '',
       productStyles: {},
+      selectedSize: '',
     }
   }
 
@@ -33,6 +34,7 @@ class ProdOverview extends React.Component {
         thumbnailPrice: '',
         thumbnailSalePrice: '',
         thumbStyle: '',
+        selectedSize: '',
       })
     }
   }
@@ -69,7 +71,12 @@ class ProdOverview extends React.Component {
 
   }
 
-
+  sizeSelectionClick = (e) => {
+    // console.log('Clicked: ', e.target.value);
+    this.setState({
+      selectedSize: e.target.value,
+    })
+  }
 
   render() {
     return (
@@ -90,8 +97,9 @@ class ProdOverview extends React.Component {
           thumbnailStyleClicked={this.state.thumbnailStyleClicked}
           thumbnailPrice={this.state.thumbnailPrice}
           thumbnailSalePrice={this.state.thumbnailSalePrice}
+          metaData={this.props.metaData}
         />
-        <StyleSelections
+        <StyleSelectionHelper
           currentProduct= {this.props.currentProduct}
           products={this.props.products}
           productSpecs={this.props.productSpecs}
@@ -104,6 +112,8 @@ class ProdOverview extends React.Component {
           productSpecs={this.props.productSpecs}
           productStyles={this.state.productStyles}
           thumbStyle={this.state.thumbStyle}
+          selectedSize={this.state.selectedSize}
+          sizeSelectionClick={this.sizeSelectionClick}
         />
 
       </React.Fragment>

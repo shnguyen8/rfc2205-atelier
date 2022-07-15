@@ -7,31 +7,30 @@ const ImageGallery = (props) => {
 
   if (props.thumbnailClicked !== '' && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
-      <React.Fragment>
+      <div>
         <img
           src={props.thumbnailClicked}
         />
-      </React.Fragment>
-
+      </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
-      <React.Fragment>
+      <div>
         <img
           src={props.productStyles.results[0].photos[0].thumbnail_url}
           title='Product Picture'
         />
-      </React.Fragment>
+      </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {
     return (
-      <React.Fragment>
+      <div>
         <img
           src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"}
           width= '300'
           height= '400'
         />
-      </React.Fragment>
+      </div>
     )
   }
 }

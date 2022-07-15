@@ -82,9 +82,10 @@ class App extends React.Component {
         />
         <button onClick={this.getAllData} >Submit</button>
         <ProdOverview
-          currentProduct = {this.state.currentProduct}
-          products = {this.state.products}
-          productSpecs = {this.state.productSpecs}
+          currentProduct={this.state.currentProduct}
+          products={this.state.products}
+          productSpecs={this.state.productSpecs}
+          metaData={this.state.metaData}
         />
         <Ratings
           currentProduct={this.state.currentProduct}

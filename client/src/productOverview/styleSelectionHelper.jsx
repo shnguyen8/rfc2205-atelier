@@ -28,8 +28,10 @@ const StyleSelectionHelper = (props) => {
                       sale={onSale(styleVals.sale_price)}
                       style={{
                         resizeMode: "center",
-                        height: 150,
-                        width: 150
+                        height: 100,
+                        width: 100,
+                        border: '4px solid grey',
+                        borderRadius: '50%'
                       }}
                      />
           })}
