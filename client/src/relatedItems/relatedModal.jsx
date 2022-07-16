@@ -1,27 +1,35 @@
-import React, {useState} from 'react';
-import { Modal } from 'react-bootstrap/Modal';
+// import React, { useState } from 'react';
+// import Modal from 'react-bootstrap/Modal';
+// import ComparisonTable from './relatedComparison.jsx';
+// import RelatedList from './relatedList.jsx';
+// import Related from './related.jsx';
 
-function comparisonModal(props) {
-  const [show, setShow] = useState(False);
-  const handleClose = () => setShow(False);
-  const handleShow = () => setShow(True);
+// function ComparisonModal (props) {
 
-  return(
-    <>
-    <Modal>
+//   const {openModal, isOpen} = props;
 
-    <Model.Header closeButton size="lg">
-    <Modal.Title> Comparing </Modal.Title>
-    </Model.Header>
+//   return (
+//     <>
+//       <Modal styles={{
+//       margin:'100px'}} show={props.isOpen} >
 
-    <Modal.Body>
-    <div>
-    PRODUCT TITLE
-    </div>
+//       <Modal.Header closeButton size="lg">
+//         <Modal.Title> Comparing </Modal.Title>
+//       </Modal.Header>
 
-    </Modal.Body>
+//       <Modal.Body>
 
-    </Modal>
-    </>
-  )
-}
+//         <div>
+//           <ComparisonTable />
+//         </div>
+
+//       </Modal.Body>
+
+
+
+//     </Modal>
+//     </>
+//   )
+// }
+
+// export default ComparisonModal

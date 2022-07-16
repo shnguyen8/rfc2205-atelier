@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import RelatedList from './relatedList.jsx';
-import RelatedOutfits from './relatedOutfits.jsx';
+import RelatedOutfitList from './relatedOutfitList.jsx';
 import RelatedCard from './relatedCard.jsx';
 import axios from 'axios';
+import ComparisonTable from './relatedComparison.jsx';
+// import ComparisonModal from './relatedModal.jsx';
+
+// var mockData = [
+//   {img:,
+//   price: '$140.00',
+
+//   },
+//   {
+
+//   },
+//   {
+
+//   },
+// ]
 
 class Related extends React.Component {
   constructor(props) {
@@ -10,8 +25,9 @@ class Related extends React.Component {
     this.state = {
       relatedProducts: [],
       currentProduct: this.props.currentProduct,
-      relatedStylesInfo: {},
-      relatedReviews: [],
+      // relatedStylesInfo: {},
+      // relatedReviews: [],
+      relatedData: {},
     };
   }
 
@@ -33,23 +49,47 @@ class Related extends React.Component {
   fetchRelatedProducts = () => {
     // console.log(this.props.currentProduct)
     axios.get(`/products/${this.props.currentProduct}/related`)
-    .then((res) => {
-      this.setState({
-        relatedProducts: res.data
+      .then((res) => {
+        this.setState({
+          relatedProducts: res.data
+        })
+        res.data.forEach((id) => {
+          axios.get('/products/' + id)
+            .then((resData) => {
+              axios.get('/products/' + id + '/styles')
+                .then((styleData) => {
+                  axios.get('reviews/meta/?product_id=' + id)
+                    .then((reviewData) => {
+                      const allRelatedData = resData.data;
+                      allRelatedData['styles'] = styleData.data.results;
+                      allRelatedData['reviews'] = reviewData.data;
+                      this.setState({
+                        // relatedStylesInfo: allRelatedData['styles'],
+                        // relatedReviews: allRelatedData['reviews']
+                        relatedData: { ...allRelatedData }
+                      }, () => { console.log(this.state.relatedData, 'SHOW ME AHHHHHHHH') })
+
+
+                    })
+                })
+
+            })
+        })
       })
-    })
-    .then((data) => {
-      return axios.get(`/products/${data}/styles`)
-      this.setState({
-        relatedStylesInfo: res.data,
-      })
-    })
-    .then((res) => {
-      return axios.get(`products/${res}/meta`)
-      this.setState({
-        relatedReviews: res.data
-      })
-    })
+
+    //   .then((res) => {
+    //     console.log(res)
+    //     return res.forEach(id => { axios.get(`/products/${id}/styles`) }
+    //   this.setState({
+    //       relatedStylesInfo: res.data
+    //     })
+    // })
+    //   .then((res) => {
+    //     return axios.get(`/reviews/meta/?product_id=${res}`)
+    //     this.setState({
+    //       relatedReviews: res.data
+    //     })
+    //   })
   }
 
   // fetchStylesByID = (arr) => {
@@ -72,7 +112,11 @@ class Related extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{
+        margin: 'auto',
+        width: '50%',
+        padding: '10px',
+      }} >
 
         <h2> Related Products</h2>
 
@@ -81,18 +125,25 @@ class Related extends React.Component {
             relatedProducts={this.state.relatedProducts}
             relatedProductsInfo={this.props.relatedProductsInfo}
             allProducts={this.props.allProducts}
-            relatedStylesInfo={this.state.relatedStylesInfo}
+            relatedData={this.state.relatedData}
+            openModal={this.state.openModal}
           />
         </div>
 
         <div>
-          <RelatedOutfits
+          <h2> Your Oufits </h2>
+          <RelatedOutfitList
             relatedProducts={this.props.relatedProducts}
             relatedProductsInfo={this.props.relatedProductsInfo}
             allProducts={this.props.allProducts}
             relatedStylesInfo={this.props.relatedStylesInfo}
           />
         </div>
+
+        {/* <div>
+          <ComparisonModal show={this.state.isOpen} onHide={this.closeModal} />
+        </div> */}
+
 
       </div>
     )
