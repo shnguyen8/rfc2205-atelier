@@ -51,13 +51,14 @@ class ProdOverview extends React.Component {
   }
 
   onThumbnailClick = (e) => {
-    // console.log('Clicked: ', e);
+    // console.log('Clicked: ', e.target.attributes.style_id.value);
     if (e.target.attributes.sale !== undefined) {
       this.setState({
         thumbnailClicked: e.target.currentSrc,
         thumbnailStyleClicked: e.target.name,
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: e.target.attributes.sale.value,
+        thumbStyle: e.target.attributes.style_id.value
       })
     } else {
       this.setState({
@@ -66,6 +67,21 @@ class ProdOverview extends React.Component {
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: '',
         thumbStyle: e.target.attributes.style_id.value,
+      })
+    }
+
+  }
+
+  onStylePhotosClick = (e) => {
+    // console.log('Clicked: ', e)
+    if (e.target.attributes.style_id !== undefined) {
+      this.setState({
+        thumbnailClicked: e.target.currentSrc,
+        thumbStyle: e.target.attributes.style_id.value,
+      })
+    } else {
+      this.setState({
+        thumbnailClicked: e.target.currentSrc
       })
     }
 
@@ -88,6 +104,8 @@ class ProdOverview extends React.Component {
           productSpecs={this.props.productSpecs}
           productStyles={this.state.productStyles}
           thumbnailClicked={this.state.thumbnailClicked}
+          onStylePhotosClick={this.onStylePhotosClick}
+          thumbStyle={this.state.thumbStyle}
         />
         <ProdInfo
           currentProduct= {this.props.currentProduct}

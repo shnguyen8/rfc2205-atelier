@@ -3,53 +3,70 @@ import { useEffect, useState } from 'react';
 import Flexbox from 'flexbox-react';
 
 const ImageGallery = (props) => {
-  console.log(props);
+  // console.log(props);
 
+  let stylePhotosArr = [];
   let selectStylePhotos = (props) => {
-
+    for (var i = 0; i < props.productStyles.results.length; i++) {
+      // console.log(props.thumbStyle)
+      // console.log(Number(props.thumbStyle) === props.productStyles.results[i].style_id)
+      if (Number(props.thumbStyle) === props.productStyles.results[i].style_id) {
+        for (var j = 0; j < props.productStyles.results[i].photos.length; j++) {
+          stylePhotosArr.push(props.productStyles.results[i].photos[j])
+          // console.log(stylePhotosArr)
+        }
+      } else {
+        continue;
+      }
+      break;
+    }
   }
 
   if (props.thumbnailClicked !== '' && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
+    {selectStylePhotos(props)}
     return (
       <div className='imagegallery'>
-        <img
-          src={props.thumbnailClicked}
-        />
-        {/* <img
-          className='inner-image'
-          src={props.thumbnailClicked}
-          style={{
-            resizeMode: "center",
-            height: 75,
-            width: 75,
-            border: '2px solid grey',
-            borderRadius: '0%'
-          }}
-        /> */}
-      </div>
+          <div className='flexbox-item primary-image'>
+          <img
+            src={props.thumbnailClicked}
+          />
+          </div>
+
+        <div className='flexbox-item inner-image'>
+          {stylePhotosArr.map((stylePhotos, j) => {
+            return <img
+                    onClick={props.onStylePhotosClick}
+                    className='inner-images'
+                    key={j}
+                    src={stylePhotos.thumbnail_url}
+                    style={{
+                      resizeMode: "center",
+                      height: 75,
+                      width: 75,
+                      border: '2px solid grey',
+                      borderRadius: '0%',
+                    }}
+                  />
+          })}
+        </div>
+        </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
-        // <Flexbox className='imagegallery'>
-        //   <Flexbox className='primaryimage' element='img' src={props.productStyles.results[0].photos[0].thumbnail_url}></Flexbox>
-        //   {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
-        //     return <Flexbox
-        //             element='img'
-        //             className='inner-image'
-        //             key={j}
-        //             src={stylePhotosObjs.thumbnail_url}
-        //             />
-        //   })}
-        // </Flexbox>
         <div className='imagegallery'>
+          <div className='flexbox-item primary-image'>
           <img
-            className='primary-image'
             src={props.productStyles.results[0].photos[0].thumbnail_url}
             title='Product Picture'
           />
-        <span className='inner-image'>
+          </div>
+
+        <div className='flexbox-item inner-image'>
           {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
             return <img
+                    onClick={props.onStylePhotosClick}
+                    style_id={props.productStyles.results[0].style_id}
+                    className='inner-images'
                     key={j}
                     src={stylePhotosObjs.thumbnail_url}
                     style={{
@@ -61,7 +78,7 @@ const ImageGallery = (props) => {
                     }}
                   />
           })}
-        </span>
+        </div>
         </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {

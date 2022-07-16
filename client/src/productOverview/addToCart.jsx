@@ -26,12 +26,14 @@ const AddToCart = (props) => {
 
   let quantityArr = [];
   let quantityOptions = (props) => {
+    // console.log('run', props.selectedSize !== '' && props.selectedSize !== 'Select Size')
     if (props.selectedSize !== '' && props.selectedSize !== 'Select Size') {
       for (var i = 0; i < sizesAndQuantArr.length; i++) {
         if (props.selectedSize === sizesAndQuantArr[i].size) {
           for (var j = 1; j <= sizesAndQuantArr[i].quantity; j++) {
             if (j <= 15) {
               quantityArr.push(j);
+              // console.log(quantityArr)
             }
           }
         }
