@@ -44,6 +44,8 @@ class ReviewsList extends React.Component {
     })
     .catch(err => {console.log('error in get reviews',err)})
     }
+
+
   }
 
   getReviews = () => {
@@ -97,7 +99,23 @@ class ReviewsList extends React.Component {
     .catch(err => {console.log('error in get reviews',err)})
   }
 
+  filterReviews = (allReviews) => {
+    var filtered = []
+    allReviews.forEach(review => {
+      if(this.props.filters[review.rating] === true){
+        filtered.push(review)
+      }
+    })
+    return filtered;
+  }
+
   render () {
+
+    if(this.props.filtersOn) {
+      var reviews = this.filterReviews(this.state.reviews)
+    } else {
+      var reviews = this.state.reviews
+    }
 
     return (
       <div>
@@ -107,7 +125,7 @@ class ReviewsList extends React.Component {
           <option>newest</option>
         </select>
 
-        {this.state.reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
+        {reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
 
         {this.moreReviewsButton()}
 

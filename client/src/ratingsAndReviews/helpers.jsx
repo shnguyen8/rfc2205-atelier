@@ -36,46 +36,6 @@ const percentRecommend = (recObj) => {
   }
 }
 
-const filterRatings = (target) => {
-  console.log(target)
-}
-
-const ratingSummary = (ratingsObj) => {
-
-  if(ratingsObj === undefined){
-    return null
-  }
-
-  let total = numberOfRatings(ratingsObj);
-
-  let findValue = (property) => {
-    let percent = Number(ratingsObj[property]) || 0
-    return Math.floor(percent / total * 100) || 0
-  }
-
-  let five = findValue(5)
-  let four = findValue(4)
-  let three = findValue(3)
-  let two = findValue(2)
-  let one = findValue(1)
-
-  return (
-  <div>
-    <FilterStars percent = {five} stars = {5}/>
-    <FilterStars percent = {four} stars = {4}/>
-    <FilterStars percent = {three} stars = {3}/>
-    <FilterStars percent = {two} stars = {2}/>
-    <FilterStars percent = {one} stars = {1}/>
-
-  {/* 5 Stars <BorderLinearProgress variant="determinate" value={five}/>
-  4 Stars <BorderLinearProgress variant="determinate" value={four} />
-  3 Stars <BorderLinearProgress variant="determinate" value={three} />
-  2 Stars <BorderLinearProgress variant="determinate" value={two} />
-  1 Stars <BorderLinearProgress variant="determinate" value={one} /> */}
-  </div>
-  )
-}
-
 const formatDate = (date) => {
   //input date 2022-04-14T00:00:00.000Z
   //output Month DD, YYYY
@@ -92,6 +52,5 @@ const formatDate = (date) => {
 }
 
 
-
-export {ratingSummary, avgRating, numberOfRatings, percentRecommend, formatDate}
+export {avgRating, numberOfRatings, percentRecommend, formatDate}
 

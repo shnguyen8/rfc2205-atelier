@@ -8,16 +8,9 @@ class FilterStars extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterOn: false,
       hoverOn: false
     }
   }
-
-    handleFilterClick = (stars) => {
-      this.setState({
-        filterOn: !this.state.filterOn
-      })
-    }
 
     handleFilterHover = (event) => {
       this.setState({
@@ -27,12 +20,11 @@ class FilterStars extends React.Component {
 
     buildStyles = () => {
       let styles = {}
-
       if(this.state.hoverOn){
         styles['background'] = 'green'
       }
-      if(this.state.filterOn){
-        styles['font-weight'] = 'bold'
+      if(this.props.filterOn){
+        styles['fontWeight'] = 'bold'
       }
       return styles
     }
@@ -43,12 +35,11 @@ class FilterStars extends React.Component {
 
       return(
         <React.Fragment>
-        <span style = {filterStyles} onClick = {() => {this.handleFilterClick(this.props.stars)}} onMouseEnter = {this.handleFilterHover} onMouseLeave = {this.handleFilterHover}>
+        <span style = {filterStyles} onClick = {() => {this.props.setFilter(this.props.stars)}} onMouseEnter = {this.handleFilterHover} onMouseLeave = {this.handleFilterHover}>
         {this.props.stars} Stars < BorderLinearProgress variant="determinate" value = {this.props.percent}  />
         </span>
         </React.Fragment>
       )
-
     }
 
   }
