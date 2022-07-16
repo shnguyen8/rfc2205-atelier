@@ -8,9 +8,12 @@ export default function StarRating(rating) {
 
   if (rating) {
     return (
-    <Stack spacing={1}>
-    <Rating precision={0.25} value={rating} size = "small" readOnly/>
-    </Stack>
+    <div className='starrating'>
+      <Stack spacing={1}>
+      <Rating precision={0.25} value={rating} size = "small" readOnly/>
+      </Stack>
+    </div>
+
     )
   } else {
     return null;

@@ -4,6 +4,7 @@ import Ratings from './ratingsAndReviews/ratings.jsx';
 import ProdOverview from './productOverview/overview.jsx';
 import Related from './relatedItems/related.jsx';
 import axios from 'axios';
+import './assets/styles.css'
 
 class App extends React.Component {
   constructor(props) {
