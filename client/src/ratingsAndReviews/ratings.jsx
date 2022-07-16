@@ -27,7 +27,7 @@ class Ratings extends React.Component {
 
     if(this.state.addReviewModal){
       var addModal = <dialog open onClick = {this.handlePhotoModal}>
-      <AddReviewForm handleAddModal = {this.handleAddModal} productName = {this.props.productName} characteristics = {this.props.metaData.characteristics}/>
+      <AddReviewForm currentProduct = {this.props.currentProduct} handleAddModal = {this.handleAddModal} productName = {this.props.productName} characteristics = {this.props.metaData.characteristics}/>
       </dialog>
     } else {
       var addModal = ''
@@ -38,7 +38,7 @@ class Ratings extends React.Component {
 
       <RatingBreakdown metaData = {this.props.metaData}/>
 
-      <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
+      <ReviewsList currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
 
       <button onClick={this.handleAddModal}>Add A Review +</button>
       {addModal}

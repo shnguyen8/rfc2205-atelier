@@ -22,7 +22,7 @@ class ReviewsList extends React.Component {
   }
 
   componentDidUpdate = () => {
-    if(this.props.product_id !== this.state.lastCall){
+    if(this.props.currentProduct !== this.state.lastCall){
       var params = {
         product_id: this.props.currentProduct,
         page: 1,
