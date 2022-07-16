@@ -114,7 +114,7 @@ class Ratings extends React.Component {
       {removeFilters}
       </div>
 
-      <ReviewsList filters = {this.state.filters} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)} filtersOn = {this.state.filtersOn}/>
+      <ReviewsList filters = {this.state.filters} currentProduct = {this.props.metaData.product_id} totalReviews = {numberOfRatings(this.props.metaData.ratings)} filtersOn = {this.state.filtersOn}/>
 
       <button onClick={this.handleAddModal}>Add A Review +</button>
       {addModal}
