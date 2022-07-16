@@ -1,6 +1,7 @@
 import React from 'react';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
+import FilterStars from './filterStars.jsx'
 
 
 const avgRating = (ratingsObj) => {
@@ -35,16 +36,9 @@ const percentRecommend = (recObj) => {
   }
 }
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
-  width: 100,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    backgroundColor: theme.palette.mode === 'light' ? '#DAF7A6' : '#308fe8',
-  },
-}));
+const filterRatings = (target) => {
+  console.log(target)
+}
 
 const ratingSummary = (ratingsObj) => {
 
@@ -67,11 +61,17 @@ const ratingSummary = (ratingsObj) => {
 
   return (
   <div>
-  5 Stars <BorderLinearProgress variant="determinate" value={five} />
+    <FilterStars percent = {five} stars = {5}/>
+    <FilterStars percent = {four} stars = {4}/>
+    <FilterStars percent = {three} stars = {3}/>
+    <FilterStars percent = {two} stars = {2}/>
+    <FilterStars percent = {one} stars = {1}/>
+
+  {/* 5 Stars <BorderLinearProgress variant="determinate" value={five}/>
   4 Stars <BorderLinearProgress variant="determinate" value={four} />
   3 Stars <BorderLinearProgress variant="determinate" value={three} />
   2 Stars <BorderLinearProgress variant="determinate" value={two} />
-  1 Stars <BorderLinearProgress variant="determinate" value={one} />
+  1 Stars <BorderLinearProgress variant="determinate" value={one} /> */}
   </div>
   )
 }
@@ -90,7 +90,6 @@ const formatDate = (date) => {
   return formatted
 
 }
-
 
 
 

@@ -14,12 +14,30 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       addReviewModal: false,
+      filters: {
+        5: false,
+        4: false,
+        3: false,
+        2: false,
+        1: false,
+      },
+      filtersOn: false
     }
   }
 
   handleAddModal = (event) => {
     this.setState({
       addReviewModal: !this.state.addReviewModal
+    })
+  }
+
+  filterReviews = (filter) => {
+    var changedFilters = this.state.filters;
+    changedFilters[filter] = !changedFilters[filter];
+    var anyFilters = Object.values(changedFilters).contains(true);
+    this.setState({
+      filters: changedFilters,
+      filtersOn: anyFilters
     })
   }
 
@@ -33,10 +51,18 @@ class Ratings extends React.Component {
       var addModal = ''
     }
 
+    if(this.state.filtersOn){
+      var removeFilters = <button>Remove all filters</button>
+    } else {
+      var removeFilters = <React.Fragment></React.Fragment>
+    }
+
       return (
       <div>
 
-      <RatingBreakdown metaData = {this.props.metaData}/>
+      <RatingBreakdown metaData = {this.props.metaData} filters = {this.state.filters} filterReviews = {this.filterReview}/>
+
+      {removeFilters}
 
       <ReviewsList currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
 

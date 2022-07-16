@@ -3,7 +3,6 @@ import reactDOM from 'react-dom';
 import StarRating from './starRating.jsx';
 import {ratingSummary, avgRating, numberOfRatings, percentRecommend} from './helpers.jsx';
 
-
 const RatingBreakdown = ({metaData}) => {
 
   return(

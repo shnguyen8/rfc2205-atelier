@@ -67,7 +67,7 @@ class AddReviewForm extends React.Component {
     if(review['name'] === ''){
       return false
     }
-    if(review['email'] === ''){
+    if(review['email'] === '' || !review['email'].includes('@') || !review['email'].includes('.com')){
       return false
     }
     if(Object.values(review['characteristics']).includes(NaN)){
