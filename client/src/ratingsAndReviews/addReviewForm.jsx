@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import Rating from '@mui/material/Rating';
-import axios from 'axios'
+import axios from 'axios';
+import {displayThumbnails} from './helpers.jsx'
+
+
 
 class AddReviewForm extends React.Component {
 
@@ -13,7 +16,8 @@ class AddReviewForm extends React.Component {
       username: '',
       recommend: '',
       email: '',
-      alert: false
+      alert: false,
+      uploadedPhotos: []
     }
   }
 
@@ -37,7 +41,8 @@ class AddReviewForm extends React.Component {
         "recommend": this.state.recommend === 'true',
         "name" : this.state.username,
         "email": this.state.email,
-        "characteristics": characteristicsToSend
+        "characteristics": characteristicsToSend,
+        "photos": this.state.uploadedPhotos
       }
       if(this.checkFormat(review)){
         axios.post('/reviews', review)
@@ -132,6 +137,26 @@ class AddReviewForm extends React.Component {
     })
   }
 
+  uploadImage = (file) => {
+
+    const formData = new FormData();
+    formData.append("file", file)
+    formData.append("upload_preset", "hackreactorFEC")
+
+    axios.post("https://api.cloudinary.com/v1_1/djgtrn3gg/upload", formData)
+      .then((res) => {
+        var url = res.data.url;
+        var uploaded = this.state.uploadedPhotos
+        uploaded.push(url)
+        this.setState({
+          uploadedPhotos: uploaded
+        })
+      })
+      .catch(() => {console.log('files could not be attached')})
+
+  }
+
+
   render(){
 
     if(this.props.characteristics) {
@@ -187,8 +212,10 @@ class AddReviewForm extends React.Component {
           {counter}
           <br/>
 
-          <label for="file">Upload photos</label>
-          <input type="file" id="file" name="file" multiple></input>
+          Upload Photos:
+          {this.state.uploadedPhotos.length < 5 ? <input type="file" onChange = {(event) => {this.uploadImage(event.target.files[0])}}/> : <React.Fragment/>}
+          {displayThumbnails(this.state.uploadedPhotos)}
+
           <br/>
 
           Email*: <input type = 'text' value = {this.state.email} placeholder = 'Example: jackson11@email.com' name = 'email' onChange = {this.handleInputChange} maxLength = '60'/>

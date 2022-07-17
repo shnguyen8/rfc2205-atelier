@@ -1,7 +1,8 @@
 import React from 'react';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
-import FilterStars from './filterStars.jsx'
+import FilterStars from './filterStars.jsx';
+import ReviewPhoto from './reviewPhoto.jsx'
 
 
 const avgRating = (ratingsObj) => {
@@ -102,5 +103,21 @@ var sectionStyle = {
   width: '5px'
 }
 
-export {avgRating, numberOfRatings, percentRecommend, formatDate, charMapper}
+const displayThumbnails = (photosArray) => {
+
+  if(photosArray.length > 0){
+    return photosArray.map(photo => {
+      if(typeof photo === 'object'){
+        return <ReviewPhoto url = {photo.url} key = {photo.id}/>
+      } else {
+        return <ReviewPhoto url = {photo}/>
+      }
+    })
+  } else {
+    return <br></br>
+  }
+}
+
+
+export {avgRating, numberOfRatings, percentRecommend, formatDate, charMapper, displayThumbnails}
 
