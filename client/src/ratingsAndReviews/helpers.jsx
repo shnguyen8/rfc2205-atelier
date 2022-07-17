@@ -51,6 +51,56 @@ const formatDate = (date) => {
 
 }
 
+const charMapper = (charsObj) => {
+  var list = []
+  var ratings = {
+    Size: ['too small', 'perfect', 'too wide'],
+    Width: ['too narrow', 'perfect', 'too wide'],
+    Comfort: ['uncomfortable', 'ok', 'perfect'],
+    Quality: ['poor', 'expected', 'perfect'],
+    Length: ['runs short', 'perfect','runs long'],
+    Fit: ['runs tight', 'perfect', 'runs long']
+  }
+  for(var key in charsObj){
 
-export {avgRating, numberOfRatings, percentRecommend, formatDate}
+    var length = Math.floor(Number(charsObj[key].value)/5 * 150)
+
+    list.push(
+      <div style = {{width: '150px'}}>
+      {key}: <br/>
+      <div className = 'line' style = {{'backgroundColor': '#eeeeee', width: '150px', height: '10px'}}>
+        <div className = 'lineSectionSpacing' style = {{'display': 'flex', 'justifyContent': 'space-evenly'}}>
+          <div className = 'section' style = {sectionStyle}/>
+          <div className = 'section' style = {sectionStyle}/>
+        </div>
+        <div className = 'triangle' style = {{width: 0, height: 0, 'marginLeft': `${length}px`, 'borderLeft': '8px solid transparent', 'borderRight': '8px solid-transparent', 'borderTop': '8px solid black'}}/>
+      </div>
+
+      <div className = 'labels' style = {{'fontSize': '8pt', 'display': 'flex', 'justifyContent': 'space-between', width: '150px', height: '8pt'}}>
+      <p>{ratings[key][0]}</p>
+      <p>{ratings[key][1]}</p>
+      <p>{ratings[key][2]}</p>
+      </div>
+
+      <br/>
+
+      </div>
+    )
+  }
+
+  return(
+    <React.Fragment>
+      {list}
+      <br/>
+    </React.Fragment>
+  )
+}
+
+var sectionStyle = {
+  'backgroundColor': 'white',
+  height: '10px',
+  width: '5px'
+}
+
+export {avgRating, numberOfRatings, percentRecommend, formatDate, charMapper}
 

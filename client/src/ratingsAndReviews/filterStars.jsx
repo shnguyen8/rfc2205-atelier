@@ -12,9 +12,15 @@ class FilterStars extends React.Component {
     }
   }
 
-    handleFilterHover = (event) => {
+    handleMouseLeave = (event) => {
       this.setState({
-        hoverOn: !this.state.hoverOn
+        hoverOn: false
+      })
+    }
+
+    handleMouseEnter = (event) => {
+      this.setState({
+        hoverOn: true
       })
     }
 
@@ -35,7 +41,7 @@ class FilterStars extends React.Component {
 
       return(
         <React.Fragment>
-        <span style = {filterStyles} onClick = {() => {this.props.setFilter(this.props.stars)}} onMouseEnter = {this.handleFilterHover} onMouseLeave = {this.handleFilterHover}>
+        <span style = {filterStyles} onClick = {() => {this.props.setFilter(this.props.stars)}} onMouseEnter = {this.handleMouseEnter} onMouseLeave = {this.handleMouseLeave}>
         {this.props.stars} Stars < BorderLinearProgress variant="determinate" value = {this.props.percent}  />
         </span>
         </React.Fragment>
@@ -46,7 +52,7 @@ class FilterStars extends React.Component {
 
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
-    width: 100,
+    width: 150,
     [`&.${linearProgressClasses.colorPrimary}`]: {
       backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
     },

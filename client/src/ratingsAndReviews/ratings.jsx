@@ -3,7 +3,7 @@ import reactDOM from 'react-dom';
 import axios from 'axios';
 import starRating from './starRating.jsx'
 import ReviewsList from './reviewsList.jsx'
-import {avgRating, numberOfRatings, percentRecommend} from './helpers.jsx'
+import {avgRating, numberOfRatings, percentRecommend, charMapper} from './helpers.jsx'
 import AddReviewForm from './addReviewForm.jsx'
 import Modal from '@mui/material/Modal';
 import StarRating from './starRating.jsx';
@@ -56,6 +56,24 @@ class Ratings extends React.Component {
     })
   }
 
+  showFilters = () => {
+    if(this.state.filtersOn === false){
+      return
+    }
+    var filters = []
+    for(var key in this.state.filters){
+      if(this.state.filters[key] === true){
+        filters.push(key)
+      }
+    }
+    var filters = filters.join(', ')
+    return (
+      <React.Fragment>Filters applied: {filters} <br></br> </React.Fragment>
+
+    )
+
+  }
+
   ratingSummary = (ratingsObj) => {
     if(ratingsObj === undefined){
       return null
@@ -98,6 +116,7 @@ class Ratings extends React.Component {
       var removeFilters = <React.Fragment></React.Fragment>
     }
 
+
       return (
       <div>
 
@@ -111,7 +130,10 @@ class Ratings extends React.Component {
       {percentRecommend(this.props.metaData.recommended)}% of reviews recommend this product
       <br></br>
       {this.ratingSummary(this.props.metaData.ratings)}
+      <br></br>
+      {this.showFilters()}
       {removeFilters}
+      {charMapper(this.props.metaData.characteristics)}
       </div>
 
       <ReviewsList filters = {this.state.filters} currentProduct = {this.props.metaData.product_id} totalReviews = {numberOfRatings(this.props.metaData.ratings)} filtersOn = {this.state.filtersOn}/>
