@@ -95,6 +95,7 @@ class App extends React.Component {
         />
         <Related
           currentProduct={this.state.currentProduct}
+          productSpecs = {this.state.productSpecs}
           allProducts={this.state.allProducts}
         />
       </div>

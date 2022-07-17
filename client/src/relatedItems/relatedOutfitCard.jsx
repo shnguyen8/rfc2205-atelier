@@ -3,18 +3,19 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-function OutfitCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
 
-  const { name, category } = props;
+function OutfitCard(props, { relatedStylesInfo, relatedProductsInfo, outfitCardsArray, onClick}) {
+
+  const {productName, productCategory } = props;
 
   return (
-    <Card border="primary" style={{ width: '18rem' }}>
+    <Card border="dark" style={{ width: '18rem' }}>
 
       <div>
 
-        {/* <sup>
-          <Button variant="outline-*" size="sm" style={{display: 'flex', justifyContent: 'right'}} onClick={(e) => props.onClick}> ❌ </Button>
-        </sup> */}
+
+          <Button variant="outline-*" size="sm" style={{display: 'flex', justifyContent: 'right'}}> -------------------------------------❌ </Button>
+
 
         <Card.Img src={'https://www.nicepng.com/png/detail/251-2519428_0-add-icon-white-png.png'}>
         </Card.Img>
@@ -22,9 +23,15 @@ function OutfitCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) 
         <Card.Body>
           <Card.Title>
             <div style={{display: 'flex', justifyContent: 'center'}}>
-            ADD TO OUTFIT
+              {props.productName}
             </div>
           </Card.Title>
+
+          <Card.Text>
+            <div style={{ display: 'flex', justifyContent: 'center' }} >{props.productCategory}</div>
+            <div style={{ display: 'flex', justifyContent: 'center' }} >PRICE</div>
+            <div style={{ display: 'flex', justifyContent: 'center' }} >RATING</div>
+          </Card.Text>
 
         </Card.Body>
       </div>

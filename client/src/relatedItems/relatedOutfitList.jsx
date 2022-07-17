@@ -28,10 +28,11 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import OutfitCard from './relatedOutfitCard.jsx';
+import AddCard from './relatedAddCard.jsx';
 import { Carousel } from 'react-bootstrap';
 import App from '../index.jsx';
 import Card from 'react-bootstrap/Card';
+import OutfitCard from './relatedOutfitCard.jsx';
 
 
 
@@ -43,32 +44,64 @@ class RelatedOutfitList extends React.Component {
       // allProducts: this.props.allProducts,
       // relatedProductsInfo: [],
       // relatedStylesInfo: this.props.relatedStylesInfo,
+      outfitCardsArray: [
+        {productName: null,
+        productCategory: null
+
+        }
+      ]
     }
+
+  }
+
+  clickEvent = () => {
+    const newOutfit = {productName: 'Test123',
+    productCategory: 'Current Product Category'
+  }
+  const pName = newOutfit.productName;
+  let inArr = false;
+  for (let i = 0; i < this.state.outfitCardsArray.length; i++) {
+    let curItemName = this.state.outfitCardsArray[i].productName;
+    if (curItemName === pName) {
+      inArr = true
+      break
+    }
+  }
+  let outfitCardsArray = [
+    ...this.state.outfitCardsArray
+  ]
+  if (!inArr){
+    outfitCardsArray.push(newOutfit)
+  } else {
+    alert("Item already in outfits")
+  }
+
+  this.setState({outfitCardsArray});
+
 
   }
 
 
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.props.relatedProducts != prevProps.relatedProducts) {
-  //     this.setState({ relatedProducts: this.props.relatedProducts})
-  //   }
-  //   if (this.props.allProducts != prevProps.allProducts) {
-  //     this.setState({ allProducts: this.props.allProducts })
-  //     this.setState({ relatedProductsInfo: this.props.allProducts.filter(product => this.state.relatedProducts.includes(product.id)) })
-  //   }
-  // }
-
-
   render() {
+    const { outfitCardsArray } = this.state;
     return (
 
-        <Carousel>
+        <Carousel variant={"dark"} interval={null} >
             <Carousel.Item
             show={4}>
-              <OutfitCard
+              <AddCard
+              onClick={this.clickEvent}
               />
             </Carousel.Item>
+        {outfitCardsArray.map((card, index) =>(
+          (card.productName) ?
+            <Carousel.Item>
+              <OutfitCard
+              productName={card.productName}
+              productCategory={card.productCategory}
+              />
+            </Carousel.Item> : null))}
         </Carousel>
 
     )

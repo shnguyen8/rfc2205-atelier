@@ -47,7 +47,7 @@ class RelatedList extends React.Component {
   render() {
     return (
         <React.Fragment>
-        <Carousel variant={"dark"}>
+        <Carousel variant={"dark"} interval={null} indicators={false} >
           {(this.state.relatedProductsInfo.length > 0) ? this.state.relatedProductsInfo.map((product, i) => (
             <Carousel.Item key={product.id}
             >
@@ -67,13 +67,14 @@ class RelatedList extends React.Component {
         onHide={this.closeModal}>
 
         <Modal.Header closeButton size="lg">
-        <Modal.Title> Comparing </Modal.Title>
+        <Modal.Title> Comparing</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
 
         <div>
-          <ComparisonTable/>
+       <ComparisonTable productSpecs={this.props.productSpecs}
+        />
         </div>
 
         </Modal.Body>

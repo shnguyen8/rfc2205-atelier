@@ -1,19 +1,30 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table';
 
-function ComparisonTable(props) {
+function ComparisonTable(props, {productSpecs}) {
+
+const {name} = props;
   return(
     <>
-    <div>
-      <table>
 
+      <Table>
+        <thead>
         <tr>
           <th>RELATED PRODUCT NAME</th>
           <th>CHARACTERISTICS</th>
-          <th>CURRENT PRODUCT NAME</th>
+          <th>{props.name}</th>
         </tr>
-      </table>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </Table>
 
-    </div>
+
     </>
   )
 }

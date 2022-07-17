@@ -4,7 +4,6 @@ import RelatedOutfitList from './relatedOutfitList.jsx';
 import RelatedCard from './relatedCard.jsx';
 import axios from 'axios';
 import ComparisonTable from './relatedComparison.jsx';
-// import ComparisonModal from './relatedModal.jsx';
 
 // var mockData = [
 //   {img:,
@@ -33,7 +32,6 @@ class Related extends React.Component {
 
   componentDidMount() {
     this.fetchRelatedProducts()
-
   }
 
   componentDidUpdate(prevProps) {
@@ -110,6 +108,8 @@ class Related extends React.Component {
   //   })
   // }
 
+
+
   render() {
     return (
       <div style={{
@@ -125,13 +125,14 @@ class Related extends React.Component {
             relatedProducts={this.state.relatedProducts}
             relatedProductsInfo={this.props.relatedProductsInfo}
             allProducts={this.props.allProducts}
+            productSpecs={this.props.productSpecs}
             relatedData={this.state.relatedData}
             openModal={this.state.openModal}
           />
         </div>
 
         <div>
-          <h2> Your Oufits </h2>
+          <h2> Your Outfits </h2>
           <RelatedOutfitList
             relatedProducts={this.props.relatedProducts}
             relatedProductsInfo={this.props.relatedProductsInfo}
