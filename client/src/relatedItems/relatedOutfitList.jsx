@@ -45,38 +45,47 @@ class RelatedOutfitList extends React.Component {
       // relatedProductsInfo: [],
       // relatedStylesInfo: this.props.relatedStylesInfo,
       outfitCardsArray: [
-        {productName: null,
-        productCategory: null
-
-        }
-      ]
+        {
+          productName: null,
+          productCategory: null,
+          productImage: null,
+          productPrice: null,
+          productRating: null
+        }],
+      productSpecs: this.props.productSpecs,
+      productStyles: this.props.productStyles,
     }
 
   }
 
   clickEvent = () => {
-    const newOutfit = {productName: 'Test123',
-    productCategory: 'Current Product Category'
-  }
-  const pName = newOutfit.productName;
-  let inArr = false;
-  for (let i = 0; i < this.state.outfitCardsArray.length; i++) {
-    let curItemName = this.state.outfitCardsArray[i].productName;
-    if (curItemName === pName) {
-      inArr = true
-      break
-    }
-  }
-  let outfitCardsArray = [
-    ...this.state.outfitCardsArray
-  ]
-  if (!inArr){
-    outfitCardsArray.push(newOutfit)
-  } else {
-    alert("Item already in outfits")
-  }
+    const newOutfit = {
+      productName: this.props.productSpecs.name,
+      productCategory: this.props.productSpecs.category,
+      productImage: this.props.productStyles.results[0].photos[0].thumbnail_url,
+      productPrice: this.props.productStyles.results.length !== 0 && this.props.productStyles.results[0].sale_price === null ?
+      this.props.productStyles.results[0].original_price : this.props.productStyles.results.length !== 0 && props.productStyles.results[0].sale_price !== null ? this.props.productStyles.results[0].sale_price : null,
 
-  this.setState({outfitCardsArray});
+    }
+    const pName = newOutfit.productName;
+    let inArr = false;
+    for (let i = 0; i < this.state.outfitCardsArray.length; i++) {
+      let curItemName = this.state.outfitCardsArray[i].productName;
+      if (curItemName === pName) {
+        inArr = true
+        break
+      }
+    }
+    let outfitCardsArray = [
+      ...this.state.outfitCardsArray
+    ]
+    if (!inArr) {
+      outfitCardsArray.push(newOutfit)
+    } else {
+      alert("Item already in outfits")
+    }
+
+    this.setState({ outfitCardsArray });
 
 
   }
@@ -87,22 +96,24 @@ class RelatedOutfitList extends React.Component {
     const { outfitCardsArray } = this.state;
     return (
 
-        <Carousel variant={"dark"} interval={null} >
-            <Carousel.Item
-            show={4}>
-              <AddCard
-              onClick={this.clickEvent}
-              />
-            </Carousel.Item>
-        {outfitCardsArray.map((card, index) =>(
+      <Carousel variant={"dark"} interval={null} >
+        <Carousel.Item
+          show={4}>
+          <AddCard
+            onClick={this.clickEvent}
+          />
+        </Carousel.Item>
+        {outfitCardsArray.map((card, index) => (
           (card.productName) ?
             <Carousel.Item>
               <OutfitCard
-              productName={card.productName}
-              productCategory={card.productCategory}
+                productName={card.productName}
+                productCategory={card.productCategory}
+                productImage={card.productImage}
+                productPrice={card.productPrice}
               />
             </Carousel.Item> : null))}
-        </Carousel>
+      </Carousel>
 
     )
 

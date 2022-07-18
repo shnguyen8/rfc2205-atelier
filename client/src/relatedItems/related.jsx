@@ -26,7 +26,7 @@ class Related extends React.Component {
       currentProduct: this.props.currentProduct,
       // relatedStylesInfo: {},
       // relatedReviews: [],
-      relatedData: {},
+      relatedData: []
     };
   }
 
@@ -38,14 +38,18 @@ class Related extends React.Component {
     if (this.props.currentProduct !== prevProps.currentProduct) {
       this.fetchRelatedProducts(this.props.currentProduct);
       this.setState({
-        currentProduct: this.props.currentProduct
+        currentProduct: this.props.currentProduct,
+        relatedData: [],
+        inRelatedData: []
       })
     }
   }
 
 
-  fetchRelatedProducts = () => {
+  fetchRelatedProducts =  async() => {
     // console.log(this.props.currentProduct)
+    let toAdd = []
+    let added = []
     axios.get(`/products/${this.props.currentProduct}/related`)
       .then((res) => {
         this.setState({
@@ -61,18 +65,25 @@ class Related extends React.Component {
                       const allRelatedData = resData.data;
                       allRelatedData['styles'] = styleData.data.results;
                       allRelatedData['reviews'] = reviewData.data;
-                      this.setState({
-                        // relatedStylesInfo: allRelatedData['styles'],
-                        // relatedReviews: allRelatedData['reviews']
-                        relatedData: { ...allRelatedData }
-                      }, () => { console.log(this.state.relatedData, 'SHOW ME AHHHHHHHH') })
-
+                      // relatedStylesInfo: allRelatedData['styles'],
+                      // relatedReviews: allRelatedData['reviews']
+                      if (!added.includes(allRelatedData.id)) {
+                        // console.log(allRelatedData, allRelatedData.id)
+                        // this.setState({ relatedData: [...this.state.relatedData, allRelatedData] });
+                        toAdd.push(allRelatedData)
+                        added.push(allRelatedData.id)
+                        this.setState({relatedData: toAdd})
+                        // this.setState({ inRelatedData: [...this.state.inRelatedData, allRelatedData.id] })
+                        // console.log(`Added ${allRelatedData.id}`)
+                      }
 
                     })
                 })
 
             })
         })
+      // this.setState({ relatedData: toAdd })
+
       })
 
     //   .then((res) => {
@@ -138,6 +149,8 @@ class Related extends React.Component {
             relatedProductsInfo={this.props.relatedProductsInfo}
             allProducts={this.props.allProducts}
             relatedStylesInfo={this.props.relatedStylesInfo}
+            productSpecs={this.props.productSpecs}
+            productStyles={this.props.productStyles}
           />
         </div>
 

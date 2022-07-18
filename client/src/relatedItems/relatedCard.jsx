@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import RelatedList from './relatedList.jsx';
+import StarRating from "./../ratingsAndReviews/starRating.jsx";
+import {avgRating} from"./../ratingsAndReviews/helpers.jsx";
+
 
 function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick}) {
 
-  const { name, category} = props;
 
+  let { name, category,rating} = props;
   return (
 
     <Row>
@@ -31,9 +34,13 @@ function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick}) 
           </Card.Title>
 
           <Card.Text>
-            <div style={{ display: 'flex', justifyContent: 'center' }} >{props.category}</div>
-            <div style={{ display: 'flex', justifyContent: 'center' }} >PRICE</div>
-            <div style={{ display: 'flex', justifyContent: 'center' }} >RATING</div>
+            <div >{props.category}</div>
+            <div >PRICE</div>
+            {
+              props.rating ?
+              (<div>{StarRating(avgRating(props.rating))}</div>) :
+              <div>rating is loading...</div>
+            }
           </Card.Text>
 
         </Card.Body>

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import "./../assets/styles.css"
 
 
-function OutfitCard(props, { relatedStylesInfo, relatedProductsInfo, outfitCardsArray, onClick}) {
+function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInfo, outfitCardsArray, onClick}) {
 
-  const {productName, productCategory } = props;
+  const {productName, productCategory, productImage, productPrice} = props;
 
   return (
     <Card border="dark" style={{ width: '18rem' }}>
@@ -14,11 +15,10 @@ function OutfitCard(props, { relatedStylesInfo, relatedProductsInfo, outfitCards
       <div>
 
 
-          <Button variant="outline-*" size="sm" style={{display: 'flex', justifyContent: 'right'}}> -------------------------------------❌ </Button>
+          <Button variant="outline-*" size="sm" className="flex-center"> -------------------------------------❌ </Button>
 
 
-        <Card.Img src={'https://www.nicepng.com/png/detail/251-2519428_0-add-icon-white-png.png'}>
-        </Card.Img>
+        <Card.Img src={props.productImage}></Card.Img>
 
         <Card.Body>
           <Card.Title>
@@ -28,9 +28,9 @@ function OutfitCard(props, { relatedStylesInfo, relatedProductsInfo, outfitCards
           </Card.Title>
 
           <Card.Text>
-            <div style={{ display: 'flex', justifyContent: 'center' }} >{props.productCategory}</div>
-            <div style={{ display: 'flex', justifyContent: 'center' }} >PRICE</div>
-            <div style={{ display: 'flex', justifyContent: 'center' }} >RATING</div>
+            <div className="flex-center">{props.productCategory}</div>
+            <div className="flex-center">${props.productPrice}</div>
+            <div className="flex-center">RATING</div>
           </Card.Text>
 
         </Card.Body>
