@@ -4,6 +4,8 @@ import Ratings from './ratingsAndReviews/ratings.jsx';
 import ProdOverview from './productOverview/overview.jsx';
 import Related from './relatedItems/related.jsx';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './assets/styles.css'
 
 class App extends React.Component {
@@ -15,8 +17,8 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
+      productStyles: {},
       allProducts: {},
-      productStyles: {}
     }
   }
 
@@ -96,7 +98,10 @@ class App extends React.Component {
         />
         <Related
           currentProduct={this.state.currentProduct}
+          productSpecs= {this.state.productSpecs}
+          productStyles={this.state.productStyles}
           allProducts={this.state.allProducts}
+          metaData={this.state.metaData}
         />
       </div>
     )

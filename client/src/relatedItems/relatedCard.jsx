@@ -1,29 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import RelatedList from './relatedList.jsx';
+import StarRating from "./../ratingsAndReviews/starRating.jsx";
+import { avgRating } from "./../ratingsAndReviews/helpers.jsx";
+
 
 function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
 
-  const { name, category } = props;
 
+  let { name, category, rating, image } = props;
   return (
-    <section className="card">
 
-      <div>
-        <p>------------------------------</p>
-        <img src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"} width="150" height="150"></img>
-        <h4>{props.name}</h4>
-        <sup>
-          <button onClick={(e) => props.onClick}> ⭐️ </button>
-        </sup>
-        <p>{props.category}</p>
-        <small>PRICE</small>
-        <h5>RATING</h5>
-        <p>------------------------------</p>
+    <Row>
+      {Array.from({ length: 1 }).map((_, idx) => (
+        <Col style={{ width: '18rem' }}>
+          <Card border="dark" style={{ width: '18rem' }}>
 
-      </div>
+            <div>
 
-    </section>
+              <Button btnindex={props.btnindex} variant="outline-*" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={(e) => props.onClick()}> --------------------------------------⭐️ </Button>
+
+
+              <Card.Img src={props.image ? props.image : 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'} width="150" height="150"></Card.Img>
+              <Card.Body>
+                <Card.Title>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    {props.name}
+                  </div>
+                </Card.Title>
+
+                <Card.Text>
+                  <div>{props.category}</div>
+                  <div>${props.price}</div>
+                  {
+                    props.rating ?
+                      (<div>{StarRating(avgRating(props.rating))}</div>) :
+                      <div>rating is loading...</div>
+                  }
+                </Card.Text>
+
+              </Card.Body>
+            </div>
+
+          </Card>
+        </Col>
+      ))}
+    </Row>
   );
 }
 
