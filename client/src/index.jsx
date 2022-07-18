@@ -4,6 +4,7 @@ import Ratings from './ratingsAndReviews/ratings.jsx';
 import ProdOverview from './productOverview/overview.jsx';
 import Related from './relatedItems/related.jsx';
 import axios from 'axios';
+import './assets/styles.css'
 
 class App extends React.Component {
   constructor(props) {
@@ -14,13 +15,8 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
-<<<<<<< HEAD
-      productStyles: {},
-      allProducts: {},
-=======
-      relatedProducts: [],
       allProducts: [],
->>>>>>> development
+      productStyles: {},
     }
   }
 
@@ -87,9 +83,10 @@ class App extends React.Component {
         />
         <button onClick={this.getAllData} >Submit</button>
         <ProdOverview
-          currentProduct = {this.state.currentProduct}
-          products = {this.state.products}
-          productSpecs = {this.state.productSpecs}
+          currentProduct={this.state.currentProduct}
+          products={this.state.products}
+          productSpecs={this.state.productSpecs}
+          metaData={this.state.metaData}
         />
         <Ratings
           currentProduct={this.state.currentProduct}

@@ -1,8 +1,31 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import StarRating from './starRatingsPO.jsx';
+import avgRating from './starRatingsPO.jsx';
 
 const ProdInfo = (props) => {
-  console.log(props);
+  // console.log(props);
+
+  let avgRating = (ratingsObj) => {
+    let totalScore = 0;
+    let ratings = numberOfRatings(ratingsObj);
+    for (var key in ratingsObj) {
+      let score = Number(ratingsObj[key]) * Number(key);
+      totalScore += score ;
+    }
+    let avg = totalScore / ratings;
+    avg = Math.round(avg * 10) / 10;
+    return avg || 0.0
+  }
+
+  let numberOfRatings = (ratingsObj) => {
+    let total = 0;
+    for(var key in ratingsObj){
+      let number = Number(ratingsObj[key])
+      total += number
+    }
+    return total;
+  }
 
   let styleNameOption = (props) => {
     if (props.thumbnailStyleClicked === '' && props.productStyles.results.length !== 0) {
@@ -27,7 +50,8 @@ const ProdInfo = (props) => {
   if (props.productStyles.results !== undefined) {
     return (
       <React.Fragment>
-        <p>Star Rating</p>
+        {StarRating(avgRating(props.metaData.ratings))}
+        <a href='#Ratings and Reviews'>Read all {numberOfRatings(props.metaData.ratings)} reviews</a>
         <p>{props.productSpecs.category}</p>
         <h2>{props.productSpecs.name}</h2>
         <h4>{props.productSpecs.description}</h4>
