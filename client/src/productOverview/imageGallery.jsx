@@ -61,7 +61,7 @@ const ImageGallery = (props) => {
           />
           </div>
 
-        <div className='flexbox-item inner-image'>
+        <span className='flexbox-item inner-image'>
           {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
             return <img
                     onClick={props.onStylePhotosClick}
@@ -78,7 +78,7 @@ const ImageGallery = (props) => {
                     }}
                   />
           })}
-        </div>
+        </span>
         </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {

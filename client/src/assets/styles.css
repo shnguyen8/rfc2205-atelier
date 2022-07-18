@@ -1,36 +1,42 @@
 .imagegallery {
   position: relative;
   background-color: rgb(134, 134, 134);
-  /* border: 1px solid grey; */
-  flex-wrap: wrap;
-  /* padding: 10px; */
+  /* flex-wrap: wrap; */
   display: flex;
   justify-content: center;
-  height: 557px;
-  width: 660px;
+  /* align-items: center; */
+  height: 578px;
+  width: 551px;
+  align-content: space-around;
+  overflow: hidden;
 }
 
 .flexbox-item {
   justify-content: space-around;
+  /* align-content: space-between; */
 }
 
 .primary-image {
-  position: absolute;
+  position: relative;
   background-color: rgb(134, 134, 134);
   display: flex;
   padding: 10px;
-  /* max-width: fit-content;
-  max-height: fit-content; */
+  align-items: center;
+  flex-basis: auto;
   justify-content: center;
+  overflow: hidden;
+  max-height: 450px;
 }
 
 .inner-image {
   position: absolute;
   background-color: rgb(189, 189, 189);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   bottom: 0;
-  width: 100%;
+  min-width: 551px;
+  padding: 10px;
+  align-content: space-around;
 }
 
 .inner-images {

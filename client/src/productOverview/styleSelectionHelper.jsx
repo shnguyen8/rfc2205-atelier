@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import StyleSelections from './styleSelections.jsx';
+import Carousel from 'react-bootstrap/Carousel';
 
 const StyleSelectionHelper = (props) => {
   // console.log(props)
@@ -16,6 +17,8 @@ const StyleSelectionHelper = (props) => {
   if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
       <React.Fragment>
+        {/* <Carousel>
+          <Carousel.Item> */}
         <section>
           {props.productStyles.results.map((styleVals, i) => {
               return <img
@@ -36,11 +39,15 @@ const StyleSelectionHelper = (props) => {
                      />
           })}
         </section>
+        {/* </Carousel.Item>
+        </Carousel> */}
       </React.Fragment>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {
     return (
       <React.Fragment>
+        {/* <Carousel>
+          <Carousel.Item> */}
           {props.productStyles.results.map((styleVals, j) => {
               return <img
                       onClick={props.onThumbnailClick}
@@ -57,6 +64,8 @@ const StyleSelectionHelper = (props) => {
                       }}
                      />
           })}
+          {/* </Carousel.Item>
+        </Carousel> */}
       </React.Fragment>
     )
   }
