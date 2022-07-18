@@ -3,8 +3,6 @@ import Rating from '@mui/material/Rating';
 import axios from 'axios';
 import {displayThumbnails} from './helpers.jsx'
 
-
-
 class AddReviewForm extends React.Component {
 
   constructor(props) {

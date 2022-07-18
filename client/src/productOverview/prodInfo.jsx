@@ -4,8 +4,6 @@ import StarRating from './starRatingsPO.jsx';
 import avgRating from './starRatingsPO.jsx';
 
 const ProdInfo = (props) => {
-<<<<<<< HEAD
-=======
   // console.log(props);
 
   let avgRating = (ratingsObj) => {
@@ -28,7 +26,6 @@ const ProdInfo = (props) => {
     }
     return total;
   }
->>>>>>> ba78ec8bef01cc419ba92cae0fa26159e475bb07
 
   let styleNameOption = (props) => {
     if (props.thumbnailStyleClicked === '' && props.productStyles.results.length !== 0) {

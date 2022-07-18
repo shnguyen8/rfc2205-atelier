@@ -15,13 +15,8 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
-<<<<<<< HEAD
       allProducts: {},
       productStyles: {}
-=======
-      allProducts: [],
-      productStyles: {},
->>>>>>> ba78ec8bef01cc419ba92cae0fa26159e475bb07
     }
   }
 
