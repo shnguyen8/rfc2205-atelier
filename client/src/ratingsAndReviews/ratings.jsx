@@ -101,6 +101,7 @@ class Ratings extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
 
     if(this.state.addReviewModal){
       var addModal = <dialog open onClick = {this.handlePhotoModal}>
@@ -115,6 +116,14 @@ class Ratings extends React.Component {
     } else {
       var removeFilters = <React.Fragment></React.Fragment>
     }
+=======
+      return (
+      <div>
+      <a id='Ratings and Reviews'>
+      <RatingBreakdown metaData = {this.props.metaData}/>
+      </a>
+      <ReviewsList product_id = {this.props.metaData.product_id} currentProduct = {this.props.currentProduct} totalReviews = {numberOfRatings(this.props.metaData.ratings)}/>
+>>>>>>> ba78ec8bef01cc419ba92cae0fa26159e475bb07
 
 
       return (
