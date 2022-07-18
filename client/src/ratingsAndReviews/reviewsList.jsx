@@ -2,8 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import ReviewTile from './reviewTile.jsx'
 
-
-
 class ReviewsList extends React.Component {
 
   constructor(props) {
@@ -22,28 +20,31 @@ class ReviewsList extends React.Component {
   }
 
   componentDidUpdate = () => {
-    if(this.props.product_id !== this.state.lastCall){
-      var params = {
-        product_id: this.props.currentProduct,
-        page: 1,
-        count: 2,
-        sort: 'relevant'
-      }
-      axios.get('/reviews', {params})
-      .then(res => {
-        var resData = res.data.results
-        var updateReviews = [];
-        resData.forEach((review) => {updateReviews.push(review)})
-        this.setState({
-        reviews: updateReviews,
-        nextPage: 2,
-        lastCall: this.props.currentProduct,
-        count: 2,
-        sort: 'relevant'
+
+      if(this.props.currentProduct !== this.state.lastCall){
+        var params = {
+          product_id: this.props.currentProduct,
+          page: 1,
+          count: 2,
+          sort: 'relevant',
+        }
+
+        axios.get('/reviews', {params})
+        .then(res => {
+          var resData = res.data.results
+          var updateReviews = [];
+          resData.forEach((review) => {updateReviews.push(review)})
+
+          this.setState({
+            nextPage: 2,
+            count: 2,
+            sort: 'relevant',
+            reviews: updateReviews,
+            lastCall: this.props.currentProduct
+        })
       })
-    })
-    .catch(err => {console.log('error in get reviews',err)})
-    }
+      .catch(err => {console.log('error in get reviews',err)})
+      }
   }
 
   getReviews = () => {
@@ -54,27 +55,27 @@ class ReviewsList extends React.Component {
       sort: this.state.sort
     }
     axios.get('/reviews', {params})
-    .then(res => {
-      var resData = res.data.results
-      var updateReviews = this.state.reviews;
-      var updatePage = this.state.nextPage + 1;
-      resData.forEach((review) => {updateReviews.push(review)})
-      this.setState({
-      reviews: updateReviews,
-      nextPage: updatePage,
-      lastCall: this.props.currentProduct
+      .then(res => {
+        var resData = res.data.results
+        var updateReviews = this.state.reviews;
+        var updatePage = this.state.nextPage + 1;
+        resData.forEach((review) => {updateReviews.push(review)})
+        this.setState({
+        reviews: updateReviews,
+        nextPage: updatePage,
+        lastCall: this.props.currentProduct
+        })
       })
-    })
-    .catch(err => {console.log('error in get reviews',err)})
-  }
+      .catch(err => {console.log('error in get reviews',err)})
+    }
 
-  moreReviewsButton = () => {
+   moreReviewsButton = () => {
     if(this.state.reviews.length < this.props.totalReviews){
       return <button onClick = {this.getReviews}>More Reviews</button>
     } else {
       return null
     }
-  }
+   }
 
   changeSort = (sortOption) => {
     var params = {
@@ -83,14 +84,11 @@ class ReviewsList extends React.Component {
       count: this.state.reviews.length,
       sort: sortOption
     }
-    console.log('sort params', params)
     axios.get('/reviews', {params})
     .then(res => {
       var resData = res.data.results
       var updateReviews = [];
       resData.forEach((review) => {updateReviews.push(review)})
-      console.log('rd', resData)
-      console.log('ur', updateReviews)
       this.setState({
       reviews: updateReviews,
       sort: sortOption
@@ -99,7 +97,23 @@ class ReviewsList extends React.Component {
     .catch(err => {console.log('error in get reviews',err)})
   }
 
+  filterReviews = (allReviews) => {
+    var filtered = []
+    allReviews.forEach(review => {
+      if(this.props.filters[review.rating] === true){
+        filtered.push(review)
+      }
+    })
+    return filtered;
+  }
+
   render () {
+
+    if(this.props.filtersOn) {
+      var reviews = this.filterReviews(this.state.reviews)
+    } else {
+      var reviews = this.state.reviews
+    }
 
     return (
       <div>
@@ -109,7 +123,7 @@ class ReviewsList extends React.Component {
           <option>newest</option>
         </select>
 
-        {this.state.reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
+        {reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
 
         {this.moreReviewsButton()}
 
