@@ -118,7 +118,7 @@ class Ratings extends React.Component {
 
 
       return (
-      <div>
+      <React.Fragment>
 
       <div name = 'ratingBreakdowns'>
       <p> Ratings & Reviews </p>
@@ -141,7 +141,7 @@ class Ratings extends React.Component {
       <button onClick={this.handleAddModal}>Add A Review +</button>
       {addModal}
 
-      </div>
+      </React.Fragment>
 
       )
     }
