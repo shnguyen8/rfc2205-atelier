@@ -3,6 +3,8 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import "./../assets/styles.css"
+import StarRating from "./../ratingsAndReviews/starRating.jsx";
+import {avgRating} from"./../ratingsAndReviews/helpers.jsx";
 
 
 function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInfo, outfitCardsArray, onClick}) {
@@ -18,7 +20,7 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
           <Button variant="outline-*" size="sm" className="flex-center"> -------------------------------------❌ </Button>
 
 
-        <Card.Img src={props.productImage}></Card.Img>
+        <Card.Img src={props.productImage} width="150" height="150"></Card.Img>
 
         <Card.Body>
           <Card.Title>
@@ -30,7 +32,11 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
           <Card.Text>
             <div className="flex-center">{props.productCategory}</div>
             <div className="flex-center">${props.productPrice}</div>
-            <div className="flex-center">RATING</div>
+            {
+              props.productRating ?
+              (<div>{StarRating(avgRating(props.productRating))}</div>) :
+              <div>rating is loading...</div>
+            }
           </Card.Text>
 
         </Card.Body>

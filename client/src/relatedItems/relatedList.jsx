@@ -18,29 +18,31 @@ class RelatedList extends React.Component {
       relatedProductsInfo: [],
       relatedStylesInfo: this.props.relatedStylesInfo,
       isOpen: false,
-      relatedData: []
+      relatedData: [],
+      curRelatedProduct: ""
     }
 
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.relatedProducts != prevProps.relatedProducts) {
-      this.setState({relatedProducts: this.props.relatedProducts})
+      this.setState({ relatedProducts: this.props.relatedProducts })
     }
     if (this.props.allProducts != prevProps.allProducts) {
       this.setState({ allProducts: this.props.allProducts })
       this.setState({ relatedProductsInfo: this.props.allProducts.filter(product => this.state.relatedProducts.includes(product.id)) })
     }
-    if(this.props.relatedData != prevProps.relatedData) {
-      this.setState({relatedData: this.props.relatedData})
+    if (this.props.relatedData != prevProps.relatedData) {
+      this.setState({ relatedData: this.props.relatedData })
     }
 
   }
 
 
-  openModal = () => {
+  openModal = (productName) => {
     this.setState({
       isOpen: true,
+      curRelatedProduct: productName
     })
   }
 
@@ -54,22 +56,28 @@ class RelatedList extends React.Component {
     return (
       <React.Fragment>
         <Carousel variant={"dark"} interval={null} indicators={false} >
-          {this.state.relatedProductsInfo.length > 0 ? this.state.relatedProductsInfo.map((product, index) => (
+          {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
             <Carousel.Item key={product.id}
             >
               <RelatedCard
-                onClick={this.openModal}
-                key={this.state.relatedData[index]}
-
-                // onClick={()=> this.setState({relatedData: this.props.relatedData})}
+                btnIndex={index}
+                onClick={() => this.openModal(product)}
+                key={product.id}
                 name={product.name}
+                image={(product && product.hasOwnProperty("styles"))
+                  ? product.styles[0].photos[0].thumbnail_url
+                  : null}
 
+                price={(product && product.hasOwnProperty("styles") && product.styles[0].sale_price === null) ?
+                  product.styles[0].original_price :
+                  ((product && product.hasOwnProperty("styles")) && product.styles[0].sale_price !== null) ?
+                    product.styles[0].sale_price : null}
 
                 category={product.category}
 
 
-                rating={(this.state.relatedData[index] && this.state.relatedData[index].hasOwnProperty("reviews"))
-                  ? this.state.relatedData[index].reviews.ratings
+                rating={(product && product.hasOwnProperty("reviews"))
+                  ? product.reviews.ratings
                   : null}
 
               />
@@ -85,13 +93,16 @@ class RelatedList extends React.Component {
           onHide={this.closeModal}>
 
           <Modal.Header closeButton size="lg">
-            <Modal.Title> Comparing</Modal.Title>
+            <Modal.Title> Comparing </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
 
             <div>
-              <ComparisonTable productSpecs={this.props.productSpecs}
+              <ComparisonTable
+                curProduct={this.props.productSpecs}
+                relatedData={this.state.relatedData}
+                curRelatedProduct={this.state.curRelatedProduct}
               />
             </div>
 

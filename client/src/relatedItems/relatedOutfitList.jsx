@@ -65,7 +65,7 @@ class RelatedOutfitList extends React.Component {
       productImage: this.props.productStyles.results[0].photos[0].thumbnail_url,
       productPrice: this.props.productStyles.results.length !== 0 && this.props.productStyles.results[0].sale_price === null ?
       this.props.productStyles.results[0].original_price : this.props.productStyles.results.length !== 0 && props.productStyles.results[0].sale_price !== null ? this.props.productStyles.results[0].sale_price : null,
-
+      productRating: this.props.metaData.ratings
     }
     const pName = newOutfit.productName;
     let inArr = false;
@@ -111,6 +111,7 @@ class RelatedOutfitList extends React.Component {
                 productCategory={card.productCategory}
                 productImage={card.productImage}
                 productPrice={card.productPrice}
+                productRating={card.productRating}
               />
             </Carousel.Item> : null))}
       </Carousel>

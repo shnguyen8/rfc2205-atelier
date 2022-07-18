@@ -98,6 +98,7 @@ class App extends React.Component {
           productSpecs= {this.state.productSpecs}
           productStyles={this.state.productStyles}
           allProducts={this.state.allProducts}
+          metaData={this.state.metaData}
         />
       </div>
     )

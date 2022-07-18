@@ -151,6 +151,7 @@ class Related extends React.Component {
             relatedStylesInfo={this.props.relatedStylesInfo}
             productSpecs={this.props.productSpecs}
             productStyles={this.props.productStyles}
+            metaData={this.props.metaData}
           />
         </div>
 
