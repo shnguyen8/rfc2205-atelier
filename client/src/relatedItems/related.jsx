@@ -123,11 +123,7 @@ class Related extends React.Component {
 
   render() {
     return (
-      <div style={{
-        margin: 'auto',
-        width: '50%',
-        padding: '10px',
-      }} >
+      <div>
 
         <h2> Related Products</h2>
 

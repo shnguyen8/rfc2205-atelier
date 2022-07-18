@@ -97,7 +97,6 @@ class ProdOverview extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Product Overview</h1>
         <ImageGallery
           currentProduct= {this.props.currentProduct}
           products={this.props.products}
