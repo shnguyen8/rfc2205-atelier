@@ -57,12 +57,12 @@ class RelatedList extends React.Component {
       <React.Fragment>
         <Carousel variant={"dark"} interval={null} indicators={false} >
           {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
-            <Carousel.Item key={product.id}
+            <Carousel.Item key={product}
             >
               <RelatedCard
-                btnIndex={index}
+                btnindex={index}
                 onClick={() => this.openModal(product)}
-                key={product.id}
+
                 name={product.name}
                 image={(product && product.hasOwnProperty("styles"))
                   ? product.styles[0].photos[0].thumbnail_url
@@ -79,6 +79,8 @@ class RelatedList extends React.Component {
                 rating={(product && product.hasOwnProperty("reviews"))
                   ? product.reviews.ratings
                   : null}
+
+                  key={product}
 
               />
             </Carousel.Item>))

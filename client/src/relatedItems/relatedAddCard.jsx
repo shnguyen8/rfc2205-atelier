@@ -12,9 +12,7 @@ function AddCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
 
       <div>
 
-        {/* <sup>
-          <Button variant="outline-*" size="sm" style={{display: 'flex', justifyContent: 'right'}} onClick={(e) => props.onClick}> ❌ </Button>
-        </sup> */}
+
 
         <Card.Img src={'https://www.nicepng.com/png/detail/251-2519428_0-add-icon-white-png.png'}>
         </Card.Img>

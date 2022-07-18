@@ -12,7 +12,7 @@ import { avgRating } from "./../ratingsAndReviews/helpers.jsx";
 function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
 
 
-  let { name, category, rating, image, btnIndex } = props;
+  let { name, category, rating, image } = props;
   return (
 
     <Row>
@@ -22,7 +22,7 @@ function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick })
 
             <div>
 
-              <Button btnIndex={props.btnIndex} variant="outline-*" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={(e) => props.onClick()}> --------------------------------------⭐️ </Button>
+              <Button btnindex={props.btnindex} variant="outline-*" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={(e) => props.onClick()}> --------------------------------------⭐️ </Button>
 
 
               <Card.Img src={props.image ? props.image : 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'} width="150" height="150"></Card.Img>
