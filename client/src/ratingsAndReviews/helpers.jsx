@@ -1,6 +1,8 @@
 import React from 'react';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
+import FilterStars from './filterStars.jsx';
+import ReviewPhoto from './reviewPhoto.jsx'
 
 
 const avgRating = (ratingsObj) => {
@@ -35,47 +37,6 @@ const percentRecommend = (recObj) => {
   }
 }
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
-  width: 100,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    backgroundColor: theme.palette.mode === 'light' ? '#DAF7A6' : '#308fe8',
-  },
-}));
-
-const ratingSummary = (ratingsObj) => {
-
-  if(ratingsObj === undefined){
-    return null
-  }
-
-  let total = numberOfRatings(ratingsObj);
-
-  let findValue = (property) => {
-    let percent = Number(ratingsObj[property]) || 0
-    return Math.floor(percent / total * 100) || 0
-  }
-
-  let five = findValue(5)
-  let four = findValue(4)
-  let three = findValue(3)
-  let two = findValue(2)
-  let one = findValue(1)
-
-  return (
-  <div>
-  5 Stars <BorderLinearProgress variant="determinate" value={five} />
-  4 Stars <BorderLinearProgress variant="determinate" value={four} />
-  3 Stars <BorderLinearProgress variant="determinate" value={three} />
-  2 Stars <BorderLinearProgress variant="determinate" value={two} />
-  1 Stars <BorderLinearProgress variant="determinate" value={one} />
-  </div>
-  )
-}
-
 const formatDate = (date) => {
   //input date 2022-04-14T00:00:00.000Z
   //output Month DD, YYYY
@@ -91,6 +52,72 @@ const formatDate = (date) => {
 
 }
 
+const charMapper = (charsObj) => {
+  var list = []
+  var ratings = {
+    Size: ['too small', 'perfect', 'too wide'],
+    Width: ['too narrow', 'perfect', 'too wide'],
+    Comfort: ['uncomfortable', 'ok', 'perfect'],
+    Quality: ['poor', 'expected', 'perfect'],
+    Length: ['runs short', 'perfect','runs long'],
+    Fit: ['runs tight', 'perfect', 'runs long']
+  }
+  for(var key in charsObj){
 
-export {ratingSummary, avgRating, numberOfRatings, percentRecommend, formatDate}
+    var length = Math.floor(Number(charsObj[key].value)/5 * 150)
+
+    list.push(
+      <div style = {{width: '150px'}}>
+      {key}: <br/>
+      <div className = 'line' style = {{'backgroundColor': '#eeeeee', width: '150px', height: '10px'}}>
+        <div className = 'lineSectionSpacing' style = {{'display': 'flex', 'justifyContent': 'space-evenly'}}>
+          <div className = 'section' style = {sectionStyle}/>
+          <div className = 'section' style = {sectionStyle}/>
+        </div>
+        <div className = 'triangle' style = {{width: 0, height: 0, 'marginLeft': `${length}px`, 'borderLeft': '8px solid transparent', 'borderRight': '8px solid-transparent', 'borderTop': '8px solid black'}}/>
+      </div>
+
+      <div className = 'labels' style = {{'fontSize': '8pt', 'display': 'flex', 'justifyContent': 'space-between', width: '150px', height: '8pt'}}>
+      <p>{ratings[key][0]}</p>
+      <p>{ratings[key][1]}</p>
+      <p>{ratings[key][2]}</p>
+      </div>
+
+      <br/>
+
+      </div>
+    )
+  }
+
+  return(
+    <React.Fragment>
+      {list}
+      <br/>
+    </React.Fragment>
+  )
+}
+
+var sectionStyle = {
+  'backgroundColor': 'white',
+  height: '10px',
+  width: '5px'
+}
+
+const displayThumbnails = (photosArray) => {
+
+  if(photosArray.length > 0){
+    return photosArray.map(photo => {
+      if(typeof photo === 'object'){
+        return <ReviewPhoto url = {photo.url} key = {photo.id}/>
+      } else {
+        return <ReviewPhoto url = {photo}/>
+      }
+    })
+  } else {
+    return <br></br>
+  }
+}
+
+
+export {avgRating, numberOfRatings, percentRecommend, formatDate, charMapper, displayThumbnails}
 

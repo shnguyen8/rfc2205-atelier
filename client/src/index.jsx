@@ -15,8 +15,8 @@ class App extends React.Component {
       productSpecs: [],
       initialReviews: [],
       metaData: {},
-      allProducts: [],
-      productStyles: {},
+      allProducts: {},
+      productStyles: {}
     }
   }
 
@@ -92,6 +92,7 @@ class App extends React.Component {
           currentProduct={this.state.currentProduct}
           initialReviews={this.state.initialReviews}
           metaData={this.state.metaData}
+          productName = {this.state.productSpecs.name}
         />
         <Related
           currentProduct={this.state.currentProduct}

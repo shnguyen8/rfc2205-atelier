@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import StarRating from './starRating.jsx'
 import CheckIcon from '@mui/icons-material/Check';
-import {formatDate} from './helpers.jsx'
+import {formatDate, displayThumbnails} from './helpers.jsx'
 import axios from 'axios';
 
 
@@ -11,7 +11,8 @@ class ReviewTile extends React.Component {
     super(props);
     this.state = {
       helpful: false,
-      report: false
+      report: false,
+      modal: false,
     }
   }
 
@@ -69,10 +70,12 @@ class ReviewTile extends React.Component {
       {this.checkLength(this.props.review.body)}
       {this.props.review.recommend ? <p><CheckIcon/> I recommend this product </p> : <p></p> }
       {this.props.review.response ? <p> <b>Response from seller: </b> {this.props.review.response} </p> : <p></p> }
+      {displayThumbnails(this.props.review.photos)}
+      <br/>
       Helpful? {!this.state.helpful? <span onClick = {this.onHelpfulClick}> <u> Yes </u> {this.props.review.helpfulness} </span> : <span><b> <u> Yes </u> {this.props.review.helpfulness + 1} </b> </span>}
       | {!this.state.report? <span onClick = {this.onReportClick}> <u> Report </u> </span> : <span><b> <u> Reported </u></b> </span>}
       <br></br>
-        END REVIEW
+      _______________________________________________
       </div>
     )
   }
