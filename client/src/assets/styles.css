@@ -2,6 +2,7 @@ div.flex-center{
   display: flex;
   justify-content: center;
 }
+
 .imagegallery {
   position: relative;
   background-color: rgb(134, 134, 134);
@@ -24,7 +25,7 @@ div.flex-center{
   position: relative;
   background-color: rgb(134, 134, 134);
   display: flex;
-  padding: 10px;
+  margin: 17px;
   align-items: center;
   flex-basis: auto;
   justify-content: center;
