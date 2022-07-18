@@ -112,7 +112,7 @@ class RelatedOutfitList extends React.Component {
                 productImage={card.productImage}
                 productPrice={card.productPrice}
                 productRating={card.productRating}
-                key={i}
+                key={index}
               />
             </Carousel.Item> : null))}
       </Carousel>

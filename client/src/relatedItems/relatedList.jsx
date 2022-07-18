@@ -57,7 +57,7 @@ class RelatedList extends React.Component {
       <React.Fragment>
         <Carousel variant={"dark"} interval={null} indicators={false} >
           {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
-            <Carousel.Item key={product}
+            <Carousel.Item
             >
               <RelatedCard
                 btnindex={index}
@@ -80,7 +80,7 @@ class RelatedList extends React.Component {
                   ? product.reviews.ratings
                   : null}
 
-                  key={product}
+                  key={product.id}
 
               />
             </Carousel.Item>))
