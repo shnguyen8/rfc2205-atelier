@@ -75,7 +75,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = "app-container">
         <input
           type="text"
           placeholder='Search by Product_id'
@@ -84,18 +84,23 @@ class App extends React.Component {
           onChange={this.onChange}
         />
         <button onClick={this.getAllData} >Submit</button>
-        <ProdOverview
-          currentProduct={this.state.currentProduct}
-          products={this.state.products}
-          productSpecs={this.state.productSpecs}
-          metaData={this.state.metaData}
-        />
+        <div className='productOverview-container'>
+          <ProdOverview
+            currentProduct={this.state.currentProduct}
+            products={this.state.products}
+            productSpecs={this.state.productSpecs}
+            metaData={this.state.metaData}
+          />
+        </div>
+        <div className = 'ratingsAndReviews-container'>
         <Ratings
           currentProduct={this.state.currentProduct}
           initialReviews={this.state.initialReviews}
           metaData={this.state.metaData}
           productName = {this.state.productSpecs.name}
         />
+        </div>
+        <div className='relatedProducts-container'>
         <Related
           currentProduct={this.state.currentProduct}
           productSpecs= {this.state.productSpecs}
@@ -103,6 +108,7 @@ class App extends React.Component {
           allProducts={this.state.allProducts}
           metaData={this.state.metaData}
         />
+        </div>
       </div>
     )
   }
