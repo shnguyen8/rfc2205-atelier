@@ -15,21 +15,21 @@ function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick })
   let { name, category, rating, image } = props;
   return (
 
-    <Row style={{ width: '36' }} >
-      {Array.from({ length: 1 }).map((_, idx) => (
-        <Col style={{ width: '18rem' }}>
-          <Card bsCard="card-style">
+    // <Row style={{ width: '36' }} >
+    //   {Array.from({ length: 1 }).map((_, idx) => (
+    //     <Col style={{ width: '18rem' }}>
+          <Card border="dark" style={{ width: '16rem' }}>
 
             <div>
 
-              <Button bsbtn="button-style"
+              <Button variant="outline--*" className="block"
               btnindex={props.btnindex}  size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} onClick={(e) => props.onClick()}> ⭐️ </Button>
 
 
               <Card.Img src={props.image ? props.image : 'https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png'} width="150" height="150" ></Card.Img>
               <Card.Body>
-                <Card.Title>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Card.Title className="flex-center" >
+                  <div className="flex-center" >
                     {props.name}
                   </div>
                 </Card.Title>
@@ -48,9 +48,9 @@ function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick })
             </div>
 
           </Card>
-        </Col>
-      ))}
-    </Row>
+        // </Col>
+    //   ))}
+    // // </Row>
   );
 }
 

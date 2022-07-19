@@ -56,9 +56,11 @@ class RelatedList extends React.Component {
     return (
       <React.Fragment>
         <Carousel variant={"dark"} interval={null} indicators={false}  className="carousel-container">
+
           {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
-            <Carousel.Item>
-              <Stack direction={"horizontal"} gap={3}>
+
+              <Carousel.Item>
+
               <RelatedCard
                 btnindex={index}
                 onClick={() => this.openModal(product)}
@@ -82,8 +84,11 @@ class RelatedList extends React.Component {
 
                   key={product.id}
 
-              /> </Stack> </Carousel.Item> ))
+              /> </Carousel.Item>))
+
             : <span>Related products are loading...</span>}
+
+
         </Carousel>
 
 
@@ -110,7 +115,7 @@ class RelatedList extends React.Component {
           </Modal.Body>
 
         </Modal>
-      </React.Fragment>
+      </React.Fragment >
 
 
     )

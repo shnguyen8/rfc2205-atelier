@@ -12,6 +12,10 @@
   font-size: 12pt;
 }
 
+/* #app {
+  background-color: #82B875;
+} */
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -105,10 +109,10 @@ div.flex-center {
   height:150;
 }
 
-.card-style {
+/* .card-style {
   border: "dark";
   width: 18rem;
-}
+} */
 
 .carousel-container {
   variant: 'dark';
@@ -119,3 +123,14 @@ div.flex-center {
   width: '50%',
   padding: '10px',
 }} */
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #428047;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}

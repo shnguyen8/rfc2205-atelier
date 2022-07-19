@@ -12,12 +12,12 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
   const {productName, productCategory, productImage, productPrice} = props;
 
   return (
-    <Card border="dark" style={{ width: '18rem' }}>
+    <Card border="dark" style={{ width: '16rem' }}>
 
       <div>
 
 
-          <Button variant="outline-*" size="sm" className="flex-center"> -------------------------------------❌ </Button>
+          <Button variant="outline--*" className="block" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} > ❌ </Button>
 
 
         <Card.Img width="150" height="150" src={props.productImage} ></Card.Img>
@@ -34,7 +34,7 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
             <div className="flex-center">${props.productPrice}</div>
             {
               props.productRating ?
-              (<div>{StarRating(avgRating(props.productRating))}</div>) :
+              (<div className="flex-center">{StarRating(avgRating(props.productRating))}</div>) :
               <div>rating is loading...</div>
             }
           </Card.Text>
