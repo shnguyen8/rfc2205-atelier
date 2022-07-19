@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import StarRating from './starRating.jsx'
-import CheckIcon from '@mui/icons-material/Check';
+// import CheckIcon from '@mui/icons-material/Check';
 import {formatDate, displayThumbnails} from './helpers.jsx'
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 
 
 class ReviewTile extends React.Component {
@@ -43,7 +45,7 @@ class ReviewTile extends React.Component {
       return (
         <span id = {this.props.review.review_id}>
         <p id = {this.props.review.review_id + 'text'}>
-        {textBody.slice(0,250)} ... <button onClick = {() => this.showMore(textBody)}> Show more</button>
+        {textBody.slice(0,250)} ... <button className ='show-more-review' onClick = {() => this.showMore(textBody)}> Show more</button>
         </p>
         </span>
       )
@@ -61,21 +63,32 @@ class ReviewTile extends React.Component {
 
   render() {
     return(
-      <div>
-      {StarRating(this.props.review.rating)}
-      {this.props.review.reviewer_name}, {formatDate(this.props.review.date)}
-      <br></br>
-      <b>{this.props.review.summary}</b>
-      <br></br>
-      {this.checkLength(this.props.review.body)}
-      {this.props.review.recommend ? <p><CheckIcon/> I recommend this product </p> : <p></p> }
-      {this.props.review.response ? <p> <b>Response from seller: </b> {this.props.review.response} </p> : <p></p> }
-      {displayThumbnails(this.props.review.photos)}
-      <br/>
-      Helpful? {!this.state.helpful? <span onClick = {this.onHelpfulClick}> <u> Yes </u> {this.props.review.helpfulness} </span> : <span><b> <u> Yes </u> {this.props.review.helpfulness + 1} </b> </span>}
-      | {!this.state.report? <span onClick = {this.onReportClick}> <u> Report </u> </span> : <span><b> <u> Reported </u></b> </span>}
-      <br></br>
-      _______________________________________________
+      <div className = 'reviewTile'>
+
+        <div className = 'reviewTileHeader'>
+        <span>{StarRating(this.props.review.rating)}</span>
+        <span><i>{this.props.review.reviewer_name}</i> {formatDate(this.props.review.date)}</span>
+        </div>
+
+        <div className = 'reviewTileSummary'>
+        {this.props.review.summary}
+        </div>
+
+        <div className = 'reviewTileBody'>
+        {this.checkLength(this.props.review.body)}
+        <br/>
+        {this.props.review.response ? <span className = 'response'> <b>Response from seller: </b> {this.props.review.response}<br/></span>  : <React.Fragment/> }
+        {this.props.review.recommend ? <p><CheckCircleOutlineOutlinedIcon/> I recommend this product </p> : <p></p> }
+        </div>
+
+        <div className = 'reviewTileThumbnails'>
+        {displayThumbnails(this.props.review.photos)}
+        </div>
+
+        <div className = 'reviewTileFooter'>
+        Helpful? {!this.state.helpful? <span className = 'show-more-review' onClick = {this.onHelpfulClick}> Yes ({this.props.review.helpfulness}) </span> : <span><b> <u> Yes </u> {this.props.review.helpfulness + 1} </b> </span>} | {!this.state.report? <span className = 'show-more-review' onClick = {this.onReportClick}> Report </span> : <span><b> <u> Reported </u></b> </span>}
+        </div>
+
       </div>
     )
   }

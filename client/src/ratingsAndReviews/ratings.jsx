@@ -5,9 +5,10 @@ import starRating from './starRating.jsx'
 import ReviewsList from './reviewsList.jsx'
 import {avgRating, numberOfRatings, percentRecommend, charMapper} from './helpers.jsx'
 import AddReviewForm from './addReviewForm.jsx'
-import Modal from '@mui/material/Modal';
 import StarRating from './starRating.jsx';
 import FilterStars from './filterStars.jsx'
+import Button from 'react-bootstrap/Button';
+
 
 class Ratings extends React.Component {
 
@@ -69,7 +70,6 @@ class Ratings extends React.Component {
     var filters = filters.join(', ')
     return (
       <React.Fragment>Filters applied: {filters} <br></br> </React.Fragment>
-
     )
 
   }
@@ -103,15 +103,15 @@ class Ratings extends React.Component {
   render() {
 
     if(this.state.addReviewModal){
-      var addModal = <dialog open onClick = {this.handlePhotoModal}>
+      var addModal = <dialog className = 'addReviewModal' open onClick = {this.handlePhotoModal}>
       <AddReviewForm currentProduct = {this.props.currentProduct} handleAddModal = {this.handleAddModal} productName = {this.props.productName} characteristics = {this.props.metaData.characteristics}/>
       </dialog>
     } else {
-      var addModal = ''
+      var addModal = <React.Fragment/>
     }
 
     if(this.state.filtersOn){
-      var removeFilters = <button onClick = {this.removeAllFilters}>Remove all filters</button>
+      var removeFilters = <Button variant = 'class="btn btn-outline-secondary' onClick = {this.removeAllFilters}>Remove all filters</Button>
     } else {
       var removeFilters = <React.Fragment></React.Fragment>
     }
@@ -120,45 +120,45 @@ class Ratings extends React.Component {
       return (
       <React.Fragment>
 
-      <div name = 'ratingBreakdowns'>
-      <a id='Ratings and Reviews'>
-      <p> Ratings & Reviews </p>
-      </a>
-      {avgRating(this.props.metaData.ratings)}
-      {StarRating(avgRating(this.props.metaData.ratings))}
-      <br></br>
-      {numberOfRatings(this.props.metaData.ratings)} total reviews
-      <br></br>
-      {percentRecommend(this.props.metaData.recommended)}% of reviews recommend this product
-      <br></br>
-      {this.ratingSummary(this.props.metaData.ratings)}
-      <br></br>
-      {this.showFilters()}
-      {removeFilters}
-      {charMapper(this.props.metaData.characteristics)}
+      {addModal}
+
+      <div className = 'ratingBreakdowns'>
+
+        <div className = 'rating-summary-container'>
+          <div className='ratings-header'>
+          <a id = 'Ratings and Reviews'>Ratings & Reviews</a>
+          </div>
+          <div className = 'average-summary'>{avgRating(this.props.metaData.ratings)}</div>
+          <div className = 'star-summary'>{StarRating(avgRating(this.props.metaData.ratings))} </div>
+          <div className = 'number-summary'>{numberOfRatings(this.props.metaData.ratings)} total reviews </div>
+          <div className = 'recommend-summary'>{percentRecommend(this.props.metaData.recommended)}% of reviews recommend this product</div>
+        </div>
+
+        <div className = 'rating-star-distribution'>
+        {this.ratingSummary(this.props.metaData.ratings)}
+        <br></br>
+        {this.showFilters()}
+        {removeFilters}
+        </div>
+
+        <div className = 'characteristics-container'>
+        {charMapper(this.props.metaData.characteristics)}
+        </div>
       </div>
 
-      <ReviewsList filters = {this.state.filters} currentProduct = {this.props.metaData.product_id} totalReviews = {numberOfRatings(this.props.metaData.ratings)} filtersOn = {this.state.filtersOn}/>
+      <div className = 'reviews-list-container'>
 
-      <button onClick={this.handleAddModal}>Add A Review +</button>
-      {addModal}
+        <ReviewsList filters = {this.state.filters} currentProduct = {this.props.metaData.product_id} totalReviews = {numberOfRatings(this.props.metaData.ratings)} filtersOn = {this.state.filtersOn}/>
+        &nbsp;
+        <Button variant = 'class="btn btn-outline-secondary' onClick={this.handleAddModal}>Add A Review +</Button>
+
+
+      </div>
 
       </React.Fragment>
 
       )
     }
  }
-
- const modal = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default Ratings;
