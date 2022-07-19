@@ -1,18 +1,22 @@
 /******************APP STYLES*******************/
 
-#app h1{
+#app h1 {
   font-size: 20pt;
 }
 
-#app h2{
+#app h2 {
   font-size: 16pt;
 }
 
-#app h4{
+#app h4 {
   font-size: 12pt;
 }
 
-.app-container{
+/* #app {
+  background-color: #82B875;
+} */
+
+.app-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -357,12 +361,34 @@
 .relatedProducts-container {
   max-height: 300px;
   display: flex;
-  width: 50%;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
 }
 
-div.flex-center{
+.button-style {
+  variant: 'primary';
+}
+
+div.flex-center {
   display: flex;
   justify-content: center;
+}
+
+.card-image {
+  width:150;
+  height:150;
+}
+
+/* .card-style {
+  border: "dark";
+  width: 18rem;
+} */
+
+.carousel-container {
+  variant: 'dark';
+  width: 50vw;
 }
 /* style={{
   margin: 'auto',
@@ -370,4 +396,13 @@ div.flex-center{
   padding: '10px',
 }} */
 
-
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #428047;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
