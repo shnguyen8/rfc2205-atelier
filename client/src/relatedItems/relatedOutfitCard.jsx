@@ -20,7 +20,7 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
           <Button variant="outline-*" size="sm" className="flex-center"> -------------------------------------❌ </Button>
 
 
-        <Card.Img src={props.productImage} width="150" height="150"></Card.Img>
+        <Card.Img width="150" height="150" src={props.productImage} ></Card.Img>
 
         <Card.Body>
           <Card.Title>

@@ -151,10 +151,6 @@ class Related extends React.Component {
           />
         </div>
 
-        {/* <div>
-          <ComparisonModal show={this.state.isOpen} onHide={this.closeModal} />
-        </div> */}
-
 
       </div>
     )

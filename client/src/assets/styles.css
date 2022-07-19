@@ -1,25 +1,22 @@
 /******************APP STYLES*******************/
-#app{
-}
 
-#app h1{
+#app h1 {
   font-size: 20pt;
 }
 
-#app h2{
+#app h2 {
   font-size: 16pt;
 }
 
-#app h4{
+#app h4 {
   font-size: 12pt;
 }
 
-.app-container{
+.app-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 90%;
 }
 
 /******PRODUCT OVERVIEW STYLES******************/
@@ -88,17 +85,37 @@
 .relatedProducts-container {
   max-height: 300px;
   display: flex;
-  width: 50%;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
 }
 
-div.flex-center{
+.button-style {
+  variant: 'primary';
+}
+
+div.flex-center {
   display: flex;
   justify-content: center;
+}
+
+.card-image {
+  width:150;
+  height:150;
+}
+
+.card-style {
+  border: "dark";
+  width: 18rem;
+}
+
+.carousel-container {
+  variant: 'dark';
+  width: 50vw;
 }
 /* style={{
   margin: 'auto',
   width: '50%',
   padding: '10px',
 }} */
-
-

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RelatedCard from './relatedCard.jsx';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Stack } from 'react-bootstrap';
 import App from '../index.jsx';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
@@ -55,10 +55,10 @@ class RelatedList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Carousel variant={"dark"} interval={null} indicators={false} >
+        <Carousel variant={"dark"} interval={null} indicators={false}  className="carousel-container">
           {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
-            <Carousel.Item
-            >
+            <Carousel.Item>
+              <Stack direction={"horizontal"} gap={3}>
               <RelatedCard
                 btnindex={index}
                 onClick={() => this.openModal(product)}
@@ -82,8 +82,7 @@ class RelatedList extends React.Component {
 
                   key={product.id}
 
-              />
-            </Carousel.Item>))
+              /> </Stack> </Carousel.Item> ))
             : <span>Related products are loading...</span>}
         </Carousel>
 
