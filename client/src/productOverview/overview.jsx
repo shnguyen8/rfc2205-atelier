@@ -106,6 +106,7 @@ class ProdOverview extends React.Component {
           onStylePhotosClick={this.onStylePhotosClick}
           thumbStyle={this.state.thumbStyle}
         />
+        <div className='overview-container'>
         <ProdInfo
           currentProduct= {this.props.currentProduct}
           products={this.props.products}
@@ -132,7 +133,7 @@ class ProdOverview extends React.Component {
           selectedSize={this.state.selectedSize}
           sizeSelectionClick={this.sizeSelectionClick}
         />
-
+        </div>
       </React.Fragment>
 
     )

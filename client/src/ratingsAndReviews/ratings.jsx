@@ -121,7 +121,9 @@ class Ratings extends React.Component {
       <React.Fragment>
 
       <div name = 'ratingBreakdowns'>
+      <a id='Ratings and Reviews'>
       <p> Ratings & Reviews </p>
+      </a>
       {avgRating(this.props.metaData.ratings)}
       {StarRating(avgRating(this.props.metaData.ratings))}
       <br></br>

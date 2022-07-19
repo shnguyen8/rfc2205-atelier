@@ -41,7 +41,7 @@ const ProdInfo = (props) => {
     } else if (props.thumbnailPrice === '' && props.productStyles.results.length !== 0) {
       return <p>${props.productStyles.results[0].original_price}</p>
     } else if (props.thumbnailSalePrice !== '' && props.productStyles.results.length !== 0) {
-      return <React.Fragment><s>${props.thumbnailPrice}</s><p style={{color: 'red'}}>${props.thumbnailSalePrice}</p></React.Fragment>
+      return <React.Fragment><s>${props.thumbnailPrice}</s><p style={{color: 'red', marginBottom: 10}}>${props.thumbnailSalePrice}</p></React.Fragment>
     } else {
       return <p>${props.thumbnailPrice}</p>
     }
@@ -52,11 +52,11 @@ const ProdInfo = (props) => {
       <React.Fragment>
         {StarRating(avgRating(props.metaData.ratings))}
         <a href='#Ratings and Reviews'>Read all {numberOfRatings(props.metaData.ratings)} reviews</a>
-        <p>{props.productSpecs.category}</p>
-        <h2>{props.productSpecs.name}</h2>
-        <h4>{props.productSpecs.description}</h4>
-        <React.Fragment>{priceOption(props)}</React.Fragment>
-        <p>Style > {styleNameOption(props)}</p>
+        <p style={{marginTop: 5, marginBottom: 0}}>{props.productSpecs.category}</p>
+        <h2 style={{margin: 0}}>{props.productSpecs.name}</h2>
+        <p style={{margin: 0}}>{props.productSpecs.description}</p>
+        <div className='price-container' style={{marginTop: 10, maxHeight: 30}}>{priceOption(props)}</div >
+        <p style={{marginTop: 10, marginBottom: 0, fontWeight: 'bold'}}>Style > {styleNameOption(props)}</p>
       </React.Fragment>
     )
   }

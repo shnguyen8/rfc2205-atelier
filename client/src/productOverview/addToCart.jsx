@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 const AddToCart = (props) => {
   // console.log(props);
@@ -59,7 +60,7 @@ const AddToCart = (props) => {
       )
     } else {
       return (
-        <React.Fragment>
+        <div className='addtocart-container'>
           <select onClick={props.sizeSelectionClick}>
             <option>Select Size</option>
             {sizesAndQuantArr.map((sizesAndQuantObjs, k) => {
@@ -73,9 +74,9 @@ const AddToCart = (props) => {
               return <option key={l}>{quantities}</option>
             })}
           </select>
-          <button>Add To Cart</button>
-          <button>Share</button>
-        </React.Fragment>
+          <Button variant="outline-secondary">Add To Cart</Button>
+          <Button variant="outline-secondary">Share</Button>
+        </div>
 
       )
     }

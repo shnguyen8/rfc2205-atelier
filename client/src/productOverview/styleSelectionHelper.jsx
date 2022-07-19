@@ -19,7 +19,8 @@ const StyleSelectionHelper = (props) => {
       <React.Fragment>
         {/* <Carousel>
           <Carousel.Item> */}
-        <section>
+        <section style={{marginBottom: 8}}>
+        {/* <Carousel variant={"dark"} interval={null} indicators={false} > */}
           {props.productStyles.results.map((styleVals, i) => {
               return <img
                       onClick={props.onThumbnailClick}
@@ -33,14 +34,14 @@ const StyleSelectionHelper = (props) => {
                         resizeMode: "center",
                         height: 100,
                         width: 100,
-                        border: '4px solid grey',
+                        margin: 5,
+                        border: '4px solid #428047',
                         borderRadius: '50%'
                       }}
                      />
           })}
+          {/* </Carousel> */}
         </section>
-        {/* </Carousel.Item>
-        </Carousel> */}
       </React.Fragment>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {
@@ -48,6 +49,7 @@ const StyleSelectionHelper = (props) => {
       <React.Fragment>
         {/* <Carousel>
           <Carousel.Item> */}
+          <section>
           {props.productStyles.results.map((styleVals, j) => {
               return <img
                       onClick={props.onThumbnailClick}
@@ -59,11 +61,12 @@ const StyleSelectionHelper = (props) => {
                       sale={onSale(styleVals.sale_price)}
                       style={{
                         resizeMode: "center",
-                        height: 150,
-                        width: 150
+                        height: 120,
+                        width: 120
                       }}
                      />
           })}
+          </section>
           {/* </Carousel.Item>
         </Carousel> */}
       </React.Fragment>
