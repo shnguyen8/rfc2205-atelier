@@ -67,23 +67,20 @@ const charMapper = (charsObj) => {
     var length = Math.floor(Number(charsObj[key].value)/5 * 150)
 
     list.push(
-      <div style = {{width: '150px'}}>
+      <div style = {{width: '150px', 'marginBottom': '7px'}}>
       {key}: <br/>
-      <div className = 'line' style = {{'backgroundColor': '#eeeeee', width: '150px', height: '10px'}}>
-        <div className = 'lineSectionSpacing' style = {{'display': 'flex', 'justifyContent': 'space-evenly'}}>
-          <div className = 'section' style = {sectionStyle}/>
-          <div className = 'section' style = {sectionStyle}/>
+      <div className = 'line' style = {{'backgroundColor': '#eeeeee', width: '150px', height: '8px',  'marginBottom': '4px'}}>
+        <div className = 'lineSectionSpacing' style = {{'display': 'flex', 'justifyContent': 'space-evenly', 'position': 'absolute', 'z-index': '1'}}>
+          <div className = 'section' style = {{'backgroundColor': 'white', height: '10px',width: '5px', 'marginLeft': '47px'}}/>
+          <div className = 'section' style = {{'backgroundColor': 'white', height: '10px',width: '5px', 'marginLeft': '47px'}}/>
         </div>
-        <div className = 'triangle' style = {{width: 0, height: 0, 'marginLeft': `${length}px`, 'borderLeft': '8px solid transparent', 'borderRight': '8px solid-transparent', 'borderTop': '8px solid black'}}/>
+        <div className = 'triangle' style = {{'marginLeft': `${length}px`}}/>
       </div>
-
       <div className = 'labels' style = {{'fontSize': '8pt', 'display': 'flex', 'justifyContent': 'space-between', width: '150px', height: '8pt'}}>
       <p>{ratings[key][0]}</p>
       <p>{ratings[key][1]}</p>
       <p>{ratings[key][2]}</p>
       </div>
-
-      <br/>
 
       </div>
     )
@@ -114,7 +111,7 @@ const displayThumbnails = (photosArray) => {
       }
     })
   } else {
-    return <br></br>
+    return <span class = 'empty'></span>
   }
 }
 
