@@ -21,6 +21,9 @@ class ProdOverview extends React.Component {
     }
   }
 
+
+
+
   componentDidMount = () => {
     this.getProductStyles();
   }
@@ -51,16 +54,19 @@ class ProdOverview extends React.Component {
   }
 
   onThumbnailClick = (e) => {
-    // console.log('Clicked: ', e.target.attributes.style_id.value);
+    // console.log('Clicked: ', e.target);
+    const element = document.querySelector('.styles-selection-img');
     if (e.target.attributes.sale !== undefined) {
+      // element.style.border = '5px solid #428047';
       this.setState({
         thumbnailClicked: e.target.currentSrc,
         thumbnailStyleClicked: e.target.name,
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: e.target.attributes.sale.value,
-        thumbStyle: e.target.attributes.style_id.value
+        thumbStyle: e.target.attributes.style_id.value,
       })
     } else {
+      // element.style.border = '5px solid #428047';
       this.setState({
         thumbnailClicked: e.target.currentSrc,
         thumbnailStyleClicked: e.target.name,
@@ -69,7 +75,6 @@ class ProdOverview extends React.Component {
         thumbStyle: e.target.attributes.style_id.value,
       })
     }
-
   }
 
   onStylePhotosClick = (e) => {
@@ -123,6 +128,7 @@ class ProdOverview extends React.Component {
           productSpecs={this.props.productSpecs}
           productStyles={this.state.productStyles}
           onThumbnailClick={this.onThumbnailClick}
+          clickedStyle={this.clickedStyle}
         />
         <AddToCart
           currentProduct= {this.props.currentProduct}

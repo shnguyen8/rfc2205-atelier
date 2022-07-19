@@ -47,16 +47,16 @@ const AddToCart = (props) => {
     sizeOptions(props);
     if (sizesAndQuantArr.length === 0 || sizesAndQuantArr[0].size === null) {
       return (
-        <React.Fragment>
+        <div className='addtocart-container'>
           <select disabled>
             <option>OUT OF STOCK</option>
           </select>
           <select disabled>
             <option>-</option>
           </select>
-          <button disabled>Add To Cart</button>
-          <button>Share</button>
-        </React.Fragment>
+          <Button variant="outline-secondary" disabled>Add To Cart</Button>
+          <Button variant="outline-secondary">Share</Button>
+        </div>
       )
     } else {
       return (

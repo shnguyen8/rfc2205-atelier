@@ -3,14 +3,13 @@ import { useEffect, useState } from 'react';
 import Flexbox from 'flexbox-react';
 import { Carousel } from 'react-bootstrap';
 
+
 const ImageGallery = (props) => {
   // console.log(props);
 
   let stylePhotosArr = [];
   let selectStylePhotos = (props) => {
     for (var i = 0; i < props.productStyles.results.length; i++) {
-      // console.log(props.thumbStyle)
-      // console.log(Number(props.thumbStyle) === props.productStyles.results[i].style_id)
       if (Number(props.thumbStyle) === props.productStyles.results[i].style_id) {
         for (var j = 0; j < props.productStyles.results[i].photos.length; j++) {
           stylePhotosArr.push(props.productStyles.results[i].photos[j])
@@ -34,9 +33,9 @@ const ImageGallery = (props) => {
           </div>
 
         <div className='flexbox-item inner-image'>
-        <Carousel variant={"dark"} interval={null} indicators={false} >
+        {/* <Carousel variant={"dark"} interval={null} indicators={false} > */}
           {stylePhotosArr.map((stylePhotos, j) => {
-            return <Carousel.Item><img
+            return  <img
                     onClick={props.onStylePhotosClick}
                     className='inner-images'
                     key={j}
@@ -45,12 +44,12 @@ const ImageGallery = (props) => {
                       resizeMode: "center",
                       height: 75,
                       width: 75,
-                      border: '2px solid grey',
+                      border: '2px solid #428047',
                       borderRadius: '0%',
                     }}
-                  /></Carousel.Item>
+                  />
+
           })}
-          </Carousel>
         </div>
         </div>
     )
@@ -63,12 +62,11 @@ const ImageGallery = (props) => {
             title='Product Picture'
           />
           </div>
-
         <span className='flexbox-item inner-image'>
-        <Carousel variant={"dark"} interval={null} indicators={false} >
+        {/* <Carousel variant={"dark"} interval={null} indicators={false} > */}
 
           {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
-            return <Carousel.Item><img
+            return <img
                     onClick={props.onStylePhotosClick}
                     style_id={props.productStyles.results[0].style_id}
                     className='inner-images'
@@ -78,13 +76,13 @@ const ImageGallery = (props) => {
                       resizeMode: "center",
                       height: 75,
                       width: 75,
-                      border: '2px solid grey',
+                      border: '2px solid black',
                       borderRadius: '0%',
                     }}
-                  /></Carousel.Item>
+                  />
           })}
 
-        </Carousel>
+        {/* </Carousel> */}
         </span>
 
         </div>

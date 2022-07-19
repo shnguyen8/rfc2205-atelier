@@ -6,7 +6,6 @@ import Carousel from 'react-bootstrap/Carousel';
 const StyleSelectionHelper = (props) => {
   // console.log(props)
 
-
   let onSale = (sale_price) => {
     if (sale_price !== null) {
         return sale_price;
@@ -17,12 +16,10 @@ const StyleSelectionHelper = (props) => {
   if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
       <React.Fragment>
-        {/* <Carousel>
-          <Carousel.Item> */}
         <section style={{marginBottom: 8}}>
-        {/* <Carousel variant={"dark"} interval={null} indicators={false} > */}
           {props.productStyles.results.map((styleVals, i) => {
               return <img
+                      className='styles-selection-img'
                       onClick={props.onThumbnailClick}
                       key={i}
                       src={styleVals.photos[0].thumbnail_url}
@@ -40,18 +37,16 @@ const StyleSelectionHelper = (props) => {
                       }}
                      />
           })}
-          {/* </Carousel> */}
         </section>
       </React.Fragment>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {
     return (
       <React.Fragment>
-        {/* <Carousel>
-          <Carousel.Item> */}
           <section>
           {props.productStyles.results.map((styleVals, j) => {
               return <img
+                      className='styles-selection-img'
                       onClick={props.onThumbnailClick}
                       key={j}
                       src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"}
@@ -67,8 +62,6 @@ const StyleSelectionHelper = (props) => {
                      />
           })}
           </section>
-          {/* </Carousel.Item>
-        </Carousel> */}
       </React.Fragment>
     )
   }

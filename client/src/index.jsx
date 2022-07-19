@@ -5,8 +5,8 @@ import ProdOverview from './productOverview/overview.jsx';
 import Related from './relatedItems/related.jsx';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './assets/styles.css'
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -83,7 +83,7 @@ class App extends React.Component {
           value={this.state.search}
           onChange={this.onChange}
         />
-        <button onClick={this.getAllData} >Submit</button>
+        <Button variant="outline-secondary" onClick={this.getAllData}>Submit</Button>
         <div className='productOverview-container'>
           <ProdOverview
             currentProduct={this.state.currentProduct}
