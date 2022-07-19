@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Flexbox from 'flexbox-react';
+import { Carousel } from 'react-bootstrap';
+
 
 const ImageGallery = (props) => {
   // console.log(props);
@@ -8,8 +10,6 @@ const ImageGallery = (props) => {
   let stylePhotosArr = [];
   let selectStylePhotos = (props) => {
     for (var i = 0; i < props.productStyles.results.length; i++) {
-      // console.log(props.thumbStyle)
-      // console.log(Number(props.thumbStyle) === props.productStyles.results[i].style_id)
       if (Number(props.thumbStyle) === props.productStyles.results[i].style_id) {
         for (var j = 0; j < props.productStyles.results[i].photos.length; j++) {
           stylePhotosArr.push(props.productStyles.results[i].photos[j])
@@ -33,8 +33,9 @@ const ImageGallery = (props) => {
           </div>
 
         <div className='flexbox-item inner-image'>
+        {/* <Carousel variant={"dark"} interval={null} indicators={false} > */}
           {stylePhotosArr.map((stylePhotos, j) => {
-            return <img
+            return  <img
                     onClick={props.onStylePhotosClick}
                     className='inner-images'
                     key={j}
@@ -43,10 +44,11 @@ const ImageGallery = (props) => {
                       resizeMode: "center",
                       height: 75,
                       width: 75,
-                      border: '2px solid grey',
+                      border: '2px solid #428047',
                       borderRadius: '0%',
                     }}
                   />
+
           })}
         </div>
         </div>
@@ -60,8 +62,9 @@ const ImageGallery = (props) => {
             title='Product Picture'
           />
           </div>
-
         <span className='flexbox-item inner-image'>
+        {/* <Carousel variant={"dark"} interval={null} indicators={false} > */}
+
           {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
             return <img
                     onClick={props.onStylePhotosClick}
@@ -73,22 +76,40 @@ const ImageGallery = (props) => {
                       resizeMode: "center",
                       height: 75,
                       width: 75,
-                      border: '2px solid grey',
+                      border: '2px solid black',
                       borderRadius: '0%',
                     }}
                   />
           })}
+
+        {/* </Carousel> */}
         </span>
+
         </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url === null) {
     return (
-      <div>
-        <img
+      <div className='imagegallery'>
+        <div className='flexbox-item primary-image'>
+          <img
+            src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"}
+            width= '300'
+            height= '400'
+          />
+        </div>
+        <span className='flexbox-item inner-image'>
+          <img
           src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"}
-          width= '300'
-          height= '400'
-        />
+          className='inner-images'
+          style={{
+            resizeMode: "center",
+            height: 75,
+            width: 75,
+            border: '2px solid grey',
+            borderRadius: '0%',
+          }}
+          />
+        </span>
       </div>
     )
   }
