@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import StarRating from './starRating.jsx'
-import CheckIcon from '@mui/icons-material/Check';
+// import CheckIcon from '@mui/icons-material/Check';
 import {formatDate, displayThumbnails} from './helpers.jsx'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 
 
 class ReviewTile extends React.Component {
@@ -78,7 +78,7 @@ class ReviewTile extends React.Component {
         {this.checkLength(this.props.review.body)}
         <br/>
         {this.props.review.response ? <span className = 'response'> <b>Response from seller: </b> {this.props.review.response}<br/></span>  : <React.Fragment/> }
-        {this.props.review.recommend ? <p><CheckIcon/> I recommend this product </p> : <p></p> }
+        {this.props.review.recommend ? <p><CheckCircleOutlineOutlinedIcon/> I recommend this product </p> : <p></p> }
         </div>
 
         <div className = 'reviewTileThumbnails'>

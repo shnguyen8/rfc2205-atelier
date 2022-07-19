@@ -119,8 +119,8 @@ class ReviewsList extends React.Component {
     return (
       <React.Fragment>
 
-        <div>
-          Sorted by <select className = 'sortby' onChange = {() => {this.changeSort(event.target.value)}}>
+        <div className = 'sort-by'>
+          Sorted by <select className = 'sort-by-selector' onChange = {() => {this.changeSort(event.target.value)}}>
           <option>relevant</option>
           <option>helpful</option>
           <option>newest</option>
