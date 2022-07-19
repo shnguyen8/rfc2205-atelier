@@ -8,9 +8,9 @@ export default function StarRating(rating) {
 
   if (rating) {
     return (
-    <Stack spacing={1}>
+    <React.Fragment>
     <Rating precision={0.25} value={rating} size = "small" readOnly/>
-    </Stack>
+    </React.Fragment>
     )
   } else {
     return null;

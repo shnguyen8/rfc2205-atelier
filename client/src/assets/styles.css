@@ -1,6 +1,4 @@
 /******************APP STYLES*******************/
-#app{
-}
 
 #app h1{
   font-size: 20pt;
@@ -19,7 +17,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 90%;
 }
 
 /******PRODUCT OVERVIEW STYLES******************/
@@ -78,10 +75,243 @@
 
 /******RATINGS AND REVIEWS STYLES******************/
 .ratingsAndReviews-container {
-  max-height: 700px;
+  max-height: 500px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  column-gap: 5px;
+  font-size: 12px;
+  width: 80%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.ratingBreakdowns {
+  display: flex;
+  flex-direction: column;
+  font-weight: lighter;
+}
+
+.rating-summary-container{
+  display: grid;
+  grid-template-columns: 60px 90px;
+  grid-template-areas:
+    'header header'
+    'number stars'
+    'number totalReviews'
+    'number percentRec';
+  margin-bottom: 1em;
+}
+
+.average-summary{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size : 35px;
+  font-weight: normal;
+  grid-area: number;
+}
+
+.ratings-header{
+  display: flex;
+  grid-area: header;
+  padding-top: 5px;
+  font-size: 13pt;
+  font-weight: lighter;
+  text-align: justify;
+  margin-bottom: 3px;
+}
+
+.star-summary{
+  display: inline-grid;
+  grid-area: stars;
+}
+
+.number-summary{
+  display: inline-grid;
+  grid-area: totalReviews;
+  word-break: break-word;
+  font-style: italic;
+  padding-top: 2px;
+}
+
+.recommend-summary{
+  display: inline-grid;
+  grid-area: percentRec;
+  word-break: break-word;
+  padding-top: 2px;
+}
+
+.triangle{
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid black;
+  position: absolute;
+  z-index: 2;
+}
+
+.reviews-list-container{
+  padding-top: 5px;
+}
+
+.reviews-container{
+  overflow: scroll;
+  max-height: 450px;
+  min-width: 400px;
+}
+
+.reviews-container::-webkit-scrollbar{
+  background-color: transparent;
+}
+
+
+.reviews-container::-webkit-scrollbar-thumb{
+  background: #428047;
+}
+
+.sort-by{
+  font-size: 13pt;
+  font-weight: lighter;
+}
+
+.sort-by-selector {
+  border: .5px solid rgb(189, 189, 189);
+  border-radius: 10%;
+  margin-bottom: 3px;
+}
+
+.sort-by-selector:hover {
+  background-color: #428047;
+}
+
+.reviewTile{
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  display: grid;
+  min-width: 400px;
+  grid-template-columns: 25% 25% 25% 25% 25%;
+  grid-template-areas:
+    'header header header header'
+    'summary summary summary summary'
+    'body body body body'
+    'icon icon icon icon'
+    'footer footer footer footer';
+}
+
+.reviewTileHeader{
+  display: flex;
+  justify-content: space-between;
+  grid-area: header;
+}
+
+.reviewTileSummary{
+  font-weight: bold;
+  font-size: 16px;
+  overflow: auto;
+  grid-area: summary;
+  justify-content: center;
+}
+
+.reviewTileBody{
+  font-size: 12px;
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+}
+
+.show-more-review{
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 1px solid black;
+}
+
+.show-more-review:hover{
+  background-color: #428047
+}
+
+.response{
+  background-color: #428047;
+}
+
+.reviewTileThumbnails{
   display: flex;
   flex-direction: row;
+  grid-area: icon;
+  gap: 2px;
 }
+
+.reviewTileFooter{
+  grid-area: footer;
+}
+
+.photo-modal {
+  top: 25%;
+  border: transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.photo-modal-contents {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.addReviewModal {
+  border: 5px solid #428047;
+  border-radius: 25px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-height: 100%;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
+  padding: 25px 25px 25px 25px;
+  overflow: auto;
+  z-index: 5;
+}
+
+.addReviewForm {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap: 15px;
+}
+
+.fullReview {
+  min-height: 70px;
+  width: 100%
+}
+
+.addReviewForm-chars{
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 100%
+}
+
+.addReviewAlertModal {
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: bisque;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-height: 100%;
+  max-width: 70%;
+  transform: translate(-50%, -50%);
+  padding: 20px 20px 20px 20px;
+  z-index: 6;
+}
+
+/* .addReviewForm-chars tr:nth-child(even){
+  background-color: #f2f2f2;
+} */
 
 /**********RELATED PRODUCT STYLES******************/
 

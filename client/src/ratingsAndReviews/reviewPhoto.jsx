@@ -19,11 +19,11 @@ class ReviewPhoto extends React.Component{
   render(){
 
     if(this.state.modal){
-      var modal = <dialog open onClick = {this.handlePhotoModal}>
-      <img src = {this.props.url}/>
+      var modal = <dialog open className = 'photo-modal' onClick = {this.handlePhotoModal}>
+      <img className = 'photo-modal-contents' src = {this.props.url}/>
       </dialog>
     } else {
-      var modal = ''
+      var modal = <React.Fragment/>
     }
 
     return(
