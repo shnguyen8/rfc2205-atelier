@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import Rating from '@mui/material/Rating';
 import axios from 'axios';
-import {displayThumbnails} from './helpers.jsx'
+import {displayThumbnails} from './helpers.jsx';
+import Button from 'react-bootstrap/Button';
+
+
 
 class AddReviewForm extends React.Component {
 
@@ -115,7 +118,7 @@ class AddReviewForm extends React.Component {
 
     var ratings = ratings[characteristic] || []
       return (
-          <table>
+          <table className = 'addReviewForm-chars'>
         <tbody>
           <tr>
           <td><b>{characteristic} * : </b></td>
@@ -170,68 +173,83 @@ class AddReviewForm extends React.Component {
     }
 
     if(this.state.alert){
-      var alert = <dialog open>
-      <h3>You must enter the following </h3>
-      <h5>
+      var alert = <dialog className = 'addReviewAlertModal' open>
+      <h4>You must enter the following </h4>
       This error will occur if:
       Any mandatory fields are blank
       The review body is less than 50 characters
       The email address provided is not in correct email format
       The images selected are invalid or unable to be uploaded.
-      </h5><button onClick = {this.closeAlert}>close</button></dialog>
+      <br/>
+      <Button variant = 'class="btn btn-outline-secondary' onClick = {this.closeAlert}>close</Button></dialog>
     } else {
       var alert = <React.Fragment/>
     }
 
     return(
-      <div>
-        <form>
+      <React.Fragment>
+        <form className = 'addReviewForm'>
 
           {alert}
 
-          <h4>Write Your Review</h4>
-          <h5>About the {this.props.productName}</h5>
-
-          Overall Rating * :<Rating name = 'stars' value = {Number(this.state.stars)} onClick = {this.handleInputChange} getLabelText= {this.starLabels}/> {this.starLabels()}
+          <span>
+          <center><h2>
+          Write Your Review
           <br/>
+          <i>About the {this.props.productName}</i>
+          </h2></center>
+          </span>
 
-          Do you recommend this product?* :
-          <input type = 'radio' value = {'true'} name = "recommend" onClick = {this.handleInputChange}/> Yes
+          <span>
+          Overall Rating * : <Rating name = 'stars' value = {Number(this.state.stars)} onClick = {this.handleInputChange} getLabelText= {this.starLabels}/> {this.starLabels()}
+          </span>
+
+          <span>
+          Do you recommend this product?* : &nbsp;
+          <input type = 'radio' value = {'true'} name = "recommend" onClick = {this.handleInputChange}/> Yes &nbsp;
           <input type = 'radio' value = {'false'} name = "recommend" onClick = {this.handleInputChange}/> No
-          <br/>
+          </span>
 
+          <span>
           {characteristics.map(characteristic => {return this.showRatings(characteristic)})}
-          <br/>
+          </span>
 
+          <span>
           Review Summary (optional): <input type = 'text' value = {this.state.summary} placeholder = 'Best purchase ever!' name = 'summary' onChange = {this.handleInputChange} maxLength = '60'/>
-          <br/>
+          </span>
 
-          Full Review* : <input type = 'text' value = {this.state.review} placeholder = 'Why did you like the product or not?' name = 'review' onChange = {this.handleInputChange} minLength = '50' maxLength = '1000'/>
-          {counter}
+          <span>
+          Full Review* :<br/>
+          <input type = 'text' className = 'fullReview' value = {this.state.review} placeholder = 'Why did you like the product or not?' name = 'review' onChange = {this.handleInputChange} minLength = '50' maxLength = '1000'/>
           <br/>
+          <i>{counter}</i>
+          </span>
 
-          Upload Photos:
-          {this.state.uploadedPhotos.length < 5 ? <input type="file" onChange = {(event) => {this.uploadImage(event.target.files[0])}}/> : <React.Fragment/>}
+          <span>
+          Upload Photos: {this.state.uploadedPhotos.length < 5 ? <input type="file" onChange = {(event) => {this.uploadImage(event.target.files[0])}}/> : <React.Fragment/>}
           {displayThumbnails(this.state.uploadedPhotos)}
+          </span>
 
-          <br/>
-
+          <span>
           Email*: <input type = 'text' value = {this.state.email} placeholder = 'Example: jackson11@email.com' name = 'email' onChange = {this.handleInputChange} maxLength = '60'/>
           <br/>
-          For authentication reasons, you will not be emailed.
-          <br/>
+          <i>For authentication reasons, you will not be emailed.</i>
+          </span>
 
+          <span>
           Username*: <input type = 'text' value = {this.state.username} placeholder = 'Example: jackson11!' name = 'username' onChange = {this.handleInputChange} maxLength = '60'/>
           <br/>
-          For privacy reasons, do not use your full name or email address
+          <i>For privacy reasons, do not use your full name or email address</i>
+          </span>
 
-
-
-          <input type = "submit" value = "Submit Review" onClick = {this.handleAddReview}/>
+          <span><center>
+          <Button variant = 'class="btn btn-outline-secondary' onClick = {this.handleAddReview}>Submit Review</Button>
+          &nbsp;
+          <Button variant = 'class="btn btn-outline-secondary' onClick = {this.props.handleAddModal}> Close </Button>
+          </center></span>
 
         </form>
-      <button onClick = {this.props.handleAddModal}> Close </button>
-      </div>
+      </React.Fragment>
     )
   }
 

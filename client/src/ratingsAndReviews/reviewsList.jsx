@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import ReviewTile from './reviewTile.jsx'
+import Button from 'react-bootstrap/Button'
 
 class ReviewsList extends React.Component {
 
@@ -71,7 +72,7 @@ class ReviewsList extends React.Component {
 
    moreReviewsButton = () => {
     if(this.state.reviews.length < this.props.totalReviews){
-      return <button onClick = {this.getReviews}>More Reviews</button>
+      return <Button variant = 'class="btn btn-outline-secondary' onClick = {this.getReviews}>More Reviews</Button>
     } else {
       return null
     }
@@ -116,18 +117,23 @@ class ReviewsList extends React.Component {
     }
 
     return (
-      <div>
-        Sorted by <select onChange = {() => {this.changeSort(event.target.value)}}>
+      <React.Fragment>
+
+        <div>
+          Sorted by <select className = 'sortby' onChange = {() => {this.changeSort(event.target.value)}}>
           <option>relevant</option>
           <option>helpful</option>
           <option>newest</option>
-        </select>
+          </select>
+        </div>
 
+        <div className = "reviews-container">
         {reviews.map(review => {return <ReviewTile review = {review} key = {review.review_id} />})}
+        </div>
 
-        {this.moreReviewsButton()}
+        {this.moreReviewsButton()} &nbsp;
 
-      </div>
+      </React.Fragment>
     )
   }
 

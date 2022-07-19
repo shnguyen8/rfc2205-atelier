@@ -25,9 +25,12 @@ class FilterStars extends React.Component {
     }
 
     buildStyles = () => {
-      let styles = {}
+      let styles = {
+        fontSize : '12px',
+        margin: 0,
+      }
       if(this.state.hoverOn){
-        styles['background'] = 'green'
+        styles['background'] = '#428047'
       }
       if(this.props.filterOn){
         styles['fontWeight'] = 'bold'
@@ -42,7 +45,7 @@ class FilterStars extends React.Component {
       return(
         <React.Fragment>
         <span style = {filterStyles} onClick = {() => {this.props.setFilter(this.props.stars)}} onMouseEnter = {this.handleMouseEnter} onMouseLeave = {this.handleMouseLeave}>
-        {this.props.stars} Stars < BorderLinearProgress variant="determinate" value = {this.props.percent}  />
+        {this.props.stars} stars < BorderLinearProgress variant="determinate" value = {this.props.percent}  />
         </span>
         </React.Fragment>
       )
@@ -51,13 +54,13 @@ class FilterStars extends React.Component {
   }
 
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    height: 10,
+    height: 8,
     width: 150,
     [`&.${linearProgressClasses.colorPrimary}`]: {
       backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
     },
     [`& .${linearProgressClasses.bar}`]: {
-      backgroundColor: theme.palette.mode === 'light' ? '#DAF7A6' : '#308fe8',
+      backgroundColor: theme.palette.mode === 'light' ? '#428047' : '#308fe8',
     },
   }));
 
