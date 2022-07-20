@@ -1,35 +1,8 @@
-// import React, { Component } from 'react';
-// import axios from 'axios';
-
-// function RelatedOutfits(props, { relatedProductsInfo, onClick }) {
-
-//   const { name, category } = props;
-
-//   return (
-//     <section>
-//       <h2>Your Outfits</h2>
-//       <div>
-//       <img src={"https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"} width="150" height="150"></img>
-//       <h4>NAME</h4>
-//         <sup>
-//           <button onClick={(e)=>props.onClick}> ❌ </button>
-//         </sup>
-//         <p> CATEGORY</p>
-//         <small>PRICE</small>
-//         <h5>RATING</h5>
-
-//       </div>
-
-//     </section>
-//   );
-// }
-
-// export default RelatedOutfits;
 
 import React, { Component } from 'react';
 import axios from 'axios';
 import AddCard from './relatedAddCard.jsx';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Stack } from 'react-bootstrap';
 import App from '../index.jsx';
 import Card from 'react-bootstrap/Card';
 import OutfitCard from './relatedOutfitCard.jsx';
@@ -40,10 +13,7 @@ class RelatedOutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // relatedProducts: this.props.relatedProducts,
-      // allProducts: this.props.allProducts,
-      // relatedProductsInfo: [],
-      // relatedStylesInfo: this.props.relatedStylesInfo,
+
       outfitCardsArray: [
         {
           productName: null,
@@ -106,6 +76,7 @@ class RelatedOutfitList extends React.Component {
         {outfitCardsArray.map((card, index) => (
           (card.productName) ?
             <Carousel.Item>
+
               <OutfitCard
                 productName={card.productName}
                 productCategory={card.productCategory}
@@ -114,6 +85,7 @@ class RelatedOutfitList extends React.Component {
                 productRating={card.productRating}
                 key={index}
               />
+
             </Carousel.Item> : null))}
       </Carousel>
 

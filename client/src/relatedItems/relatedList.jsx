@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RelatedCard from './relatedCard.jsx';
-import { Carousel, Stack } from 'react-bootstrap';
+import { Stack } from 'react-bootstrap';
 import App from '../index.jsx';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import ComparisonTable from './relatedComparison.jsx'
+import RelatedCarousel from './relatedCarousel.jsx'
 
 
 
@@ -55,42 +56,41 @@ class RelatedList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Carousel variant={"dark"} interval={null} indicators={false}  className="carousel-container">
+        <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto' }} >
+          <RelatedCarousel show={3}>
 
-          {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
+            {this.state.relatedData.length > 0 ? this.state.relatedData.map((product, index) => (
+              <Stack direction="horizontal">
+                <RelatedCard
+                  btnindex={index}
+                  onClick={() => this.openModal(product)}
 
-              <Carousel.Item>
+                  name={product.name}
+                  image={(product && product.hasOwnProperty("styles"))
+                    ? product.styles[0].photos[0].thumbnail_url
+                    : null}
 
-              <RelatedCard
-                btnindex={index}
-                onClick={() => this.openModal(product)}
+                  price={(product && product.hasOwnProperty("styles") && product.styles[0].sale_price === null) ?
+                    product.styles[0].original_price :
+                    ((product && product.hasOwnProperty("styles")) && product.styles[0].sale_price !== null) ?
+                      product.styles[0].sale_price : null}
 
-                name={product.name}
-                image={(product && product.hasOwnProperty("styles"))
-                  ? product.styles[0].photos[0].thumbnail_url
-                  : null}
-
-                price={(product && product.hasOwnProperty("styles") && product.styles[0].sale_price === null) ?
-                  product.styles[0].original_price :
-                  ((product && product.hasOwnProperty("styles")) && product.styles[0].sale_price !== null) ?
-                    product.styles[0].sale_price : null}
-
-                category={product.category}
+                  category={product.category}
 
 
-                rating={(product && product.hasOwnProperty("reviews"))
-                  ? product.reviews.ratings
-                  : null}
+                  rating={(product && product.hasOwnProperty("reviews"))
+                    ? product.reviews.ratings
+                    : null}
 
                   key={product.id}
 
-              /> </Carousel.Item>))
+                /></Stack>))
 
-            : <span>Related products are loading...</span>}
+              : <span>Related products are loading...</span>}
 
 
-        </Carousel>
-
+          </RelatedCarousel>
+        </div>
 
 
         <Modal
