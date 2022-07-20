@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import StyleSelections from './styleSelections.jsx';
+// import StyleSelections from './styleSelections.jsx';
 import Carousel from 'react-bootstrap/Carousel';
 
 const StyleSelectionHelper = (props) => {
