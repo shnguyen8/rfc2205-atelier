@@ -138,7 +138,7 @@ class Related extends React.Component {
           />
         </div>
 
-        <div>
+        <div style={{marginTop: 'auto'}}>
           <h2> Your Outfits </h2>
           <RelatedOutfitList
             relatedProducts={this.props.relatedProducts}

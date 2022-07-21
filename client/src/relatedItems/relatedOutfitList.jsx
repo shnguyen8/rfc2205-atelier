@@ -2,10 +2,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AddCard from './relatedAddCard.jsx';
-import { Carousel, Stack } from 'react-bootstrap';
+import { Stack } from 'react-bootstrap';
 import App from '../index.jsx';
 import Card from 'react-bootstrap/Card';
 import OutfitCard from './relatedOutfitCard.jsx';
+import RelatedCarousel from './relatedCarousel.jsx'
 
 
 
@@ -65,17 +66,17 @@ class RelatedOutfitList extends React.Component {
   render() {
     const { outfitCardsArray } = this.state;
     return (
-
-      <Carousel variant={"dark"} interval={null} >
-        <Carousel.Item
-          show={4}>
+      <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto' }} >
+      <RelatedCarousel show={4}>
+        <Stack direction="horizontal">
           <AddCard
             onClick={this.clickEvent}
           />
-        </Carousel.Item>
+
+
         {outfitCardsArray.map((card, index) => (
           (card.productName) ?
-            <Carousel.Item>
+            <Stack gap={2}>
 
               <OutfitCard
                 productName={card.productName}
@@ -86,8 +87,10 @@ class RelatedOutfitList extends React.Component {
                 key={index}
               />
 
-            </Carousel.Item> : null))}
-      </Carousel>
+            </Stack> : null))}
+            </Stack>
+      </RelatedCarousel>
+      </div>
 
     )
 
