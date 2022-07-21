@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import StyleSelections from './styleSelections.jsx';
+// import StyleSelections from './styleSelections.jsx';
 import Carousel from 'react-bootstrap/Carousel';
 
 const StyleSelectionHelper = (props) => {
@@ -12,16 +12,60 @@ const StyleSelectionHelper = (props) => {
       }
   }
 
+  // const { children, show } = props;
+  // const [prevIndex, setPrevIndex] = useState(NaN);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [length, setLength] = useState(children.length);
+
+  // const chosen = () => {
+  //   if (currentIndex < (length - show)) {
+  //     setCurrentIndex(prevState => prevState + 1)
+  //   }
+  // }
+
+  // let static getDerivedStateFromProps = (props, state) => {
+  //   if (props.currentIndex !== prevIndex) {
+  //     prevSelectedStyleStyling(props);
+  //   }
+  // }
+  let prevSelectedStyleStyling = (props) => {
+    const element1 = document.querySelector(`.styles-selection-img${prevIndex}`);
+    // console.log('HIT', prevIndex)
+    if (element1 !== null) {
+      element1.style.border = '4px solid #428047';
+    }
+  }
+
+
+  let currentSelectedStyleStyling = (props) => {
+    // console.log('BANG')
+
+    // console.log(411534 === props.productStyles.results[Number(props.currentIndex)].style_id)
+    const element = document.querySelector(`.styles-selection-img${props.currentIndex}`);
+    if (411534 === props.productStyles.results[Number(props.currentIndex)].style_id && element !== null) {
+      element.style.border = '5px solid red';
+    }
+    // const element = document.querySelector(`.styles-selection-img${props.currentIndex}`);
+    if (Number(props.thumbStyle) === props.productStyles.results[Number(props.currentIndex)].style_id ) {
+
+      element.style.border = '5px solid red';
+    }
+
+  }
 
   if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
+    // {prevSelectedStyleStyling(props)}
+    {currentSelectedStyleStyling(props)}
+
     return (
       <React.Fragment>
         <section style={{marginBottom: 8}}>
           {props.productStyles.results.map((styleVals, i) => {
               return <img
-                      className='styles-selection-img'
+                      className={`styles-selection-img${i}`}
                       onClick={props.onThumbnailClick}
                       key={i}
+                      indexof={i}
                       src={styleVals.photos[0].thumbnail_url}
                       name={styleVals.name}
                       style_id={styleVals.style_id}

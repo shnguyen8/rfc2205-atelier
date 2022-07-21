@@ -18,6 +18,7 @@ class ProdOverview extends React.Component {
       thumbStyle: '',
       productStyles: {},
       selectedSize: '',
+      currentIndex: 0,
     }
   }
 
@@ -38,9 +39,25 @@ class ProdOverview extends React.Component {
         thumbnailSalePrice: '',
         thumbStyle: '',
         selectedSize: '',
+        currentIndex: 0,
       })
     }
   }
+
+  // prevSelectedStyleStyling = () => {
+  //   const element1 = document.querySelector(`.styles-selection-img${prevIndex}`);
+  //   console.log('HIT', prevIndex)
+  //   if (element1 !== null) {
+  //     element1.style.border = '4px solid #428047';
+  //   }
+  // }
+
+  static getDerivedStateFromProps = (nextProps, state) => {
+      console.log('getDerived', nextProps)
+
+  }
+
+
 
   getProductStyles = () => {
     axios.get(`products/${this.props.currentProduct}/styles`)
@@ -54,7 +71,7 @@ class ProdOverview extends React.Component {
   }
 
   onThumbnailClick = (e) => {
-    // console.log('Clicked: ', e.target);
+    console.log('Clicked: ', e.target.attributes.indexof.value);
     const element = document.querySelector('.styles-selection-img');
     if (e.target.attributes.sale !== undefined) {
       // element.style.border = '5px solid #428047';
@@ -64,6 +81,7 @@ class ProdOverview extends React.Component {
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: e.target.attributes.sale.value,
         thumbStyle: e.target.attributes.style_id.value,
+        currentIndex: e.target.attributes.indexof.value,
       })
     } else {
       // element.style.border = '5px solid #428047';
@@ -73,6 +91,7 @@ class ProdOverview extends React.Component {
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: '',
         thumbStyle: e.target.attributes.style_id.value,
+        currentIndex: e.target.attributes.indexof.value,
       })
     }
   }
@@ -128,7 +147,8 @@ class ProdOverview extends React.Component {
           productSpecs={this.props.productSpecs}
           productStyles={this.state.productStyles}
           onThumbnailClick={this.onThumbnailClick}
-          clickedStyle={this.clickedStyle}
+          currentIndex={this.state.currentIndex}
+          thumbStyle={this.state.thumbStyle}
         />
         <AddToCart
           currentProduct= {this.props.currentProduct}
