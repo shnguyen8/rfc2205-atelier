@@ -4,6 +4,9 @@ import Ratings from './ratingsAndReviews/ratings.jsx';
 import ProdOverview from './productOverview/overview.jsx';
 import Related from './relatedItems/related.jsx';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/styles.css'
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +18,7 @@ class App extends React.Component {
       initialReviews: [],
       metaData: {},
       productStyles: {},
-      relatedProducts: [],
-      allProducts: [],
+      allProducts: {},
     }
   }
 
@@ -25,30 +27,31 @@ class App extends React.Component {
     this.getAllDataPromise();
   }
 
+
   getAllData = () => {
     this.getAllDataPromise();
+    this.getMetaData();
   }
 
   getAllDataPromise = async () => {
-    let params = {product_id: this.state.currentProduct, page: 1}
+    let params = { product_id: this.state.currentProduct, page: 1 }
     await Promise.all([
       axios.get('/products'),
-      axios.get(`products/${this.state.currentProduct}`),
-      axios.get('/reviews', {params}),
-      axios.get(`products/${this.state.currentProduct}/styles`),
-      axios.get(`products/${this.state.currentProduct}/related`),
-      axios.get("/products/?count=5000")
+      axios.get(`/products/${this.state.currentProduct}`),
+      axios.get('/reviews', { params }),
+      axios.get(`/products/${this.state.currentProduct}/styles`),
+      axios.get("/products/?count=5000"),
     ])
-    .then((res) => {
-      this.setState({
-        products: res[0].data,
-        productSpecs: res[1].data,
-        initialReviews: res[2].data,
-        productStyles: res[3].data,
-        relatedProducts: res[4].data,
-        allProducts: res[5].data
+      .then((res) => {
+        // console.log(res)
+        this.setState({
+          products: res[0].data,
+          productSpecs: res[1].data,
+          initialReviews: res[2].data,
+          productStyles: res[3].data,
+          allProducts: res[4].data,
+        })
       })
-    })
   }
 
   getMetaData = () => {
@@ -62,15 +65,17 @@ class App extends React.Component {
       .catch(err => { console.log(err) })
   }
 
+
   onChange = (event) => {
     this.setState({
       currentProduct: event.target.value
     })
   }
 
+
   render() {
     return (
-      <div>
+      <div className = "app-container">
         <input
           type="text"
           placeholder='Search by Product_id'
@@ -78,33 +83,42 @@ class App extends React.Component {
           value={this.state.search}
           onChange={this.onChange}
         />
-        <button onClick={this.getAllData} >Submit</button>
-        <ProdOverview
-          currentProduct = {this.state.currentProduct}
-          products = {this.state.products}
-          productSpecs = {this.state.productSpecs}
-          productStyles = {this.state.productStyles}
-        />
+        <Button variant="outline-secondary" onClick={this.getAllData}>Submit</Button>
+        <div className='productOverview-container'>
+          <ProdOverview
+            currentProduct={this.state.currentProduct}
+            products={this.state.products}
+            productSpecs={this.state.productSpecs}
+            metaData={this.state.metaData}
+          />
+        </div>
+        <div className = 'ratingsAndReviews-container'>
         <Ratings
-          currentProduct = {this.state.currentProduct}
-          initialReviews = {this.state.initialReviews}
-          metaData = {this.state.metaData}
+          currentProduct={this.state.currentProduct}
+          initialReviews={this.state.initialReviews}
+          metaData={this.state.metaData}
+          productName = {this.state.productSpecs.name}
         />
+        </div>
+        <div className='relatedProducts-container'>
         <Related
-          currentProduct = {this.state.currentProduct}
-          relatedProducts = {this.state.relatedProducts}
-          allProducts = {this.state.allProducts}
+          currentProduct={this.state.currentProduct}
+          productSpecs= {this.state.productSpecs}
+          productStyles={this.state.productStyles}
+          allProducts={this.state.allProducts}
+          metaData={this.state.metaData}
         />
+        </div>
       </div>
     )
   }
 }
 
- const root1 = document.createElement("div");
- root1.setAttribute("id", "app");
- document.body.appendChild(root1);
- const container = document.getElementById("app");
- const root = createRoot(container)
- root.render(<App/>)
+const root1 = document.createElement("div");
+root1.setAttribute("id", "app");
+document.body.appendChild(root1);
+const container = document.getElementById("app");
+const root = createRoot(container)
+root.render(<App />)
 
 export default App;
