@@ -43,7 +43,7 @@
   max-width: fit-content;
   min-width: 440px;
   max-height: 570px;
-  /* border: solid greenyellow; */
+  /* border-radius: 50%; */
 }
 
 .imagegallery {
@@ -57,6 +57,7 @@
   min-width: 551px;
   align-content: space-around;
   overflow: hidden;
+  border-radius: 3%;
 }
 
 .flexbox-item {

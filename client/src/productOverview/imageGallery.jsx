@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import Flexbox from 'flexbox-react';
 import { Carousel } from 'react-bootstrap';
-
+// import ProductCarousel from './productCarousel.jsx';
 
 const ImageGallery = (props) => {
   // console.log(props);
@@ -32,12 +32,10 @@ const ImageGallery = (props) => {
     // console.log('HIT')
     return (
       <div className="imagegallery">
-            <div>
                 <div className="primary-image">
-                    <div>
                       <Carousel interval={null}>
                       {stylePhotosArr.map((stylePhotos, j) => {
-                        return  <Carousel.Item> <img
+                        return  <Carousel.Item><img
                                 onClick={props.onStylePhotosClick}
                                 // className='inner-images'
                                 key={j}
@@ -46,16 +44,16 @@ const ImageGallery = (props) => {
                                   resizeMode: "center",
                                   height: 490,
                                   width: 350,
+                                  // borderRadius: '50%',
                                 }}
                               /></Carousel.Item>
 
                       })}
                       </Carousel>
-
-                    </div>
                 </div>
-            </div>
+
             <div className='flexbox-item inner-image'>
+            {/* <ProductCarousel show={3}> */}
           {stylePhotosArr.map((stylePhotos, j) => {
             if (j < 7) {
               return  <img
@@ -69,21 +67,20 @@ const ImageGallery = (props) => {
                       width: 75,
                       border: '2px solid black',
                       borderRadius: '0%',
+                      // margin: 5,
                     }}
                   />
             }
 
 
           })}
-        </div>
+          </div>
         </div>
     )
   } else if (props.productStyles.results !== undefined && props.productStyles.results.length !== 0 && props.productStyles.results[0].photos[0].thumbnail_url !== null) {
     return (
       <div className="imagegallery">
-            <div>
                 <div className="primary-image">
-                    <div>
                       <Carousel interval={null}>
                       {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
                         return <Carousel.Item><img
@@ -96,14 +93,14 @@ const ImageGallery = (props) => {
                                   resizeMode: "center",
                                   height: 490,
                                   width: 350,
+                                  // borderRadius: '50%',
                                 }}
                               /></Carousel.Item>
                       })}
                       </Carousel>
-                    </div>
-                </div>
             </div>
             <span className='flexbox-item inner-image'>
+            {/* <ProductCarousel show={3}> */}
           {props.productStyles.results[0].photos.map((stylePhotosObjs, j) => {
             if (j < 7) {
               return <img
@@ -118,6 +115,7 @@ const ImageGallery = (props) => {
                       width: 75,
                       border: '2px solid black',
                       borderRadius: '0%',
+                      // margin: 5,
                     }}
                   />
             }
