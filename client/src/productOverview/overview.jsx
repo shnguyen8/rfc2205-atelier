@@ -52,11 +52,6 @@ class ProdOverview extends React.Component {
   //   }
   // }
 
-  static getDerivedStateFromProps = (nextProps, state) => {
-      console.log('getDerived', nextProps)
-
-  }
-
 
 
   getProductStyles = () => {
@@ -71,7 +66,7 @@ class ProdOverview extends React.Component {
   }
 
   onThumbnailClick = (e) => {
-    console.log('Clicked: ', e.target.attributes.indexof.value);
+    // console.log('Clicked: ', e.target.attributes.index.value);
     const element = document.querySelector('.styles-selection-img');
     if (e.target.attributes.sale !== undefined) {
       // element.style.border = '5px solid #428047';
@@ -81,7 +76,7 @@ class ProdOverview extends React.Component {
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: e.target.attributes.sale.value,
         thumbStyle: e.target.attributes.style_id.value,
-        currentIndex: e.target.attributes.indexof.value,
+        currentIndex: e.target.attributes.index.value,
       })
     } else {
       // element.style.border = '5px solid #428047';
@@ -91,7 +86,7 @@ class ProdOverview extends React.Component {
         thumbnailPrice: e.target.attributes.price.value,
         thumbnailSalePrice: '',
         thumbStyle: e.target.attributes.style_id.value,
-        currentIndex: e.target.attributes.indexof.value,
+        currentIndex: e.target.attributes.index.value,
       })
     }
   }
