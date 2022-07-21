@@ -7,6 +7,7 @@
 .env
 client/dist/bundle.js
 client/dist/bundle.js.map
+HR-RFC2205-Atelier.pem
 
 # User-specific files
 *.rsuser
