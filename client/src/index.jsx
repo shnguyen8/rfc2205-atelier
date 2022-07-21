@@ -76,6 +76,10 @@ class App extends React.Component {
   render() {
     return (
       <div className = "app-container">
+          <div className = 'logo'>
+            GANYMEDE
+          </div>
+          <img className = 'moon' src = {require('./assets/favpng_ganymede-moons-of-jupiter-galilean-moons-natural-satellite.png')} alt = 'logo'/>
         <input
           type="text"
           placeholder='Search by Product_id'
