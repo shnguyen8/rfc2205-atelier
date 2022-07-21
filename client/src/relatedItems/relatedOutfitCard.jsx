@@ -17,7 +17,7 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
       <div>
 
 
-          <Button variant="outline--*" className="block" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} > ❌ </Button>
+          <Button variant="outline--*" className="block" size="sm" style={{ display: 'flex', justifyContent: 'flex-end' }} > ❎ </Button>
 
 
         <Card.Img width="150" height="150" src={props.productImage} ></Card.Img>
