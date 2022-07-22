@@ -54,7 +54,7 @@ class ProdOverview extends React.Component {
   }
 
   onThumbnailClick = (e) => {
-    console.log('Clicked, ', e.target.attributes.style_id.value)
+    // console.log('Clicked, ', e.target.attributes.style_id.value)
     const element = document.querySelector('.styles-selection-img');
     if (e.target.attributes.sale !== undefined) {
       this.setState({
@@ -111,8 +111,6 @@ class ProdOverview extends React.Component {
   //     return <p>Item: {this.state.productSpecs.name} Size: {this.state.selectedSize} Quantity: {this.state.selectedQuantity}</p>
   //   }
   // }
-
-
 
   render() {
     return (

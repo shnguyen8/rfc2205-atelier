@@ -12,7 +12,7 @@ class StyleSelectionHelper extends React.Component {
   }
 
   static getDerivedStateFromProps = (nextProps, state) => {
-    console.log('getDerived', nextProps, state)
+    // console.log('getDerived', nextProps, state)
     if (nextProps.productStyles.results) {
       if (state.selected === undefined) {
         return {selected: nextProps.productStyles.results[0].style_id};
@@ -48,20 +48,21 @@ class StyleSelectionHelper extends React.Component {
   //   }
   // }
 
+
   clickevenlist = (e) => {
-    console.log(e.target.className);
+    // console.log(e.target.className);
     this.setState({
       selected: e.target.className,
     }, () => {
       this.props.onThumbnailClick(e)
       var x = document.getElementsByClassName('styles-section-forThumb')
-      console.log(x);
+      // console.log(x);
       for (var i = 0; i < x[0].childNodes.length; i++) {
-        console.log(x[0].childNodes[i].className)
-        console.log(Number(this.state.selected) === Number(x[0].childNodes[i].className))
+        // console.log(x[0].childNodes[i].className)
+        // console.log(Number(this.state.selected) === Number(x[0].childNodes[i].className))
         if (Number(this.state.selected) === Number(x[0].childNodes[i].className)) {
-          console.log('Match')
-          x[0].childNodes[i].style.border = '5px solid red';
+          // console.log('Match')
+          x[0].childNodes[i].style.border = '5px solid #428047';
         } else {
           x[0].childNodes[i].style.border = '';
         }
@@ -86,7 +87,6 @@ class StyleSelectionHelper extends React.Component {
 
   render () {
     if (this.props.productStyles.results !== undefined && this.props.productStyles.results.length !== 0 && this.props.productStyles.results[0].photos[0].thumbnail_url !== null) {
-      // {this.currentSelectedStyleStyling()}
       return (
         <React.Fragment>
           <section style={{marginBottom: 8}} className='styles-section-forThumb'>
@@ -106,7 +106,6 @@ class StyleSelectionHelper extends React.Component {
                           height: 100,
                           width: 100,
                           margin: 5,
-                          // border: '4px solid #428047',
                           borderRadius: '50%'
                         }}
                        />
