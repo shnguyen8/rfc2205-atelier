@@ -7,7 +7,11 @@
 .env
 client/dist/bundle.js
 client/dist/bundle.js.map
+<<<<<<< HEAD
+HR-RFC2205-Atelier.pem
+=======
 atelier-ganymede.pem
+>>>>>>> 11768faecc3643dd513aeb604cbdafe93f0fb05e
 RFC2205-Atelier.pem
 RFC2205-Atelier.pem:Zone.Identifier
 
