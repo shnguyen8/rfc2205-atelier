@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 const AddToCart = (props) => {
-  // console.log(props);
 
   var sizesAndQuantArr = [];
   let sizeOptions = (props) => {
@@ -24,24 +23,20 @@ const AddToCart = (props) => {
     }
   }
 
-
   let quantityArr = [];
   let quantityOptions = (props) => {
-    // console.log('run', props.selectedSize !== '' && props.selectedSize !== 'Select Size')
     if (props.selectedSize !== '' && props.selectedSize !== 'Select Size') {
       for (var i = 0; i < sizesAndQuantArr.length; i++) {
         if (props.selectedSize === sizesAndQuantArr[i].size) {
           for (var j = 1; j <= sizesAndQuantArr[i].quantity; j++) {
             if (j <= 15) {
               quantityArr.push(j);
-              // console.log(quantityArr)
             }
           }
         }
       }
     }
   }
-
 
   if (props.productStyles.results !== undefined) {
     sizeOptions(props);
@@ -67,17 +62,17 @@ const AddToCart = (props) => {
             return <option  key={k}>{sizesAndQuantObjs.size}</option>
             })}
           </select>
-          <select>
+          <select onClick={props.quantitySelectionClick}>
             {quantityOptions(props)}
             <option>-</option>
             {quantityArr.map((quantities, l) => {
               return <option key={l}>{quantities}</option>
             })}
           </select>
-          <Button variant="outline-secondary">Add To Cart</Button>
+          <Button variant="outline-secondary" onClick={() => {props.addToTheCart()}}>Add To Cart</Button>
+          {/* {props.addToCartButtonClick ? <div>{props.addToTheCart()}</div> : null } */}
           <Button variant="outline-secondary">Share</Button>
         </div>
-
       )
     }
   }
