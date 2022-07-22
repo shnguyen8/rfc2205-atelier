@@ -15,15 +15,12 @@ class ProdOverview extends React.Component {
       thumbnailStyleClicked: '',
       thumbnailPrice: '',
       thumbnailSalePrice: '',
-      thumbStyle: '',
+      thumbStyle: '411534',
       productStyles: {},
       selectedSize: '',
       currentIndex: 0,
     }
   }
-
-
-
 
   componentDidMount = () => {
     this.getProductStyles();
@@ -39,20 +36,12 @@ class ProdOverview extends React.Component {
         thumbnailSalePrice: '',
         thumbStyle: '',
         selectedSize: '',
+        selectedQuantity: '',
         currentIndex: 0,
+        // addToCartButtonClick: false,
       })
     }
   }
-
-  // prevSelectedStyleStyling = () => {
-  //   const element1 = document.querySelector(`.styles-selection-img${prevIndex}`);
-  //   console.log('HIT', prevIndex)
-  //   if (element1 !== null) {
-  //     element1.style.border = '4px solid #428047';
-  //   }
-  // }
-
-
 
   getProductStyles = () => {
     axios.get(`products/${this.props.currentProduct}/styles`)
@@ -62,14 +51,12 @@ class ProdOverview extends React.Component {
         })
       })
       .catch(err => {console.log(err)})
-
   }
 
   onThumbnailClick = (e) => {
-    // console.log('Clicked: ', e.target.attributes.index.value);
+    console.log('Clicked, ', e.target.attributes.style_id.value)
     const element = document.querySelector('.styles-selection-img');
     if (e.target.attributes.sale !== undefined) {
-      // element.style.border = '5px solid #428047';
       this.setState({
         thumbnailClicked: e.target.currentSrc,
         thumbnailStyleClicked: e.target.name,
@@ -79,7 +66,6 @@ class ProdOverview extends React.Component {
         currentIndex: e.target.attributes.index.value,
       })
     } else {
-      // element.style.border = '5px solid #428047';
       this.setState({
         thumbnailClicked: e.target.currentSrc,
         thumbnailStyleClicked: e.target.name,
@@ -92,7 +78,6 @@ class ProdOverview extends React.Component {
   }
 
   onStylePhotosClick = (e) => {
-    // console.log('Clicked: ', e)
     if (e.target.attributes.style_id !== undefined) {
       this.setState({
         thumbnailClicked: e.target.currentSrc,
@@ -103,15 +88,31 @@ class ProdOverview extends React.Component {
         thumbnailClicked: e.target.currentSrc
       })
     }
-
   }
 
   sizeSelectionClick = (e) => {
-    // console.log('Clicked: ', e.target.value);
     this.setState({
       selectedSize: e.target.value,
     })
   }
+
+  quantitySelectionClick = (e) => {
+    this.setState({
+      selectedQuantity: e.target.value,
+    })
+  }
+
+  // addToTheCart = () => {
+  //   console.log('clicked')
+  //   if (this.state.productSpecs !== undefined && this.state.selectedSize !== '' && this.state.selectedSize !== 'Select Size' && this.state.selectedQuantity !== '' && this.state.selectedQuantity !== '-') {
+  //     this.setState({
+  //       addToCartButtonClick: true,
+  //     })
+  //     return <p>Item: {this.state.productSpecs.name} Size: {this.state.selectedSize} Quantity: {this.state.selectedQuantity}</p>
+  //   }
+  // }
+
+
 
   render() {
     return (
@@ -153,10 +154,12 @@ class ProdOverview extends React.Component {
           thumbStyle={this.state.thumbStyle}
           selectedSize={this.state.selectedSize}
           sizeSelectionClick={this.sizeSelectionClick}
+          selectedQuantity={this.state.selectedQuantity}
+          quantitySelectionClick={this.quantitySelectionClick}
+          // addToTheCart={this.addToTheCart}
         />
         </div>
       </React.Fragment>
-
     )
   }
 }
