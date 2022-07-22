@@ -462,3 +462,8 @@ div.flex-center {
 .text-no-wrap {
   white-space: nowrap;
 }
+
+.font-styles {
+  font-weight: lighter
+}
+

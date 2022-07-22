@@ -31,7 +31,7 @@ function RelatedCard(props, { relatedStylesInfo, relatedProductsInfo, onClick })
                   </div>
                 </Card.Title>
 
-                <Card.Text>
+                <Card.Text className="font-styles">
                   <div className="flex-center" >{props.category}</div>
                   <div className="flex-center" >${props.price}</div>
                   {

@@ -29,7 +29,7 @@ function OutfitCard(props, {productStyles, relatedStylesInfo, relatedProductsInf
             </div>
           </Card.Title>
 
-          <Card.Text>
+          <Card.Text className="font-styles">
             <div className="flex-center">{props.productCategory}</div>
             <div className="flex-center">${props.productPrice}</div>
             {
