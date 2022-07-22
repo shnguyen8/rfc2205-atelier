@@ -4,7 +4,6 @@ import StarRating from './starRatingsPO.jsx';
 import avgRating from './starRatingsPO.jsx';
 
 const ProdInfo = (props) => {
-  // console.log(props);
 
   let avgRating = (ratingsObj) => {
     let totalScore = 0;

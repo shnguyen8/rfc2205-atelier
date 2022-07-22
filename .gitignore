@@ -8,6 +8,8 @@
 client/dist/bundle.js
 client/dist/bundle.js.map
 atelier-ganymede.pem
+RFC2205-Atelier.pem
+RFC2205-Atelier.pem:Zone.Identifier
 
 # User-specific files
 *.rsuser
