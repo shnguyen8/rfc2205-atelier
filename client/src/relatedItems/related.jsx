@@ -5,27 +5,12 @@ import RelatedCard from './relatedCard.jsx';
 import axios from 'axios';
 import ComparisonTable from './relatedComparison.jsx';
 
-// var mockData = [
-//   {img:,
-//   price: '$140.00',
-
-//   },
-//   {
-
-//   },
-//   {
-
-//   },
-// ]
-
 class Related extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       relatedProducts: [],
       currentProduct: this.props.currentProduct,
-      // relatedStylesInfo: {},
-      // relatedReviews: [],
       relatedData: []
     };
   }
@@ -47,7 +32,6 @@ class Related extends React.Component {
 
 
   fetchRelatedProducts =  async() => {
-    // console.log(this.props.currentProduct)
     let toAdd = []
     let added = []
     axios.get(`/products/${this.props.currentProduct}/related`)
@@ -65,16 +49,11 @@ class Related extends React.Component {
                       const allRelatedData = resData.data;
                       allRelatedData['styles'] = styleData.data.results;
                       allRelatedData['reviews'] = reviewData.data;
-                      // relatedStylesInfo: allRelatedData['styles'],
-                      // relatedReviews: allRelatedData['reviews']
                       if (!added.includes(allRelatedData.id)) {
-                        // console.log(allRelatedData, allRelatedData.id)
-                        // this.setState({ relatedData: [...this.state.relatedData, allRelatedData] });
                         toAdd.push(allRelatedData)
                         added.push(allRelatedData.id)
                         this.setState({relatedData: toAdd})
-                        // this.setState({ inRelatedData: [...this.state.inRelatedData, allRelatedData.id] })
-                        // console.log(`Added ${allRelatedData.id}`)
+
                       }
 
                     })
@@ -82,43 +61,11 @@ class Related extends React.Component {
 
             })
         })
-      // this.setState({ relatedData: toAdd })
 
       })
 
-    //   .then((res) => {
-    //     console.log(res)
-    //     return res.forEach(id => { axios.get(`/products/${id}/styles`) }
-    //   this.setState({
-    //       relatedStylesInfo: res.data
-    //     })
-    // })
-    //   .then((res) => {
-    //     return axios.get(`/reviews/meta/?product_id=${res}`)
-    //     this.setState({
-    //       relatedReviews: res.data
-    //     })
-    //   })
+
   }
-
-  // fetchStylesByID = (arr) => {
-  //   this.state.relatedProducts.forEach(id => {
-  //     axios.get(`/products/${id}/styles`)
-  //       .then(res => {
-  //         this.setState({ relatedStylesInfo: [...this.state.relatedStylesInfo, res.data] })
-  //       })
-  //   })
-  // }
-
-  // fetchReviewsByID = (arr) => {
-  //   this.state.relatedProducts.forEach(id => {
-  //     axios.get(`products/${id}/meta`)
-  //     .then(res => {
-  //       this.setState({ relatedReviews: [...this.state.relatedReviews, res.data] })
-  //     })
-  //   })
-  // }
-
 
 
   render() {

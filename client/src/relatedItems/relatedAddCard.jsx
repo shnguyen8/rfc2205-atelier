@@ -8,7 +8,7 @@ function AddCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
   const { name, category } = props;
 
   return (
-    <Card border="dark" style={{ width: '16rem' }} onClick={(e)=> props.onClick()}>
+    <Card border="dark" style={{ width: '16rem'}} onClick={(e)=> props.onClick()}>
 
       <div>
 
@@ -18,7 +18,7 @@ function AddCard(props, { relatedStylesInfo, relatedProductsInfo, onClick }) {
         </Card.Img>
 
         <Card.Body>
-          <Card.Title>
+          <Card.Title className="font-styles">
             <div style={{display: 'flex', justifyContent: 'center'}}>
             ADD
             </div>

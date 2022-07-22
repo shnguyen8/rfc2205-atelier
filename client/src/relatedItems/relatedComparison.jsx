@@ -41,8 +41,6 @@ function ComparisonTable(props) {
       <Table>
         <thead>
           <tr>
-            {/* {props.relatedData.length > 0 ? props.relatedData.map((product, index) => (
-              <th>Hello</th>)): null} */}
             <th>{props.curRelatedProduct.name}</th>
             <th>CHARACTERISTICS</th>
             <th>{props.curProduct.name}</th>
