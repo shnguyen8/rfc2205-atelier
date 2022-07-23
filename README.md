@@ -21,7 +21,7 @@ Project to deepen understanding of front-end development.
 
 ## Component Details
 ### Main Product Overview
-![Product_Overview_Screenshot](./readme_visuals/productOverview.jpg)
+![Product_Overview_Screenshot](./readme_visuals/productOverview.png)
 Product Overview displays a primary product with product information:
   - A gallery of product images
   - An assortment of styles to select for each product
