@@ -12,7 +12,7 @@
     "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "npx webpack --watch",
     "build": "npx webpack",
-    "start": "pm2-runtime start ecosystem.config.js --env production"
+    "start": "npx node server/index.js"
   },
   "repository": {
     "type": "git",
