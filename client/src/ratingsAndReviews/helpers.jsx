@@ -10,7 +10,7 @@ const avgRating = (ratingsObj) => {
   let ratings = numberOfRatings(ratingsObj);
   for (var key in ratingsObj) {
     let score = Number(ratingsObj[key]) * Number(key);
-    totalScore += score ;
+    totalScore += score;
   }
   let avg = totalScore / ratings;
   avg = Math.round(avg * 10) / 10;
@@ -19,7 +19,7 @@ const avgRating = (ratingsObj) => {
 
 const numberOfRatings = (ratingsObj) => {
   let total = 0;
-  for(var key in ratingsObj){
+  for (var key in ratingsObj) {
     let number = Number(ratingsObj[key])
     total += number
   }
@@ -27,7 +27,7 @@ const numberOfRatings = (ratingsObj) => {
 }
 
 const percentRecommend = (recObj) => {
-  if(recObj){
+  if (recObj) {
     let totalTrue = Number(recObj['true']) || 0;
     let totalFalse = Number(recObj.false) || 0;
     let percent = totalTrue / (totalTrue + totalFalse) * 100 || 0;
@@ -41,11 +41,11 @@ const formatDate = (date) => {
   //input date 2022-04-14T00:00:00.000Z
   //output Month DD, YYYY
   let months = ['January', 'Februrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  let formatted  = ''
+  let formatted = ''
   let dateArr = date.split('-');
   let month = Number(dateArr[1]) - 1
   month = months[month]
-  let day = dateArr[2].slice(0,2)
+  let day = dateArr[2].slice(0, 2)
   let year = dateArr[0]
   formatted = month + ' ' + day + ', ' + year
   return formatted
@@ -59,37 +59,37 @@ const charMapper = (charsObj) => {
     Width: ['too narrow', 'perfect', 'too wide'],
     Comfort: ['uncomfortable', 'ok', 'perfect'],
     Quality: ['poor', 'expected', 'perfect'],
-    Length: ['runs short', 'perfect','runs long'],
+    Length: ['runs short', 'perfect', 'runs long'],
     Fit: ['runs tight', 'perfect', 'runs long']
   }
-  for(var key in charsObj){
+  for (var key in charsObj) {
 
-    var length = Math.floor(Number(charsObj[key].value)/5 * 150)
+    var length = Math.floor(Number(charsObj[key].value) / 5 * 150)
 
     list.push(
-      <div style = {{width: '150px', 'marginBottom': '7px'}}>
-      {key}: <br/>
-      <div className = 'line' style = {{'backgroundColor': '#eeeeee', width: '150px', height: '8px',  'marginBottom': '4px'}}>
-        <div className = 'lineSectionSpacing' style = {{'display': 'flex', 'justifyContent': 'space-evenly', 'position': 'absolute', 'z-index': '1'}}>
-          <div className = 'section' style = {{'backgroundColor': 'white', height: '10px',width: '5px', 'marginLeft': '47px'}}/>
-          <div className = 'section' style = {{'backgroundColor': 'white', height: '10px',width: '5px', 'marginLeft': '47px'}}/>
+      <div style={{ width: '150px', 'marginBottom': '7px' }}>
+        {key}: <br />
+        <div className='line' style={{ 'backgroundColor': '#eeeeee', width: '150px', height: '8px', 'marginBottom': '4px' }}>
+          <div className='lineSectionSpacing' style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'position': 'absolute', 'z-index': '1' }}>
+            <div className='section' style={{ 'backgroundColor': 'white', height: '10px', width: '5px', 'marginLeft': '47px' }} />
+            <div className='section' style={{ 'backgroundColor': 'white', height: '10px', width: '5px', 'marginLeft': '47px' }} />
+          </div>
+          <div className='triangle' style={{ 'marginLeft': `${length}px` }} />
         </div>
-        <div className = 'triangle' style = {{'marginLeft': `${length}px`}}/>
-      </div>
-      <div className = 'labels' style = {{'fontSize': '8pt', 'display': 'flex', 'justifyContent': 'space-between', width: '150px', height: '8pt'}}>
-      <p>{ratings[key][0]}</p>
-      <p>{ratings[key][1]}</p>
-      <p>{ratings[key][2]}</p>
-      </div>
+        <div className='labels' style={{ 'fontSize': '8pt', 'display': 'flex', 'justifyContent': 'space-between', width: '150px', height: '8pt' }}>
+          <p>{ratings[key][0]}</p>
+          <p>{ratings[key][1]}</p>
+          <p>{ratings[key][2]}</p>
+        </div>
 
       </div>
     )
   }
 
-  return(
+  return (
     <React.Fragment>
       {list}
-      <br/>
+      <br />
     </React.Fragment>
   )
 }
@@ -102,19 +102,19 @@ var sectionStyle = {
 
 const displayThumbnails = (photosArray) => {
 
-  if(photosArray.length > 0){
+  if (photosArray.length > 0) {
     return photosArray.map(photo => {
-      if(typeof photo === 'object'){
-        return <ReviewPhoto url = {photo.url} key = {photo.id}/>
+      if (typeof photo === 'object') {
+        return <ReviewPhoto url={photo.url} key={photo.id} />
       } else {
-        return <ReviewPhoto url = {photo}/>
+        return <ReviewPhoto url={photo} />
       }
     })
   } else {
-    return <span class = 'empty'></span>
+    return <span class='empty'></span>
   }
 }
 
 
-export {avgRating, numberOfRatings, percentRecommend, formatDate, charMapper, displayThumbnails}
+export { avgRating, numberOfRatings, percentRecommend, formatDate, charMapper, displayThumbnails }
 

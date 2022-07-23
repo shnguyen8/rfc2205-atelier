@@ -7,6 +7,10 @@
 .env
 client/dist/bundle.js
 client/dist/bundle.js.map
+HR-RFC2205-Atelier.pem
+atelier-ganymede.pem
+RFC2205-Atelier.pem
+RFC2205-Atelier.pem:Zone.Identifier
 
 # User-specific files
 *.rsuser
